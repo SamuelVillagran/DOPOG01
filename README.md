@@ -36,7 +36,7 @@ poob-playground/
  
 > "Un buen diagrama no garantiza un buen programa, pero un mal diagrama garantiza dolores de cabeza."
  
-Cada laboratorio busca responder una pregunta concreta de diseño: ¿cómo modelo un enemigo que patrulla? ¿cómo evito que una skin rompa el principio de responsabilidad única? ¿cómo hago que un juego sea extensible sin reescribirlo todo?
+Cada laboratorio busca responder una pregunta concreta de diseño: ¿cómo evito que una skin rompa el principio de responsabilidad única? ¿cómo hago que un juego sea extensible sin reescribirlo todo?
  
 ---
  
