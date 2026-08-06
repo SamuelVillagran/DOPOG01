@@ -51,16 +51,14 @@ Se reutilizan la clase `Robot` (construida sobre `shapes`) y el paquete `shapes`
 ```
 📦 ApellidoA-ApellidoB
  ┣ 📂 shapes/          # Paquete base + extensiones a Triangle
- ┣ 📂 robot/            # Clase Robot
- ┣ 📂 robotmaze/         # Mini-aplicación RobotMaze
- ┣ 📄 lab01.doc          # Respuestas y capturas de pantalla
+ ┣ 📄 lab01.doc        # Respuestas y capturas de pantalla
  ┗ 📄 README.md
 ```
 
 ## 👥 Autores
 
-- *(Tu nombre)*
-- *(Nombre de tu compañero)*
+- Samuel Steveen Villagran Rodriguez
+- Pablo Andres Gualdron Lindo
 
 ---
-Curso: Desarrollo Orientado por Objetos — 2026-2 · Escuela Colombiana de Ingeniería Julio Garavito
+*_Readme generado por Claude Sonnet 5 2026_*
