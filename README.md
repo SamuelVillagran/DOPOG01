@@ -19,16 +19,18 @@ Este repositorio es mi bitácora de experimentación con **Java** y **POO**: des
 | 📐 Astah | Modelado UML |
 | 🧪 BlueJ / JUnit | Pruebas y exploración interactiva |
  
-## 📂 Estructura
+## 📂 Estructura (Ejemplo)
  
 ```
 poob-playground/
 ├── lab01/
 │   ├── Code/          # Código fuente en Java
-│   └── Desing/        # Diagramas UML (Astah)
+│   └── Desing/        # Diagramas UML (Astah), mockups, ideas
+│   └── Documento de laboratorio
 ├── lab02/
 │   ├── Code/
 │   └── Desing/
+│   └── Documento de laboratorio
 └── ...
 ```
  
