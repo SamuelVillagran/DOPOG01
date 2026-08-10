@@ -121,15 +121,6 @@ Nivel de dificultad entre paréntesis (`*` = básico → `***` = alto):
 
 ---
 
-## 🛠️ Cómo abrir el proyecto
-
-1. Clonar el repo.
-2. Abrir con **BlueJ** (`package.bluej`) o importar como proyecto Java en tu IDE.
-3. Revisar/editar el diagrama fuente en **Astah** antes de tocar código, para que
-   clases y UML no se desincronicen.
-
----
-
 Ingeniería de Sistemas, Escuela Colombiana de Ingeniería Julio Garavito.
 
 Readme generado por Claude Sonnet 5 2026
