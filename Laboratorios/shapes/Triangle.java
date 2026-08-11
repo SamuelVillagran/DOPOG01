@@ -29,6 +29,21 @@ public class Triangle{
         color = "green";
         isVisible = false;
     }
+    
+    /**
+     * Convert this triangle into an equilateral triangle
+     */
+    public void equilateral() {
+        height = (int) ((Math.sqrt(3)/2)*width);
+        width = (int) ((Math.sqrt(2)/3*height));
+    }
+
+    /**
+     * Give area of triangle
+     */
+    public int area() {
+        return (height*width)/2;
+    }
 
     /**
      * Make this triangle visible. If it was already visible, do nothing.

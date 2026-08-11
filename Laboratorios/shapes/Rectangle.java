@@ -31,7 +31,6 @@ public class Rectangle{
         color = "magenta";
         isVisible = false;
     }
-    
 
     /**
      * Make this rectangle visible. If it was already visible, do nothing.
