@@ -31,11 +31,22 @@ public class Triangle{
     }
     
     /**
+     * Make to move triangle # times,
+     * triangle moves 10 units depending on if times is positive this triangle
+     * shifts to the rigth, but if times is negative figure shifts to the left
+     * @param times times are the number of iterations (10 units per iteration) 
+     * that this figure moves based on if this number is negative or positive
+     */
+    public void walk(int times) {
+        slowMoveHorizontal(times*10);
+    }
+    
+    /**
      * Convert this triangle into an equilateral triangle
      */
     public void equilateral() {
         erase();
-        /* Según area = s^2*(sqrt(3)/4) <- Formula de area de triangulo equilatero
+        /* Según area = s^2*(sqrt(3)/4) <- Formula de area del triangulo equilatero
          * s = sqrt(4*area/sqrt(3))
          */
         double s = Math.sqrt((4 * area()) / Math.sqrt(3)); // Lado de triang. equilatero
