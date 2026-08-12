@@ -56,7 +56,7 @@ public class Triangle{
         if (areaTriangle > 0) {
             return areaTriangle;
         }
-        width = 0; // Si al calcular el area da negativo entonces el area es 0
+        width = 0; // Si al calcular el area da negativo o 0 entonces el area es 0
         height = 0;
         return 0;
     }
