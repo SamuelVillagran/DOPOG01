@@ -35,8 +35,11 @@ public class Triangle{
      */
     public void equilateral() {
         erase();
-        height = (int) (width*(Math.sqrt(3)/2));
-        width = (int) (height*((2*Math.sqrt(3))/3));
+        // Según area = s^2*(sqrt(3)/4) <- Formula de area de triangulo equilatero
+        double s = Math.sqrt((4 * area()) / Math.sqrt(3)); // Lado de triang. equilatero
+    
+        width = (int) s;
+        height = (int) (s * (Math.sqrt(3) / 2));    
         draw();
     }
 

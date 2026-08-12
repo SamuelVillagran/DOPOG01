@@ -38,12 +38,24 @@ public class TriangleTest {
     
     
     @Test
-    public void shouldConvertIntoEquilateralTriangle() {
+    public void shouldConvertIntoAnIdealEquilateralTriangle() {
         Triangle trle = new Triangle(); 
         trle.changeSize(140, 230);
-        trle.equilateral(); // Tiene que cumplir que sean areas aproximadamente cercanas
+        trle.equilateral(); // Tiene que cumplir que sean areas aproximadamente cercanas al area ideal de un triangulo equilatero
         int areaTriangle = trle.area(), proofAreaEquilateral = (int) ((Math.sqrt(3)/4)*Math.pow(trle.getWidth(), 2)); 
         double delta = proofAreaEquilateral*0.01 /* <- tolerancia*/;
         assertEquals(areaTriangle, proofAreaEquilateral, delta); // delta es el error que puede cometer el calculo del area
+    }
+    
+    @Test
+    public void shouldConvertIntoEquilateralTriangle() {
+        Triangle trle = new Triangle(); 
+        trle.changeSize(9401, 2307); // Si se cambia esto llega hasta un límite, después falla
+        int areaBefore = trle.area();
+        trle.equilateral(); /* Tiene que cumplir que sean areas aproximadamente 
+            cercanas al area antes de convertirlo a equilatero*/
+        int areaTriangleEq = trle.area(); 
+        double delta = areaTriangleEq*0.02 /* <- tolerancia*/;
+        assertEquals(areaTriangleEq, areaBefore, delta); // delta es el error que puede cometer el calculo del area
     }
 }
