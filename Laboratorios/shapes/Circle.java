@@ -26,9 +26,7 @@ public class Circle{
         color = "blue";
         isVisible = false;
     }
-
-
-       
+      
     public void makeVisible(){
         isVisible = true;
         draw();

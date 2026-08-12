@@ -34,15 +34,24 @@ public class Triangle{
      * Convert this triangle into an equilateral triangle
      */
     public void equilateral() {
-        height = (int) ((Math.sqrt(3)/2)*width);
-        width = (int) ((Math.sqrt(2)/3*height));
+        erase();
+        height = (int) (width*(Math.sqrt(3)/2));
+        width = (int) (height*((2*Math.sqrt(3))/3));
+        draw();
     }
 
     /**
      * Give area of triangle
      */
     public int area() {
-        return (height*width)/2;
+        int areaTriangle = (height*width)/2;
+        
+        if (areaTriangle > 0) {
+            return areaTriangle;
+        }
+        width = 0; // Si al calcular el area da negativo entonces el area es 0
+        height = 0;
+        return 0;
     }
 
     /**
