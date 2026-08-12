@@ -40,7 +40,10 @@ public class TriangleTest {
     @Test
     public void shouldConvertIntoEquilateralTriangle() {
         Triangle trle = new Triangle(); 
-        trle.changeSize(40, 30);
-        
+        trle.changeSize(140, 230);
+        trle.equilateral(); // Tiene que cumplir que sean areas aproximadamente cercanas
+        int areaTriangle = trle.area(), proofAreaEquilateral = (int) ((Math.sqrt(3)/4)*Math.pow(trle.getWidth(), 2)); 
+        double delta = proofAreaEquilateral*0.01 /* <- tolerancia*/;
+        assertEquals(areaTriangle, proofAreaEquilateral, delta); // delta es el error que puede cometer el calculo del area
     }
 }

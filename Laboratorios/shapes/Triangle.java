@@ -202,4 +202,20 @@ public class Triangle{
             canvas.erase(this);
         }
     }
+    
+    public int getWidth() {
+        return width;
+    }
+    
+    public int getHeight() {
+        return height;
+    }
+    
+    public int getXPosition() {
+        return xPosition;
+    }
+    
+    public int getYPosition() {
+        return yPosition;
+    }
 }
