@@ -1,4 +1,3 @@
-import java.util.concurrent.Future;
 import java.util.ArrayList;
 
 /**
@@ -9,17 +8,16 @@ import java.util.ArrayList;
  */
 public class Robot {
     
-    protected int actualLocation;
-    protected int initialStart;
+    protected int xPosition;
+    protected int yPosition;
     protected boolean visible;
     protected ArrayList<Figure> figureRobot;
     
     
-    public Robot(int start, String color) {
+    public Robot(int x, int y) {
     
-        this.figureRobot = new ArrayList<>();
-        this.actualLocation = start;
-        this.initialStart = start;
+        this.figureRobot = new ArrayList<>();        
+        this.visible = false;
         
         // Creation and addition of shapes:
         this.figureRobot.add(new Circle());
@@ -28,5 +26,96 @@ public class Robot {
         this.figureRobot.add(new Triangle());
         this.figureRobot.add(new Rectangle());
         this.figureRobot.add(new Rectangle());
+        
+        
+        //Modifying head
+        ((Rectangle)figureRobot.get(2)).changeSize(15, 15);
+        figureRobot.get(2).changeColor("blue");
+        
+        //Modifyng leftEye
+        figureRobot.get(0).changeColor("white");
+        ((Circle)figureRobot.get(0)).changeSize(3);
+        figureRobot.get(0).setPosition(74, 20);
+        
+        //Modifying rightEye
+        figureRobot.get(1).changeColor("white");
+        ((Circle)figureRobot.get(1)).changeSize(3);
+        figureRobot.get(1).setPosition(79, 20);
+        
+        //Modifyng body
+        ((Triangle)figureRobot.get(3)).changeSize(10, 15);
+        ((Triangle)figureRobot.get(3)).rotate(180);
+        figureRobot.get(3).setPosition(78, 40);
+        
+        //Modifying mouth
+        ((Rectangle)figureRobot.get(4)).changeSize(3, 10);
+        figureRobot.get(4).moveVertical(10);
+        figureRobot.get(4).moveHorizontal(3);
+        figureRobot.get(4).changeColor("white");
+        
+        //Modifying antenna
+        ((Rectangle)figureRobot.get(5)).changeSize(7, 5);
+        figureRobot.get(5).moveVertical(-7);
+        figureRobot.get(5).moveHorizontal(5);
+        figureRobot.get(5).changeColor("red");
     }
+    
+    /**
+     * Hide the robot of canvas
+     */
+    public void makeInvisible() {
+        for (Figure f : figureRobot) {
+            f.makeInvisible();
+        }
+        this.visible = false;
+    }
+    
+    /**
+     * Draw robot on canvas
+     */
+    public void makeVisible(){
+        this.visible = true;
+        figureRobot.get(3).makeVisible();
+        figureRobot.get(2).makeVisible();
+        figureRobot.get(5).makeVisible();
+        figureRobot.get(4).makeVisible();
+        figureRobot.get(0).makeVisible();
+        figureRobot.get(1).makeVisible();
+    }
+    
+    /**
+     * Set the position of the Robot in Pixels
+     */
+    public void setPosition(int x, int y) {
+        //2: head
+        figureRobot.get(2).setXPosition(50 + y * 40);
+        figureRobot.get(2).setYPosition(50 + x * 40);
+        //4: mouth
+        figureRobot.get(4).setXPosition(53 + y * 40);
+        figureRobot.get(4).setYPosition(60 + x * 40);
+        //5: antenna
+        figureRobot.get(5).setXPosition(55 + y * 40);
+        figureRobot.get(5).setYPosition(43 + x * 40);
+        //3: body
+        figureRobot.get(3).setXPosition(57 + y * 40);
+        figureRobot.get(3).setYPosition(76 + x * 40);
+        //0: leftEye
+        figureRobot.get(0).setXPosition(55 + y * 40);
+        figureRobot.get(0).setYPosition(55 + x * 40);
+        //1: rightEye
+        figureRobot.get(1).setXPosition(60 + y * 40);
+        figureRobot.get(1).setYPosition(55 + x * 40);
+        
+        //Make all parts visible
+        if (this.visible){
+            figureRobot.get(3).makeVisible(); //body
+            figureRobot.get(2).makeVisible(); //head
+            figureRobot.get(5).makeVisible(); //antenna
+            figureRobot.get(4).makeVisible(); //mouth
+            figureRobot.get(0).makeVisible(); //leftEye
+            figureRobot.get(1).makeVisible(); //rightEye
+        }
+    }
+    
+    
 }

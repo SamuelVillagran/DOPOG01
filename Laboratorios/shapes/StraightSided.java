@@ -24,5 +24,4 @@ public abstract class StraightSided extends Figure {
         draw();
     }
 
-    
 }

@@ -155,6 +155,13 @@ public abstract class Figure {
         return yPosition;
     }
     
+    /**
+     * Set new x and y position
+     */
+    public void setPosition(int x, int y) {
+        this.xPosition = x;
+        this.yPosition = y;
+    }
     
     /**
      * Set new position x of shape
@@ -187,6 +194,5 @@ public abstract class Figure {
      * Draw the shape on canvas
      */
     protected abstract void draw();
-    
     
 }

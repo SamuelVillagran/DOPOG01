@@ -10,8 +10,6 @@ public class Rectangle extends StraightSided {
 
     public static int EDGES = 4;
     
-    private int height;
-    private int width;
     /**
      * Create a new rectangle at default position with default color.
      */
