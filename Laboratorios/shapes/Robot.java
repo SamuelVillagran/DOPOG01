@@ -15,13 +15,18 @@ public class Robot {
     
     
     public Robot(int x, int y) {
-    
         xPosition = x;
         yPosition = y;
         
         this.figureRobot = new ArrayList<>();        
         this.visible = true;
         
+        makeRobotShapes();
+        modifyRobotShapes(); /* Add instructions at methods 
+            to make more simplified this method*/
+    }
+    
+    private void makeRobotShapes() {
         // Creation and addition of shapes:
         this.figureRobot.add(new Circle());
         this.figureRobot.add(new Circle());
@@ -29,11 +34,12 @@ public class Robot {
         this.figureRobot.add(new Triangle());
         this.figureRobot.add(new Rectangle());
         this.figureRobot.add(new Rectangle());
-        
-        
+    }
+    
+    private void modifyRobotShapes() {
         //Modifying head
-        ((Rectangle)figureRobot.get(2)).changeSize(15, 15);
         figureRobot.get(2).changeColor("blue");
+        ((Rectangle)figureRobot.get(2)).changeSize(15, 15);
         figureRobot.get(2).setPosition(xPosition, yPosition);
         
         //Modifyng leftEye
@@ -52,14 +58,14 @@ public class Robot {
         figureRobot.get(3).setPosition(xPosition+8, yPosition+25);
         
         //Modifying mouth
+        figureRobot.get(4).changeColor("white");
         ((Rectangle)figureRobot.get(4)).changeSize(3, 10);
         figureRobot.get(4).setPosition(xPosition+3, yPosition+10);
-        figureRobot.get(4).changeColor("white");
         
         //Modifying antenna
-        ((Rectangle)figureRobot.get(5)).changeSize(7, 5);
-        figureRobot.get(5).setPosition(xPosition+5, yPosition-7);
         figureRobot.get(5).changeColor("red");
+        ((Rectangle)figureRobot.get(5)).changeSize(7, 5);
+        figureRobot.get(5).setPosition(xPosition+5, yPosition-7);        
     }
     
     /**
