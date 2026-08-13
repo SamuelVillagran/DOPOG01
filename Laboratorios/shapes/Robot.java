@@ -4,10 +4,10 @@ import java.util.List;
 import java.awt.Point;
 
 /**
- * Write a description of class Robot here.
+ * This is class Robot. This is the robot of maze.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Gualdron - Villagran
+ * @version 1.0
  */
 public class Robot {
     

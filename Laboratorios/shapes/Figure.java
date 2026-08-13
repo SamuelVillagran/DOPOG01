@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Figure here.
+ * Class Figure, each figure of shapes is Figure
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Gualdron - Villagran
+ * @version 1.0
  */
 public abstract class Figure {
     
