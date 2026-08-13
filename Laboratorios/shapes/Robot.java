@@ -23,6 +23,7 @@ public class Robot {
     private static final int LEFT_EYE = 4;
     private static final int RIGHT_EYE = 5;
     private static final int NUM_FIGURES = 6;
+
     
     public Robot(int x, int y) {
         xPosition = x;
@@ -35,8 +36,6 @@ public class Robot {
         modifyRobotShapes(); /* Add instructions at methods 
             to make more simplified this method of class*/
     }
-    
-    
     
     /**
      * Hide the robot of canvas
