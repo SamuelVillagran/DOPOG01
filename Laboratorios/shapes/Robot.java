@@ -33,7 +33,7 @@ public class Robot {
         
         makeRobotShapes();
         modifyRobotShapes(); /* Add instructions at methods 
-            to make more simplified this method*/
+            to make more simplified this method of class*/
     }
     
     
@@ -57,9 +57,11 @@ public class Robot {
         }
         this.visible = true;
     }
-    
+     
     /**
-     * Set the position of the Robot in Pixels.
+     * Set the position of the Robot.
+     * @param x x is the new xPosition that robot has.
+     * @param y y is the new yPosition that robot has.
      */
     public void setPosition(int x, int y) {
         xPosition = x;
