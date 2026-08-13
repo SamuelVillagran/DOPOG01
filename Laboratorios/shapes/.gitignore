@@ -9,3 +9,6 @@
 
 # Ignorar los paquetes (cuando trabajemos con eclipse)
 #*.pkg
+
+# Ignorara los archivos de texto
+*.txt
