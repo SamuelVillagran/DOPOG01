@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.awt.Point;
 
 /**
  * Write a description of class Robot here.
@@ -11,14 +14,21 @@ public class Robot {
     protected int xPosition;
     protected int yPosition;
     protected boolean visible;
-    protected ArrayList<Figure> figureRobot;
+    protected ArrayList<Figure> robotFigure;
     
+    private static final int HEAD = 0;
+    private static final int BODY = 1;
+    private static final int MOUTH = 2;
+    private static final int ANTENNA = 3;
+    private static final int LEFT_EYE = 4;
+    private static final int RIGHT_EYE = 5;
+    private static final int NUM_FIGURES = 6;
     
     public Robot(int x, int y) {
         xPosition = x;
         yPosition = y;
         
-        this.figureRobot = new ArrayList<>();        
+        this.robotFigure = new ArrayList<>();        
         this.visible = true;
         
         makeRobotShapes();
@@ -26,53 +36,13 @@ public class Robot {
             to make more simplified this method*/
     }
     
-    private void makeRobotShapes() {
-        // Creation and addition of shapes:
-        this.figureRobot.add(new Circle());
-        this.figureRobot.add(new Circle());
-        this.figureRobot.add(new Rectangle());
-        this.figureRobot.add(new Triangle());
-        this.figureRobot.add(new Rectangle());
-        this.figureRobot.add(new Rectangle());
-    }
     
-    private void modifyRobotShapes() {
-        //Modifying head
-        figureRobot.get(2).changeColor("blue");
-        ((Rectangle)figureRobot.get(2)).changeSize(15, 15);
-        figureRobot.get(2).setPosition(xPosition, yPosition);
-        
-        //Modifyng leftEye
-        figureRobot.get(0).changeColor("white");
-        ((Circle)figureRobot.get(0)).changeSize(3);
-        figureRobot.get(0).setPosition(xPosition+4, yPosition+4);
-        
-        //Modifying rightEye
-        figureRobot.get(1).changeColor("white");
-        ((Circle)figureRobot.get(1)).changeSize(3);
-        figureRobot.get(1).setPosition(xPosition+10, yPosition+4);
-        
-        //Modifyng body
-        ((Triangle)figureRobot.get(3)).changeSize(10, 15);
-        ((Triangle)figureRobot.get(3)).rotate(180);
-        figureRobot.get(3).setPosition(xPosition+8, yPosition+25);
-        
-        //Modifying mouth
-        figureRobot.get(4).changeColor("white");
-        ((Rectangle)figureRobot.get(4)).changeSize(3, 10);
-        figureRobot.get(4).setPosition(xPosition+3, yPosition+10);
-        
-        //Modifying antenna
-        figureRobot.get(5).changeColor("red");
-        ((Rectangle)figureRobot.get(5)).changeSize(7, 5);
-        figureRobot.get(5).setPosition(xPosition+5, yPosition-7);        
-    }
     
     /**
      * Hide the robot of canvas
      */
     public void makeInvisible() {
-        for (Figure f : figureRobot) {
+        for (Figure f : robotFigure) {
             f.makeInvisible();
         }
         this.visible = false;
@@ -82,44 +52,81 @@ public class Robot {
      * Make visible robot on canvas
      */
     public void makeVisible(){
-        /* Se hace en orden para que aparezcan los ojos*/
-        figureRobot.get(3).makeVisible(); //body
-        figureRobot.get(2).makeVisible(); //head
-        figureRobot.get(5).makeVisible(); //antenna
-        figureRobot.get(4).makeVisible(); //mouth
-        figureRobot.get(0).makeVisible(); //leftEye
-        figureRobot.get(1).makeVisible(); //rightEye
+        for (Figure f : robotFigure) {
+            f.makeVisible();
+        }
         this.visible = true;
     }
     
     /**
-     * Set the position of the Robot in Pixels
+     * Set the position of the Robot in Pixels.
      */
     public void setPosition(int x, int y) {
-        //2: head
-        figureRobot.get(2).setXPosition(50 + y * 40);
-        figureRobot.get(2).setYPosition(50 + x * 40);
-        //4: mouth
-        figureRobot.get(4).setXPosition(53 + y * 40);
-        figureRobot.get(4).setYPosition(60 + x * 40);
-        //5: antenna
-        figureRobot.get(5).setXPosition(55 + y * 40);
-        figureRobot.get(5).setYPosition(43 + x * 40);
-        //3: body
-        figureRobot.get(3).setXPosition(57 + y * 40);
-        figureRobot.get(3).setYPosition(76 + x * 40);
-        //0: leftEye
-        figureRobot.get(0).setXPosition(55 + y * 40);
-        figureRobot.get(0).setYPosition(55 + x * 40);
-        //1: rightEye
-        figureRobot.get(1).setXPosition(60 + y * 40);
-        figureRobot.get(1).setYPosition(55 + x * 40);
-        
+        xPosition = x;
+        yPosition = y;
+        ArrayList<Point> movesPlus = new ArrayList<>(
+            List.of(new Point(0,0), new Point(8, 25), new Point(3, 10),
+            new Point(5, -7), new Point(4, 4), new Point(10, 4)));
+        int plusXPos, plusYPos;
+        Figure currentFigure;
+        for (int i = 0; i < NUM_FIGURES; i++) {
+            currentFigure = robotFigure.get(i);
+            plusXPos = xPosition + movesPlus.get(i).x;
+            plusYPos = yPosition + movesPlus.get(i).y;
+            currentFigure.setPosition(xPosition+plusXPos, xPosition+plusYPos);
+        }
+
         //Make all parts visible
         if (this.visible){
             makeVisible();
         }
     }
     
+    /* 
+     * Creates the shapes that compose the robot.
+     */
+    private void makeRobotShapes() {
+        // Creation and addition of shapes:
+        this.robotFigure.add(new Rectangle());// 0: HEAD
+        this.robotFigure.add(new Triangle()); // 1: BODY
+        this.robotFigure.add(new Rectangle());// 2: MOUTH
+        this.robotFigure.add(new Rectangle());// 3: ANTENNA
+        this.robotFigure.add(new Circle());   // 4: LEFT_EYE
+        this.robotFigure.add(new Circle());   // 5: RIGHT_EYE
+    }
     
+    /*
+     * Modify each robot's shape to generate the robot figure. 
+     */
+    private void modifyRobotShapes() {
+        //Modifying head
+        robotFigure.get(HEAD).changeColor("blue");
+        ((Rectangle)robotFigure.get(HEAD)).changeSize(15, 15);
+        robotFigure.get(HEAD).setPosition(xPosition, yPosition);
+        
+        //Modifyng body
+        ((Triangle)robotFigure.get(BODY)).changeSize(10, 15);
+        ((Triangle)robotFigure.get(BODY)).rotate(180);
+        robotFigure.get(BODY).setPosition(xPosition+8, yPosition+25);
+        
+        //Modifying mouth
+        robotFigure.get(MOUTH).changeColor("white");
+        ((Rectangle)robotFigure.get(MOUTH)).changeSize(3, 10);
+        robotFigure.get(MOUTH).setPosition(xPosition+3, yPosition+10);
+        
+        //Modifying antenna
+        robotFigure.get(ANTENNA).changeColor("red");
+        ((Rectangle)robotFigure.get(ANTENNA)).changeSize(7, 5);
+        robotFigure.get(ANTENNA).setPosition(xPosition+5, yPosition-7);
+        
+        //Modifyng leftEye
+        robotFigure.get(LEFT_EYE).changeColor("white");
+        ((Circle)robotFigure.get(LEFT_EYE)).changeSize(3);
+        robotFigure.get(LEFT_EYE).setPosition(xPosition+4, yPosition+4);
+        
+        //Modifying rightEye
+        robotFigure.get(RIGHT_EYE).changeColor("white");
+        ((Circle)robotFigure.get(RIGHT_EYE)).changeSize(3);
+        robotFigure.get(RIGHT_EYE).setPosition(xPosition+10, yPosition+4);
+    }
 }
