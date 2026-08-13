@@ -16,8 +16,11 @@ public class Robot {
     
     public Robot(int x, int y) {
     
+        xPosition = x;
+        yPosition = y;
+        
         this.figureRobot = new ArrayList<>();        
-        this.visible = false;
+        this.visible = true;
         
         // Creation and addition of shapes:
         this.figureRobot.add(new Circle());
@@ -31,32 +34,31 @@ public class Robot {
         //Modifying head
         ((Rectangle)figureRobot.get(2)).changeSize(15, 15);
         figureRobot.get(2).changeColor("blue");
+        figureRobot.get(2).setPosition(xPosition, yPosition);
         
         //Modifyng leftEye
         figureRobot.get(0).changeColor("white");
         ((Circle)figureRobot.get(0)).changeSize(3);
-        figureRobot.get(0).setPosition(74, 20);
+        figureRobot.get(0).setPosition(xPosition+4, yPosition+4);
         
         //Modifying rightEye
         figureRobot.get(1).changeColor("white");
         ((Circle)figureRobot.get(1)).changeSize(3);
-        figureRobot.get(1).setPosition(79, 20);
+        figureRobot.get(1).setPosition(xPosition+10, yPosition+4);
         
         //Modifyng body
         ((Triangle)figureRobot.get(3)).changeSize(10, 15);
         ((Triangle)figureRobot.get(3)).rotate(180);
-        figureRobot.get(3).setPosition(78, 40);
+        figureRobot.get(3).setPosition(xPosition+8, yPosition+25);
         
         //Modifying mouth
         ((Rectangle)figureRobot.get(4)).changeSize(3, 10);
-        figureRobot.get(4).moveVertical(10);
-        figureRobot.get(4).moveHorizontal(3);
+        figureRobot.get(4).setPosition(xPosition+3, yPosition+10);
         figureRobot.get(4).changeColor("white");
         
         //Modifying antenna
         ((Rectangle)figureRobot.get(5)).changeSize(7, 5);
-        figureRobot.get(5).moveVertical(-7);
-        figureRobot.get(5).moveHorizontal(5);
+        figureRobot.get(5).setPosition(xPosition+5, yPosition-7);
         figureRobot.get(5).changeColor("red");
     }
     
@@ -71,16 +73,17 @@ public class Robot {
     }
     
     /**
-     * Draw robot on canvas
+     * Make visible robot on canvas
      */
     public void makeVisible(){
+        /* Se hace en orden para que aparezcan los ojos*/
+        figureRobot.get(3).makeVisible(); //body
+        figureRobot.get(2).makeVisible(); //head
+        figureRobot.get(5).makeVisible(); //antenna
+        figureRobot.get(4).makeVisible(); //mouth
+        figureRobot.get(0).makeVisible(); //leftEye
+        figureRobot.get(1).makeVisible(); //rightEye
         this.visible = true;
-        figureRobot.get(3).makeVisible();
-        figureRobot.get(2).makeVisible();
-        figureRobot.get(5).makeVisible();
-        figureRobot.get(4).makeVisible();
-        figureRobot.get(0).makeVisible();
-        figureRobot.get(1).makeVisible();
     }
     
     /**
@@ -108,12 +111,7 @@ public class Robot {
         
         //Make all parts visible
         if (this.visible){
-            figureRobot.get(3).makeVisible(); //body
-            figureRobot.get(2).makeVisible(); //head
-            figureRobot.get(5).makeVisible(); //antenna
-            figureRobot.get(4).makeVisible(); //mouth
-            figureRobot.get(0).makeVisible(); //leftEye
-            figureRobot.get(1).makeVisible(); //rightEye
+            makeVisible();
         }
     }
     
