@@ -138,7 +138,6 @@ public abstract class Figure {
     
     /**
      * Get position x of shape
-     * 
      * @return Position x of shape
      */    
     public int getXPosition(){
@@ -148,7 +147,6 @@ public abstract class Figure {
     
     /**
      * Get position y of shape
-     * 
      * @return Position y of shape
      */    
     public int getYPosition(){
@@ -157,25 +155,11 @@ public abstract class Figure {
     
     /**
      * Set new x and y position
+     * @param x x is the new xPosition of figure.
+     * @param y y is the new yPosition of figure.
      */
     public void setPosition(int x, int y) {
         this.xPosition = x;
-        this.yPosition = y;
-    }
-    
-    /**
-     * Set new position x of shape
-     * 
-     */    
-    public void setXPosition(int x){
-        this.xPosition = x;
-    }
-
-    /**
-     * Set new position y of shape
-     * 
-     */  
-    public void setYPosition(int y){
         this.yPosition = y;
     }
     
