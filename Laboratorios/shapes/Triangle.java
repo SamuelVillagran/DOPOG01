@@ -34,7 +34,7 @@ public class Triangle extends StraightSided {
     }
     
     /**
-     * Flips triangle vertically.
+     * Flips triangle vertically. Inspiración: Gemini IA
      */
     public void flip() {
         erase();
