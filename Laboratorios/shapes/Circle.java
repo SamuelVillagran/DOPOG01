@@ -23,6 +23,16 @@ public class Circle extends Figure {
         isVisible = false;
     }
 
+    /**
+     * Change the size.
+     * @param newDiameter the new size (in pixels). Size must be >=0.
+     */
+    public void changeSize(int newDiameter){
+        erase();
+        diameter = newDiameter;
+        draw();
+    }
+    
     /*
      * To able draw circle
      */
@@ -35,15 +45,5 @@ public class Circle extends Figure {
                 diameter, diameter));
             canvas.wait(10);
         }
-    }
-
-    /**
-     * Change the size.
-     * @param newDiameter the new size (in pixels). Size must be >=0.
-     */
-    public void changeSize(int newDiameter){
-        erase();
-        diameter = newDiameter;
-        draw();
     }
 }

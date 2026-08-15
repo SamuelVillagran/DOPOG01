@@ -13,16 +13,16 @@ public class Robot {
     
     protected int xPosition;
     protected int yPosition;
-    protected boolean visible;
+    protected boolean isVisible;
     protected ArrayList<Figure> robotFigure;
     
-    private static final int HEAD = 0;
-    private static final int BODY = 1;
-    private static final int MOUTH = 2;
-    private static final int ANTENNA = 3;
-    private static final int LEFT_EYE = 4;
-    private static final int RIGHT_EYE = 5;
-    private static final int NUM_FIGURES = 6;
+    public static final int HEAD = 0;
+    public static final int BODY = 1;
+    public static final int MOUTH = 2;
+    public static final int ANTENNA = 3;
+    public static final int LEFT_EYE = 4;
+    public static final int RIGHT_EYE = 5;
+    public static final int NUM_FIGURES = 6;
 
     
     public Robot(int x, int y) {
@@ -30,7 +30,7 @@ public class Robot {
         yPosition = y;
         
         this.robotFigure = new ArrayList<>();        
-        this.visible = true;
+        this.isVisible = true;
         
         makeRobotShapes();
         modifyRobotShapes(); /* Add instructions at methods 
@@ -44,7 +44,7 @@ public class Robot {
         for (Figure f : robotFigure) {
             f.makeInvisible();
         }
-        this.visible = false;
+        this.isVisible = false;
     }
     
     /**
@@ -54,7 +54,7 @@ public class Robot {
         for (Figure f : robotFigure) {
             f.makeVisible();
         }
-        this.visible = true;
+        this.isVisible = true;
     }
      
     /**
@@ -78,7 +78,7 @@ public class Robot {
         }
 
         //Make all parts visible
-        if (this.visible){
+        if (this.isVisible){
             makeVisible();
         }
     }

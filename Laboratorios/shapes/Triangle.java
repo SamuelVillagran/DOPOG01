@@ -28,7 +28,7 @@ public class Triangle extends StraightSided {
      * @param angle angle is a double that defines the rotation angle
      * of triangle by grades °
      */
-    public void rotate(double angle) {
+    public void rotate(double angle) { // Este método fue ayudado a hacer por Gemini IA
         erase();
         rotationAngle = Math.toRadians(angle);
         draw();
@@ -80,7 +80,7 @@ public class Triangle extends StraightSided {
      * Draw the triangle with current specifications on screen.
      */
     @Override
-    protected void draw(){
+    protected void draw(){// Este método fue ayudado a modificar por Gemini IA para que funcione rotate()
         if(isVisible) {
         Canvas canvas = Canvas.getCanvas();
         
@@ -116,15 +116,6 @@ public class Triangle extends StraightSided {
         canvas.draw(this, color, new Polygon(xpoints, ypoints, VERTICES));
         canvas.wait(10);
         }
-    }
-    
-    public int getWidth() {
-        return width;
-    }
-    
-    public int getHeight() {
-        return height;
-    }
-    
+    }   
     
 }
