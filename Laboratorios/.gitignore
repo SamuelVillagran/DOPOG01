@@ -12,3 +12,6 @@
 
 # Ignorara los archivos de texto
 *.txt
+
+# Ignora temporal de astah
+*.asta.lock
