@@ -28,37 +28,132 @@ C:\Users\samut\git\DOPOG01\Laboratorios\shapes/Circle.java
 C:\Users\samut\git\DOPOG01\Laboratorios\shapes/Canvas.java
 C:\Users\samut\git\DOPOG01\Laboratorios\shapes/Rectangle.java
 C:\Users\samut\git\DOPOG01\Laboratorios\shapes/Triangle.java
+C:\Users\samut\git\DOPOG01\Laboratorios\shapes/Robot.java
+C:\Users\samut\git\DOPOG01\Laboratorios\shapes/StraightSided.java
+C:\Users\samut\git\DOPOG01\Laboratorios\shapes/TriangleTest.java
+C:\Users\samut\git\DOPOG01\Laboratorios\shapes/Figure.java
 <---- end of javadoc command ---->
 Loading source file C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Circle.java...
 Loading source file C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Canvas.java...
 Loading source file C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Rectangle.java...
 Loading source file C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Triangle.java...
+Loading source file C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Robot.java...
+Loading source file C:\Users\samut\git\DOPOG01\Laboratorios\shapes\StraightSided.java...
+Loading source file C:\Users\samut\git\DOPOG01\Laboratorios\shapes\TriangleTest.java...
+Loading source file C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Figure.java...
 Constructing Javadoc information...
+warning: unknown enum constant Status.STABLE
+  reason: class file for org.apiguardian.api.API$Status not found
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
 Building index for all the packages and classes...
 Standard Doclet version 21.0.6+7-LTS
 Building tree for all the packages and classes...
 Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\Canvas.html...
-C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Canvas.java:114: warning: @param argument "newColour" is not a parameter name.
-     * @param  newColour   the new colour for the foreground of the Canvas 
-       ^
 Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\Circle.html...
-C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Circle.java:160: warning: @param argument "color" is not a parameter name.
-     * @param color the new color. Valid colors are "red", "yellow", "blue", "green",
-       ^
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\Figure.html...
 Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\Rectangle.html...
-C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Rectangle.java:143: warning: @param argument "newWidht" is not a parameter name.
-     * @param newWidht the new width in pixels. newWidth must be >=0.
-       ^
-C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Rectangle.java:154: warning: @param argument "color" is not a parameter name.
-     * @param color the new color. Valid colors are "red", "yellow", "blue", "green",
-       ^
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\Robot.html...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\StraightSided.html...
 Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\Triangle.html...
-C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Triangle.java:140: warning: @param argument "newWidht" is not a parameter name.
-     * @param newWidht the new width in pixels. newWidht must be >=0.
-       ^
-C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Triangle.java:151: warning: @param argument "color" is not a parameter name.
-     * @param color the new color. Valid colors are "red", "yellow", "blue", "green",
-       ^
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\TriangleTest.html...
 Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\package-summary.html...
 Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\package-tree.html...
 Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\constant-values.html...
@@ -70,4 +165,4 @@ Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\index-all.html...
 Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\search.html...
 Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\index.html...
 Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\help-doc.html...
-6 warnings
+100 warnings

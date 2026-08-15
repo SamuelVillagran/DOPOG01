@@ -4,8 +4,7 @@ import java.util.List;
 import java.awt.Point;
 
 /**
- * This is class Robot. This is the robot of maze.
- * 
+ * This is the robot of maze.
  * @author Gualdron - Villagran
  * @version 1.0
  */
@@ -24,7 +23,12 @@ public class Robot {
     public static final int RIGHT_EYE = 5;
     public static final int NUM_FIGURES = 6;
 
-    
+    /**
+     * Constructor to able create a robot
+     * with specific coordenades of canva.
+     * @param x x is the x robot's position on the canvas.
+     * @param y y is the y robot's position on the canvas.
+     */
     public Robot(int x, int y) {
         xPosition = x;
         yPosition = y;

@@ -113,7 +113,7 @@ public class TriangleTest {
         int alturaInicial = trle.getHeight();
         int yPosBaseInicial = trle.getYPosition() + alturaInicial;
         trle.flip();
-        int yPosBaseFinal = trle.getYPosition() - alturaInicial;
+        int yPosBaseFinal = trle.getYPosition() + trle.getHeight();
         assertEquals(-alturaInicial, trle.getHeight());
         assertEquals(2*alturaInicial, Math.abs(yPosBaseInicial-yPosBaseFinal)); 
         /*Si se volteó el triangulo la yPosicion actual menos la yPosicion final debe ser
