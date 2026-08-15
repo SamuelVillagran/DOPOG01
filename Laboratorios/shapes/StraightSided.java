@@ -32,5 +32,12 @@ public abstract class StraightSided extends Figure {
     public int getHeight() {
         return height;
     }
+    
+    /**
+     * Get the figure color
+     */
+    public String getColor() {
+        return color;
+    }
 
 }

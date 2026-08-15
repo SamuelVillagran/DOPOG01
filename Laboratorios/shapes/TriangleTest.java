@@ -99,4 +99,24 @@ public class TriangleTest {
         int xPosNow = trle.getXPosition();
         assertEquals(xPosNow, xPosBefore+movement);
     }
+    
+    @Test
+    public void shouldCreateASpecificTriangle() {
+        StraightSided specificTriangle = new Triangle("magenta", 32, 78);
+        assertEquals("magenta", specificTriangle.getColor());
+        assertEquals(32, specificTriangle.getHeight());
+        assertEquals(78, specificTriangle.getWidth());
+    }
+    
+    @Test
+    public void shouldFlipTringle() {
+        int alturaInicial = trle.getHeight();
+        int yPosBaseInicial = trle.getYPosition() + alturaInicial;
+        trle.flip();
+        int yPosBaseFinal = trle.getYPosition() - alturaInicial;
+        assertEquals(-alturaInicial, trle.getHeight());
+        assertEquals(2*alturaInicial, Math.abs(yPosBaseInicial-yPosBaseFinal)); 
+        /*Si se volteó el triangulo la yPosicion actual menos la yPosicion final debe ser
+           el doble de la altura*/
+    }
 }

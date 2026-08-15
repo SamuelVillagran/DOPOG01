@@ -24,6 +24,25 @@ public class Triangle extends StraightSided {
     }
     
     /**
+     * Create a new triangle given a color, width and height
+     */
+    public Triangle(String color, int height, int width) {
+        super(140, 15, color);
+        this.height = height;
+        this.width = width;
+        rotationAngle = 0.0;
+    }
+    
+    /**
+     * Flips triangle vertically.
+     */
+    public void flip() {
+        erase();
+        height = -height;
+        draw();
+    }
+    
+    /**
      * This able to rotate the triangle a determinated angle
      * @param angle angle is a double that defines the rotation angle
      * of triangle by grades °
