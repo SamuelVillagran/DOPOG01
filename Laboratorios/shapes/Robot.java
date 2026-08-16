@@ -14,6 +14,9 @@ public class Robot {
     protected int yPosition;
     protected boolean isVisible;
     protected ArrayList<Figure> robotFigure;
+    
+    protected boolean ok;  
+    protected char direction; 
 
     public static final int HEAD = 0;
     public static final int BODY = 1;
@@ -21,13 +24,10 @@ public class Robot {
     public static final int ANTENNA = 3;
     public static final int LEFT_EYE = 4;
     public static final int RIGHT_EYE = 5;
+    public static final int NEEDLE = 6;
     public static final int NUM_FIGURES = 6;
 
-
-    private boolean ok;  
-    private char direction; 
     
-
     
 //ciclo 1  
     /**
@@ -42,7 +42,7 @@ public class Robot {
         
         this.robotFigure = new ArrayList<>();        
         this.isVisible = true;
-
+        this.direction = 'e';
         
         makeRobotShapes();
         modifyRobotShapes(); /* Add instructions at methods 
@@ -100,54 +100,61 @@ public class Robot {
     
     /**
      * Move the figure according to the direction
-     * @return return: none
+     * @param step step are the times that robot moves.
      */
-    public void move(int step){
+    public void move(int step) {
+        int dx = 0, dy = 0;
         switch (this.direction) {
             case 'w':
                 // izquierda
-                for (Figure figure : robotFigure) {
-                    figure.slowMoveHorizontal(-10*step);
-                }
+                dx = -1;
+                moveSlow(dx, dy, step);
                 break;
             case 's':
                 // abajo
-                for (Figure figure : robotFigure) {
-                    figure.slowMoveVertical(10*step);
-                }
+                dy = -1;
+                moveSlow(dx, dy, step);
                 break;
             case 'e':
                 //derecha 
-                for (Figure figure : robotFigure) {
-                    figure.slowMoveHorizontal(10*step);
-                }
+                dx = 1;
+                moveSlow(dx, dy, step);
                 break;
             case 'n':
                 //arriba 
-                for (Figure figure : robotFigure) {
-                    figure.slowMoveVertical(-10*step);
-                }
+                dy = 1;
+                moveSlow(dx, dy, step);
                 break;
-            }
         }
+    }
+        
     /**
      * change direction
      * @return return: none
      */
     public void turn(char direction){
+        ((Triangle)robotFigure.get(NEEDLE)).erase();
+        if (direction == 'n') {
+            ((Triangle)robotFigure.get(NEEDLE)).rotate(0);
+        } else if (direction == 'w') {
+            ((Triangle)robotFigure.get(NEEDLE)).rotate(-90);
+        } else if (direction == 'e') {
+            ((Triangle)robotFigure.get(NEEDLE)).rotate(90);
+        } else if (direction == 's') {
+            ((Triangle)robotFigure.get(NEEDLE)).rotate(180);
+        }
+        
+        ((Triangle)robotFigure.get(NEEDLE)).draw();
         this.direction = direction;
     }
     
     /**
-     * 
+     * Indicats if the robot can move (if this have live).
      */
     public boolean isOK(){
         //pendiente de laberinto
         return this.ok;
     }
-    
-    
-
  
  
 //ciclo 3
@@ -156,7 +163,11 @@ public class Robot {
      */
     public void makeInvisible() {
         for (Figure f : robotFigure) {
-            f.makeInvisible();
+            if (!isVisible) {
+                f.makeVisible();    
+            } else {
+                break;
+            }
         }
         this.isVisible = false;
     }
@@ -166,7 +177,11 @@ public class Robot {
      */
     public void makeVisible(){
         for (Figure f : robotFigure) {
-            f.makeVisible();
+            if (isVisible) {
+                f.makeVisible();    
+            } else {
+                break;
+            }
         }
         this.isVisible = true;
     }
@@ -184,6 +199,25 @@ public class Robot {
         return this.yPosition;
     }
     
+    /* Make move slowy the robot
+     * @param dx dx is the delta at x position of robot that this moves it.
+     * @param dy dy is the delta at y position of robot that this moves it.
+     * @param step are the times that robot moves 10 units.
+     */
+    private void moveSlow(int dx, int dy, int step) {
+        int figurePosX, figurePosY;
+        for (int i = 0; i < step*10; i++) {
+             for (Figure figure : robotFigure) {
+                  figurePosX = figure.getXPosition();
+                  figurePosY = figure.getYPosition();
+                  figure.setPosition(figurePosX-1, figurePosY);
+                  if (i%10==0) {
+                     figure.draw();
+                  }
+             }
+        }
+    }
+    
     /* 
      * Creates the shapes that compose the robot.
      */
@@ -195,6 +229,7 @@ public class Robot {
         this.robotFigure.add(new Rectangle());// 3: ANTENNA
         this.robotFigure.add(new Circle());   // 4: LEFT_EYE
         this.robotFigure.add(new Circle());   // 5: RIGHT_EYE
+        this.robotFigure.add(new Triangle());// 6: NEEDLE
     }
     
     /*
@@ -217,7 +252,7 @@ public class Robot {
         robotFigure.get(MOUTH).setPosition(xPosition+3, yPosition+10);
         
         //Modifying antenna
-        robotFigure.get(ANTENNA).changeColor("red");
+        robotFigure.get(ANTENNA).changeColor("yellow");
         ((Rectangle)robotFigure.get(ANTENNA)).changeSize(7, 5);
         robotFigure.get(ANTENNA).setPosition(xPosition+5, yPosition-7);
         
@@ -230,7 +265,11 @@ public class Robot {
         robotFigure.get(RIGHT_EYE).changeColor("white");
         ((Circle)robotFigure.get(RIGHT_EYE)).changeSize(3);
         robotFigure.get(RIGHT_EYE).setPosition(xPosition+10, yPosition+4);
+        
+        //Modifying pointer
+        robotFigure.get(NEEDLE).changeColor("red");
+        ((Triangle)robotFigure.get(NEEDLE)).changeSize(11, 8);
+        ((Triangle)robotFigure.get(NEEDLE)).rotate(90);
+        robotFigure.get(NEEDLE).setPosition(xPosition+13, yPosition-20);
     }
 }
-
-
