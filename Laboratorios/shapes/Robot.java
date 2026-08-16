@@ -15,6 +15,7 @@ public class Robot {
     protected boolean isVisible;
     protected ArrayList<Figure> robotFigure;
     
+    protected int live;
     protected boolean ok;  
     protected char direction; 
 
@@ -26,8 +27,6 @@ public class Robot {
     public static final int RIGHT_EYE = 5;
     public static final int NEEDLE = 6;
     public static final int NUM_FIGURES = 6;
-
-    
     
 //ciclo 1  
     /**
@@ -43,6 +42,7 @@ public class Robot {
         this.robotFigure = new ArrayList<>();        
         this.isVisible = true;
         this.direction = 'e';
+        this.live = 10;
         
         makeRobotShapes();
         modifyRobotShapes(); /* Add instructions at methods 
@@ -102,26 +102,35 @@ public class Robot {
      */
     public void move(int step) {
         int dx = 0, dy = 0;
+        ok = live > 0 ? true : false;
         switch (this.direction) {
             case 'w':
                 // izquierda
-                dx = -1;
-                moveSlow(dx, dy, step);
+                if (this.ok) {
+                    dx = -1;
+                    moveSlow(dx, dy, step); 
+                }
                 break;
             case 's':
                 // abajo
-                dy = -1;
-                moveSlow(dx, dy, step);
+                if (this.ok) {
+                    dy = -1;
+                    moveSlow(dx, dy, step);
+                }
                 break;
             case 'e':
                 //derecha 
-                dx = 1;
-                moveSlow(dx, dy, step);
+                if (this.ok) {
+                    dx = 1;
+                    moveSlow(dx, dy, step);
+                }
                 break;
             case 'n':
                 //arriba 
-                dy = 1;
-                moveSlow(dx, dy, step);
+                if (this.ok) {
+                    dy = 1;
+                    moveSlow(dx, dy, step);
+                }
                 break;
         }
     }
@@ -193,6 +202,14 @@ public class Robot {
     
     public int getYPosition() {
         return this.yPosition;
+    }
+    
+    public void takeDamage() {
+        this.live--;
+    }
+    
+    public void checkColision() {
+        
     }
     
     /* Make move slowy the robot
