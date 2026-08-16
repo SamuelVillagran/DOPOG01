@@ -14,7 +14,7 @@ public class Robot {
     protected int yPosition;
     protected boolean isVisible;
     protected ArrayList<Figure> robotFigure;
-    
+
     public static final int HEAD = 0;
     public static final int BODY = 1;
     public static final int MOUTH = 2;
@@ -23,6 +23,13 @@ public class Robot {
     public static final int RIGHT_EYE = 5;
     public static final int NUM_FIGURES = 6;
 
+
+    private boolean ok;  
+    private char direction; 
+    
+
+    
+//ciclo 1  
     /**
      * Constructor to able create a robot
      * with specific coordenades of canva.
@@ -30,36 +37,19 @@ public class Robot {
      * @param y y is the y robot's position on the canvas.
      */
     public Robot(int x, int y) {
-        xPosition = x;
-        yPosition = y;
+        this.xPosition = x;
+        this.yPosition = y;
         
         this.robotFigure = new ArrayList<>();        
         this.isVisible = true;
+
         
         makeRobotShapes();
         modifyRobotShapes(); /* Add instructions at methods 
             to make more simplified this method of class*/
     }
     
-    /**
-     * Hide the robot of canvas
-     */
-    public void makeInvisible() {
-        for (Figure f : robotFigure) {
-            f.makeInvisible();
-        }
-        this.isVisible = false;
-    }
     
-    /**
-     * Make visible robot on canvas
-     */
-    public void makeVisible(){
-        for (Figure f : robotFigure) {
-            f.makeVisible();
-        }
-        this.isVisible = true;
-    }
      
     /**
      * Set the position of the Robot.
@@ -85,6 +75,113 @@ public class Robot {
         if (this.isVisible){
             makeVisible();
         }
+    }
+    
+    /** Give the x and y coordenades of robot.
+     * @return return robot''s coordinates (x,y)
+     */
+    public int[] coordinates() {
+        int[] coordinatesXY;
+        coordinatesXY = new int[2];
+        coordinatesXY[0] = xPosition;
+        coordinatesXY[1] = yPosition;
+        return coordinatesXY;
+    }
+    
+    /**
+     * Give the direction of robot.
+     * @return return attribute direction of robot.
+     */
+    public char direction() {
+          return this.direction; 
+    }
+    
+    //ciclo 2
+    
+    /**
+     * Move the figure according to the direction
+     * @return return: none
+     */
+    public void move(int step){
+        switch (this.direction) {
+            case 'w':
+                // izquierda
+                for (Figure figure : robotFigure) {
+                    figure.slowMoveHorizontal(-10*step);
+                }
+                break;
+            case 's':
+                // abajo
+                for (Figure figure : robotFigure) {
+                    figure.slowMoveVertical(10*step);
+                }
+                break;
+            case 'e':
+                //derecha 
+                for (Figure figure : robotFigure) {
+                    figure.slowMoveHorizontal(10*step);
+                }
+                break;
+            case 'n':
+                //arriba 
+                for (Figure figure : robotFigure) {
+                    figure.slowMoveVertical(-10*step);
+                }
+                break;
+            }
+        }
+    /**
+     * change direction
+     * @return return: none
+     */
+    public void turn(char direction){
+        this.direction = direction;
+    }
+    
+    /**
+     * 
+     */
+    public boolean isOK(){
+        //pendiente de laberinto
+        return this.ok;
+    }
+    
+    
+
+ 
+ 
+//ciclo 3
+    /**
+     * Hide the robot of canvas
+     */
+    public void makeInvisible() {
+        for (Figure f : robotFigure) {
+            f.makeInvisible();
+        }
+        this.isVisible = false;
+    }
+    
+    /**
+     * Make visible robot on canvas
+     */
+    public void makeVisible(){
+        for (Figure f : robotFigure) {
+            f.makeVisible();
+        }
+        this.isVisible = true;
+    }
+     
+
+    
+//---------------------------------------------------------------------------------------------
+    
+    public int getXPosition() {
+        return xPosition;
+    }
+
+    
+    public int getYPosition() {
+        return this.yPosition;
     }
     
     /* 
@@ -135,3 +232,5 @@ public class Robot {
         robotFigure.get(RIGHT_EYE).setPosition(xPosition+10, yPosition+4);
     }
 }
+
+
