@@ -6,27 +6,39 @@
  * @version (a version number or a date)
  */
 public class Maze {
+    
     private Room[][] matrix;
-    private Room room1;
+    private Room roomEntry;
+    private Room roomExit;
+    
     public Maze(int size) {
-        room1 = new Room(0,0);
-        Canvas.getCanvas().setDimension((room1.height() * size)+2, (room1.height() * size)+2);
+        roomEntry = new Room(0,40);
+        roomExit = new Room(roomEntry.height()* (size+1),roomEntry.height() * (size));
+        Canvas.getCanvas().setDimension((roomEntry.height() * (size+2)), (roomEntry.height() * (size+2)));
         matrix = new Room[size][size];
-        matrix[0][0] = room1;
-        matrix[0][0].buildWall('n');
-        for (int i = 1; i < size;i++){
-            matrix[i][0] = new Room(room1.width()*i,0);
+        
+        
+        roomEntry.buildWall('n');
+        roomEntry.buildWall('w');
+        roomEntry.buildWall('s');
+        
+        roomExit.buildWall('n');
+        roomExit.buildWall('e');
+        roomExit.buildWall('s');
+        
+        for (int i = 0; i < size;i++){
+            matrix[i][0] = new Room((roomEntry.width()*i)+40,40);
             matrix[i][0].buildWall('n');
         }
         for (int i = 1; i < size;i++){
             for (int u = 0; u < size;u++){
-            matrix[u][i] = new Room(room1.width()*u,room1.height()*i);
+            matrix[u][i] = new Room((roomEntry.width()*u)+40,(roomEntry.height()*i)+40);
             }
         }
-        for (int i = 0; i < size;i++){
+        for (int i = 1; i < size;i++){
               matrix[0][i].buildWall('w');
         }
-        for (int i = 0; i < size;i++){
+        for (int i = 0; i < (size-1);i++){
               matrix[size -1 ][i].buildWall('e');
         }
         for (int i = 0; i < size;i++){
