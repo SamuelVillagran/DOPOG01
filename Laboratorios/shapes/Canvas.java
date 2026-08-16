@@ -61,6 +61,21 @@ public class Canvas{
         objects = new ArrayList <Object>();
         shapes = new HashMap <Object,ShapeDescription>();
     }
+    
+    public void setDimension(int width, int height) {
+        canvas.setPreferredSize(new Dimension(width, height));
+        frame.pack();
+        
+        Dimension size = canvas.getSize();
+        canvasImage = canvas.createImage(size.width, size.height);
+        graphic = (Graphics2D)canvasImage.getGraphics();
+        graphic.setColor(backgroundColour);
+        graphic.fillRect(0, 0, size.width, size.height);
+        graphic.setColor(Color.black);
+        
+        redraw();
+    }
+    
 
     /**
      * Set the canvas visibility and brings canvas to the front of screen
