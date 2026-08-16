@@ -48,8 +48,6 @@ public class Robot {
         modifyRobotShapes(); /* Add instructions at methods 
             to make more simplified this method of class*/
     }
-    
-    
      
     /**
      * Set the position of the Robot.
@@ -130,7 +128,7 @@ public class Robot {
         
     /**
      * change direction
-     * @return return: none
+     * @param direction direction can be 'n', 'w', 'e' o 's'.
      */
     public void turn(char direction){
         ((Triangle)robotFigure.get(NEEDLE)).erase();
@@ -185,8 +183,6 @@ public class Robot {
         }
         this.isVisible = true;
     }
-     
-
     
 //---------------------------------------------------------------------------------------------
     
@@ -210,7 +206,7 @@ public class Robot {
              for (Figure figure : robotFigure) {
                   figurePosX = figure.getXPosition();
                   figurePosY = figure.getYPosition();
-                  figure.setPosition(figurePosX-1, figurePosY);
+                  figure.setPosition(figurePosX+dx, figurePosY+dy);
                   if (i%10==0) {
                      figure.draw();
                   }
