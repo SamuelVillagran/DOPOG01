@@ -87,7 +87,7 @@ public class Robot {
             case 's':
                 // abajo
                 if (this.ok) {
-                    dy = -1;
+                    dy = 1;
                 }
                 break;
             case 'e':
@@ -99,7 +99,7 @@ public class Robot {
             case 'n':
                 //arriba 
                 if (this.ok) {
-                    dy = 1;
+                    dy = -1;
                 }
                 break;
         }
@@ -179,8 +179,54 @@ public class Robot {
         this.live--;
     }
     
-    public void checkColision() {
+    public boolean checkCollision(Room[][] matrixMaze) {
+        Room[] roomAroundRobot = getNearRooms(matrixMaze);
+        boolean isCollision = false;
         
+        for (Room room : roomAroundRobot) {
+            isCollision = room.checkPlayerCollision(xPosition, yPosition, ((StraightSided)robotFigure.get(HEAD)).getWidth(), height());
+            if (isCollision) {
+                break;
+            }
+        }
+        return isCollision;
+    }
+    
+    public int height() {
+        int height = 0;
+        for (int i = 0; i < 4 ; i++) {
+            height += ((StraightSided)robotFigure.get(i)).getHeight();
+        }
+        return height;
+    }
+    
+    private Room[] getNearRooms(Room[][] matrixMaze) {
+        int xPosRoom, yPosRoom,
+            dxRobotRoom = 0, dyRobotRoom = 0;
+        int[] distances = { Integer.MAX_VALUE, Integer.MAX_VALUE,
+                         Integer.MAX_VALUE, Integer.MAX_VALUE };
+        double distanceRobotRoom;
+        Room[] roomsAround = new Room[4]; 
+        for (Room[] fileRoom : matrixMaze) {
+            for (Room room : fileRoom) {
+                xPosRoom = room.getXPosition(); yPosRoom = room.getYPosition();
+                dxRobotRoom = Math.abs(xPosition - xPosRoom); dyRobotRoom = Math.abs(yPosition - yPosRoom);
+                distanceRobotRoom = Math.sqrt(Math.pow(dxRobotRoom, 2) + Math.pow(dyRobotRoom, 2));// Formula de distancia entre dos puntos
+                for (int i = 0; i < 4; i++) { // Esta parte fue hecho con Claude Sonnet 5 IA
+                    if (distanceRobotRoom < distances[i]) {
+                        // corre los siguientes un puesto hacia atrás
+                        for (int j = 3; j > i; j--) {
+                            distances[j] = distances[j - 1];
+                            roomsAround[j] = roomsAround[j - 1];
+                        }
+                        distances[i] = (int) distanceRobotRoom;
+                        roomsAround[i] = room;
+                        break; // ya insertado, siguiente room
+                    } // Hasta aquí
+                }
+            }
+        }
+        return roomsAround;
     }
     
     /* Make move slowy the robot
@@ -195,7 +241,7 @@ public class Robot {
                   figurePosX = figure.getXPosition();
                   figurePosY = figure.getYPosition();
                   figure.setPosition(figurePosX+dx, figurePosY+dy);
-                  if (i%10==0) {
+                  if (i%5==0) {
                      figure.draw();
                   }
              }
@@ -226,6 +272,7 @@ public class Robot {
         robotFigure.get(HEAD).setPosition(xPosition, yPosition);
         
         //Modifyng body
+        ((Triangle)robotFigure.get(BODY)).changeColor("blue");
         ((Triangle)robotFigure.get(BODY)).changeSize(10, 15);
         ((Triangle)robotFigure.get(BODY)).rotate(180);
         robotFigure.get(BODY).setPosition(xPosition+8, yPosition+25);

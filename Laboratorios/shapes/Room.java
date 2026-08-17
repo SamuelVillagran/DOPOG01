@@ -10,8 +10,7 @@
      * create Room
      * @return return none
      */
-public class Room
-{
+public class Room {
     private int xPosition;
     private int yPosition;
     
@@ -21,7 +20,13 @@ public class Room
     private Cube aboveCube;
     private Cube belowCube;
     
+    
     public Room(int x, int y) {
+        // geminis
+        xPosition = x; 
+        yPosition = y; 
+        //
+
         baseCube = new Cube();
         baseCube.changeXY(x,y);
         baseCube.buildWall();
@@ -54,7 +59,13 @@ public class Room
         belowCube.changeColor("black");
     }
     
+    public int getXPosition() {
+        return xPosition;
+    }
     
+    public int getYPosition() {
+        return yPosition;
+    }
     public int height(){
         return baseCube.height();
     }
@@ -107,4 +118,49 @@ public class Room
                 break;
         }
     }
+
+    
+    
+    //Hecho con Gemini IA
+    /**
+     * Check for an object colliding with the walls of this room
+     * @return return none
+     */
+    public boolean checkPlayerCollision(int pX, int pY, int pWidth, int pHeight) {
+        int w = width();
+        int h = height();
+        int grosorParedX = w / 6;
+        int grosorParedY = h / 6;
+
+        // Comprobar colisión con la pared Izquierda (w)
+        if (pX < xPosition + grosorParedX && pX + pWidth > xPosition && 
+            pY < yPosition + h && pY + pHeight > yPosition) {
+            collision('w'); // Llama a tu método original para pintar de rojo
+            return true;
+        }
+        
+        // Comprobar colisión con la pared Derecha (e)
+        if (pX < xPosition + w && pX + pWidth > xPosition + (5 * grosorParedX) && 
+            pY < yPosition + h && pY + pHeight > yPosition) {
+            collision('e');
+            return true;
+        }
+        
+        // Comprobar colisión con la pared Superior (n)
+        if (pX < xPosition + w && pX + pWidth > xPosition && 
+            pY < yPosition + grosorParedY && pY + pHeight > yPosition) {
+            collision('n');
+            return true;
+        }
+        
+        // Comprobar colisión con la pared Inferior (s)
+        if (pX < xPosition + w && pX + pWidth > xPosition && 
+            pY < yPosition + h && pY + pHeight > yPosition + (5 * grosorParedY)) {
+            collision('s');
+            return true;
+        }
+
+        return false;
+    }     //
+
 }

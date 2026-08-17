@@ -10,13 +10,22 @@ public class Maze {
     private Room[][] matrix;
     private Room roomEntry;
     private Room roomExit;
+
+    private Robot karel;
+          
+    public static final int HEIGHT_ENTRY_ROOM = 100;
     
     public Maze(int size) {
-        roomEntry = new Room(0,40);
+
+        roomEntry = new Room(0,HEIGHT_ENTRY_ROOM);
         roomExit = new Room(roomEntry.height()* (size+1),roomEntry.height() * (size));
         Canvas.getCanvas().setDimension((roomEntry.height() * (size+2)), (roomEntry.height() * (size+2)));
         matrix = new Room[size][size];
         
+
+        karel = new Robot(roomEntry.height()/2,roomEntry.height()+(roomEntry.height()/2));
+        karel.makeVisible();
+
         
         roomEntry.buildWall('n');
         roomEntry.buildWall('w');
@@ -27,12 +36,12 @@ public class Maze {
         roomExit.buildWall('s');
         
         for (int i = 0; i < size;i++){
-            matrix[i][0] = new Room((roomEntry.width()*i)+40,40);
+            matrix[i][0] = new Room((roomEntry.width()*i)+roomEntry.height(),roomEntry.height());
             matrix[i][0].buildWall('n');
         }
         for (int i = 1; i < size;i++){
             for (int u = 0; u < size;u++){
-            matrix[u][i] = new Room((roomEntry.width()*u)+40,(roomEntry.height()*i)+40);
+            matrix[u][i] = new Room((roomEntry.width()*u)+roomEntry.height(),(roomEntry.height()*i)+roomEntry.height());
             }
         }
         for (int i = 1; i < size;i++){
@@ -49,5 +58,12 @@ public class Maze {
     public void buid(int x, int y, char direction) {
     matrix[x][y].buildWall(direction);
     }   
+    
+    public void moveRobot(char direction, int step) {
+        karel.turn(direction);
+        karel.checkCollision(matrix, direction, step);
+        karel.move(step);
+    }
+
 }
 

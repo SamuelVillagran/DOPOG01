@@ -19,6 +19,12 @@ public class Rectangle extends StraightSided {
         width = 40;
     }
     
+    public Rectangle(int xPosition, int yPosition, int height, int width, String color) {
+        super(xPosition, yPosition, color);
+        this.height = height;
+        this.width = width;
+    }
+    
     /*
      * Draw rectangle
      */

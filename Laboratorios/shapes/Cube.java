@@ -11,74 +11,60 @@ import java.awt.*;
  
 public class Cube{
 
-    public static int EDGES = 4;
-    
-    private int height;
-    private int width;
-    private int xPosition;
-    private int yPosition;
-    private String color;
-    private boolean isVisible;
+    public Rectangle cube;
 
     /**
      * Create a new rectangle at default position with default color.
      */
     public Cube(){
-        height = 40;
-        width = 40;
-        xPosition = 70;
-        yPosition = 15;
-        color = "green";
-        isVisible = false;
+        cube = new Rectangle(70, 15, 100, 100, "green");
+        cube.makeInvisible();
     }
     
     public int height(){
-        return height;
+        return cube.getHeight();
     }
     
     public int width(){
-        return width;
+        return cube.getWidth();
     }
     
     public void changeXY(int x, int y){
-        this.xPosition = x;
-        this.yPosition = y;
+        cube.setPosition(x, y);
     }
     /**
      * Make this rectangle visible. If it was already visible, do nothing.
      */
     public void buildWall(){
-        isVisible = true;
-        draw();
+        cube.makeVisible();
     }
     
     /**
      * Make this rectangle invisible. If it was already invisible, do nothing.
      */
     public void downWall(){
-        erase();
-        isVisible = false;
+        cube.makeInvisible();
     }
     
     /**
      * Move the rectangle a few pixels to the right.
      */
     public void moveRight(){
-        moveHorizontal(20);
+        cube.moveHorizontal(20);
     }
 
     /**
      * Move the rectangle a few pixels to the left.
      */
     public void moveLeft(){
-        moveHorizontal(-20);
+        cube.moveHorizontal(-20);
     }
 
     /**
      * Move the rectangle a few pixels up.
      */
     public void moveUp(){
-        moveVertical(-20);
+        cube.moveVertical(-20);
     }
 
     /**
@@ -93,9 +79,7 @@ public class Cube{
      * @param distance the desired distance in pixels
      */
     public void moveHorizontal(int distance){
-        erase();
-        xPosition += distance;
-        draw();
+        cube.moveHorizontal(distance);
     }
 
     /**
@@ -103,9 +87,7 @@ public class Cube{
      * @param distance the desired distance in pixels
      */
     public void moveVertical(int distance){
-        erase();
-        yPosition += distance;
-        draw();
+        cube.moveVertical(distance);
     }
 
     /**
@@ -113,19 +95,7 @@ public class Cube{
      * @param distance the desired distance in pixels
      */
     public void slowMoveHorizontal(int distance){
-        int delta;
-
-        if(distance < 0) {
-            delta = -1;
-            distance = -distance;
-        } else {
-            delta = 1;
-        }
-
-        for(int i = 0; i < distance; i++){
-            xPosition += delta;
-            draw();
-        }
+        cube.slowMoveHorizontal(distance);
     }
 
     /**
@@ -133,19 +103,7 @@ public class Cube{
      * @param distance the desired distance in pixels
      */
     public void slowMoveVertical(int distance){
-        int delta;
-
-        if(distance < 0) {
-            delta = -1;
-            distance = -distance;
-        } else {
-            delta = 1;
-        }
-
-        for(int i = 0; i < distance; i++){
-            yPosition += delta;
-            draw();
-        }
+        cube.slowMoveVertical(distance);
     }
 
     /**
@@ -154,10 +112,7 @@ public class Cube{
      * @param newWidht the new width in pixels. newWidth must be >=0.
      */
     public void changeSize(int newHeight, int newWidth) {
-        erase();
-        height = newHeight;
-        width = newWidth;
-        draw();
+        cube.changeSize(newHeight, newWidth);
     }
     
     /**
@@ -166,8 +121,7 @@ public class Cube{
      * "magenta" and "black".
      */
     public void changeColor(String newColor){
-        color = newColor;
-        draw();
+        cube.changeColor(newColor);
     }
 
     /*
@@ -175,23 +129,14 @@ public class Cube{
      */
 
     private void draw() {
-        if(isVisible) {
-            Canvas canvas = Canvas.getCanvas();
-            canvas.draw(this, color,
-                new java.awt.Rectangle(xPosition, yPosition, 
-                                       width, height));
-            canvas.wait(10);
-        }
+        cube.draw();
     }
 
     /*
      * Erase the rectangle on screen.
      */
     private void erase(){
-        if(isVisible) {
-            Canvas canvas = Canvas.getCanvas();
-            canvas.erase(this);
-        }
+        cube.erase();
     }
 }
 
