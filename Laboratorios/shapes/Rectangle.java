@@ -14,7 +14,7 @@ public class Rectangle extends StraightSided {
      * Create a new rectangle at default position with default color.
      */
     public Rectangle(){
-        super(70, 15, "magenta");
+        super(70, 15, "green");
         height = 30;
         width = 40;
     }
