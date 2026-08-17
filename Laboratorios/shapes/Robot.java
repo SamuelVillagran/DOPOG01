@@ -179,19 +179,19 @@ public class Robot {
         this.live--;
     }
     
-    public boolean checkCollision(Room[][] matrixMaze) {
+    public void checkCollision(Room[][] matrixMaze) {
         Room[] roomAroundRobot = getNearRooms(matrixMaze);
         boolean isCollision = false;
         
         for (Room room : roomAroundRobot) {
             isCollision = room.checkPlayerCollision(xPosition, yPosition, ((StraightSided)robotFigure.get(HEAD)).getWidth(), height());
             if (isCollision) {
+                this.ok = false;
                 break;
             }
         }
-        return isCollision;
     }
-    
+        
     public int height() {
         int height = 0;
         for (int i = 0; i < 4 ; i++) {

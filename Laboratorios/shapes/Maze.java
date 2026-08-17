@@ -56,13 +56,16 @@ public class Maze {
     }
     
     public void buid(int x, int y, char direction) {
-    matrix[x][y].buildWall(direction);
+        matrix[x][y].buildWall(direction);
     }   
+    
     
     public void moveRobot(char direction, int step) {
         karel.turn(direction);
-        karel.checkCollision(matrix, direction, step);
-        karel.move(step);
+        for (int i = 0; i < step; i++) {
+            karel.move(1);
+            karel.checkCollision(matrix);
+        }
     }
 
 }
