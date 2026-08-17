@@ -114,7 +114,7 @@ public class Robot {
             case 's':
                 // abajo
                 if (this.ok) {
-                    dy = -1;
+                    dy = 1;
                     moveSlow(dx, dy, step);
                 }
                 break;
@@ -128,7 +128,7 @@ public class Robot {
             case 'n':
                 //arriba 
                 if (this.ok) {
-                    dy = 1;
+                    dy = -1;
                     moveSlow(dx, dy, step);
                 }
                 break;
@@ -208,8 +208,25 @@ public class Robot {
         this.live--;
     }
     
-    public void checkColision() {
-        
+    public boolean checkColision(Room[][] matrixMaze) {
+        int xPosRoom, yPosRoom,
+         distanceFirstRoom = Integer.MAX_VALUE, distanceSecondRoom = Integer.MAX_VALUE,
+            distanceThirdRoom = Integer.MAX_VALUE, distanceFourthRoom = Integer.MAX_VALUE,
+            distanceBetweenRobotRoom = Integer.MAX_VALUE;
+        Room[] roomsAround = new Room[4]; 
+        for (Room[] fileRoom : matrixMaze) {
+            for (Room room : fileRoom) {
+                xPosRoom = room.getXPosition(); yPosRoom = room.getYPosition();
+                
+                if (roomsAround[0] != null && distanceFirstRoom < Math.abs(xPosition - xPosRoom)) {
+                    
+                    
+                }
+                
+            }
+            
+        }
+        return false;
     }
     
     /* Make move slowy the robot
@@ -224,7 +241,7 @@ public class Robot {
                   figurePosX = figure.getXPosition();
                   figurePosY = figure.getYPosition();
                   figure.setPosition(figurePosX+dx, figurePosY+dy);
-                  if (i%10==0) {
+                  if (i%5==0) {
                      figure.draw();
                   }
              }
@@ -255,6 +272,7 @@ public class Robot {
         robotFigure.get(HEAD).setPosition(xPosition, yPosition);
         
         //Modifyng body
+        ((Triangle)robotFigure.get(BODY)).changeColor("blue");
         ((Triangle)robotFigure.get(BODY)).changeSize(10, 15);
         ((Triangle)robotFigure.get(BODY)).rotate(180);
         robotFigure.get(BODY).setPosition(xPosition+8, yPosition+25);

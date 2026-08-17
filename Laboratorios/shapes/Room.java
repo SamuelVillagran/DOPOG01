@@ -60,7 +60,13 @@ public class Room
         belowCube.changeColor("black");
     }
     
+    public int getXPosition() {
+        return xPosition;
+    }
     
+    public int getYPosition() {
+        return yPosition;
+    }
     public int height(){
         return baseCube.height();
     }

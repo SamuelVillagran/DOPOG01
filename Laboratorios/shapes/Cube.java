@@ -24,8 +24,8 @@ public class Cube{
      * Create a new rectangle at default position with default color.
      */
     public Cube(){
-        height = 40;
-        width = 40;
+        height = 100;
+        width = 100;
         xPosition = 70;
         yPosition = 15;
         color = "green";
