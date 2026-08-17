@@ -182,6 +182,13 @@ public abstract class Figure {
     }
     
     /**
+     * Give the attribute visible
+     */
+    public boolean isVisible() {
+        return isVisible;
+    }
+    
+    /**
      * Draw the shape on canvas
      */
     protected abstract void draw();
