@@ -48,32 +48,6 @@ public class Robot {
         modifyRobotShapes(); /* Add instructions at methods 
             to make more simplified this method of class*/
     }
-     
-    /**
-     * Set the position of the Robot.
-     * @param x x is the new xPosition that robot has.
-     * @param y y is the new yPosition that robot has.
-     */
-    public void setPosition(int x, int y) {
-        xPosition = x;
-        yPosition = y;
-        ArrayList<Point> movesPlus = new ArrayList<>(
-            List.of(new Point(0,0), new Point(8, 25), new Point(3, 10),
-            new Point(5, -7), new Point(4, 4), new Point(10, 4)));
-        int plusXPos, plusYPos;
-        Figure currentFigure;
-        for (int i = 0; i < NUM_FIGURES; i++) {
-            currentFigure = robotFigure.get(i);
-            plusXPos = xPosition + movesPlus.get(i).x;
-            plusYPos = yPosition + movesPlus.get(i).y;
-            currentFigure.setPosition(xPosition+plusXPos, xPosition+plusYPos);
-        }
-
-        //Make all parts visible
-        if (this.isVisible){
-            makeVisible();
-        }
-    }
     
     /** Give the x and y coordenades of robot.
      * @return return robot''s coordinates (x,y)
@@ -94,7 +68,7 @@ public class Robot {
           return this.direction; 
     }
     
-    //ciclo 2
+//ciclo 2
     
     /**
      * Move the figure according to the direction
@@ -108,31 +82,28 @@ public class Robot {
                 // izquierda
                 if (this.ok) {
                     dx = -1;
-                    moveSlow(dx, dy, step); 
                 }
                 break;
             case 's':
                 // abajo
                 if (this.ok) {
                     dy = -1;
-                    moveSlow(dx, dy, step);
                 }
                 break;
             case 'e':
                 //derecha 
                 if (this.ok) {
                     dx = 1;
-                    moveSlow(dx, dy, step);
                 }
                 break;
             case 'n':
                 //arriba 
                 if (this.ok) {
                     dy = 1;
-                    moveSlow(dx, dy, step);
                 }
                 break;
         }
+        moveSlow(dx, dy, step);
     }
         
     /**
@@ -284,5 +255,31 @@ public class Robot {
         ((Triangle)robotFigure.get(NEEDLE)).changeSize(11, 8);
         ((Triangle)robotFigure.get(NEEDLE)).rotate(90);
         robotFigure.get(NEEDLE).setPosition(xPosition+13, yPosition-20);
+    }
+    
+    /**
+     * Set the position of the Robot.
+     * @param x x is the new xPosition that robot has.
+     * @param y y is the new yPosition that robot has.
+     */
+    public void setPosition(int x, int y) {
+        xPosition = x;
+        yPosition = y;
+        ArrayList<Point> movesPlus = new ArrayList<>(
+            List.of(new Point(0,0), new Point(8, 25), new Point(3, 10),
+            new Point(5, -7), new Point(4, 4), new Point(10, 4)));
+        int plusXPos, plusYPos;
+        Figure currentFigure;
+        for (int i = 0; i < NUM_FIGURES; i++) {
+            currentFigure = robotFigure.get(i);
+            plusXPos = xPosition + movesPlus.get(i).x;
+            plusYPos = yPosition + movesPlus.get(i).y;
+            currentFigure.setPosition(xPosition+plusXPos, xPosition+plusYPos);
+        }
+
+        //Make all parts visible
+        if (this.isVisible){
+            makeVisible();
+        }
     }
 }
