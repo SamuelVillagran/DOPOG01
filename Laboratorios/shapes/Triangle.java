@@ -11,7 +11,7 @@ public class Triangle extends StraightSided {
     
     public static int VERTICES=3;
 
-    private double rotationAngle; // La implementavion de la rotación fue implementada con Gemini IA
+    private double rotationAngle; // La implementacion de la rotación fue hecha con Gemini IA
 
     /**
      * Create a new triangle at default position with default color.
@@ -24,11 +24,30 @@ public class Triangle extends StraightSided {
     }
     
     /**
-     * This able to rotate the triangle a determinated angle
-     * @param angle angle is a double that defines the rotation angle
-     * of triangle by grades °
+     * Create a new triangle given a color, width and height.
      */
-    public void rotate(double angle) {
+    public Triangle(String color, int height, int width) {
+        super(140, 15, color);
+        this.height = height;
+        this.width = width;
+        rotationAngle = 0.0;
+    }
+    
+    /**
+     * Flips triangle vertically. Inspiración: Gemini IA.
+     */
+    public void flip() {
+        erase();
+        height = -height;
+        draw();
+    }
+    
+    /**
+     * This able to rotate the triangle a determinated angle.
+     * @param angle angle is a double that defines the rotation angle
+     * of triangle by grades °.
+     */
+    public void rotate(double angle) { // Este método fue ayudado a hacer por Gemini IA
         erase();
         rotationAngle = Math.toRadians(angle);
         draw();
@@ -37,16 +56,16 @@ public class Triangle extends StraightSided {
     /**
      * Make to move triangle # times,
      * triangle moves 10 units depending on if times is positive this triangle
-     * shifts to the rigth, but if times is negative figure shifts to the left
+     * shifts to the rigth, but if times is negative figure shifts to the left.
      * @param times times are the number of iterations (10 units per iteration) 
-     * that this figure moves based on if this number is negative or positive
+     * that this figure moves based on if this number is negative or positive.
      */
     public void walk(int times) {
         slowMoveHorizontal(times*10);
     }
     
     /**
-     * Convert this triangle into an equilateral triangle
+     * Convert this triangle into an equilateral triangle.
      */
     public void equilateral() {
         erase();
@@ -63,7 +82,7 @@ public class Triangle extends StraightSided {
     }
 
     /**
-     * Give area of triangle
+     * Give area of triangle.
      */
     public int area() {
         int areaTriangle = (height*width)/2;
@@ -80,7 +99,7 @@ public class Triangle extends StraightSided {
      * Draw the triangle with current specifications on screen.
      */
     @Override
-    protected void draw(){
+    protected void draw(){// Este método fue ayudado a modificar por Gemini IA para que funcione rotate()
         if(isVisible) {
         Canvas canvas = Canvas.getCanvas();
         
@@ -116,15 +135,5 @@ public class Triangle extends StraightSided {
         canvas.draw(this, color, new Polygon(xpoints, ypoints, VERTICES));
         canvas.wait(10);
         }
-    }
-    
-    public int getWidth() {
-        return width;
-    }
-    
-    public int getHeight() {
-        return height;
-    }
-    
-    
+    }   
 }

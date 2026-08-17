@@ -10,17 +10,22 @@ public class Maze {
     private Room[][] matrix;
     private Room roomEntry;
     private Room roomExit;
+
     private Robot karel;
+          
+
     
     public Maze(int size) {
-        
+
         roomEntry = new Room(0,40);
         roomExit = new Room(roomEntry.height()* (size+1),roomEntry.height() * (size));
         Canvas.getCanvas().setDimension((roomEntry.height() * (size+2)), (roomEntry.height() * (size+2)));
         matrix = new Room[size][size];
         
+
         karel = new Robot(20,55);
         karel.makeVisible();
+
         
         roomEntry.buildWall('n');
         roomEntry.buildWall('w');

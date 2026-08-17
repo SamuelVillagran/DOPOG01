@@ -175,6 +175,13 @@ public abstract class Figure {
     }
     
     /**
+     * Get the figure color
+     */
+    public String getColor() {
+        return color;
+    }
+    
+    /**
      * Draw the shape on canvas
      */
     protected abstract void draw();

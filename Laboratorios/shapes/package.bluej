@@ -2,6 +2,7 @@
 dependency1.from=Cube
 dependency1.to=Canvas
 dependency1.type=UsesDependency
+<<<<<<< HEAD
 dependency10.from=RobotTest
 dependency10.to=Robot
 dependency10.type=UsesDependency
@@ -40,14 +41,62 @@ dependency8.to=Triangle
 dependency8.type=UsesDependency
 dependency9.from=Figure
 dependency9.to=Canvas
+=======
+dependency10.from=TriangleTest
+dependency10.to=StraightSided
+dependency10.type=UsesDependency
+dependency11.from=Rectangle
+dependency11.to=Canvas
+dependency11.type=UsesDependency
+dependency12.from=Cube
+dependency12.to=Canvas
+dependency12.type=UsesDependency
+dependency13.from=Room
+dependency13.to=Cube
+dependency13.type=UsesDependency
+dependency14.from=Maze
+dependency14.to=Room
+dependency14.type=UsesDependency
+dependency15.from=Maze
+dependency15.to=Canvas
+dependency15.type=UsesDependency
+dependency2.from=Triangle
+dependency2.to=Canvas
+dependency2.type=UsesDependency
+dependency3.from=Figure
+dependency3.to=Canvas
+dependency3.type=UsesDependency
+dependency4.from=Robot
+dependency4.to=Figure
+dependency4.type=UsesDependency
+dependency5.from=Robot
+dependency5.to=Rectangle
+dependency5.type=UsesDependency
+dependency6.from=Robot
+dependency6.to=Triangle
+dependency6.type=UsesDependency
+dependency7.from=Robot
+dependency7.to=Circle
+dependency7.type=UsesDependency
+dependency8.from=RobotTest
+dependency8.to=Robot
+dependency8.type=UsesDependency
+dependency9.from=TriangleTest
+dependency9.to=Triangle
+>>>>>>> develop
 dependency9.type=UsesDependency
 editor.fx.0.height=0
 editor.fx.0.width=0
 editor.fx.0.x=0
 editor.fx.0.y=0
 objectbench.height=150
+<<<<<<< HEAD
 objectbench.width=556
 package.divider.horizontal=0.6002132196162047
+=======
+objectbench.width=557
+package.divider.horizontal=0.6012793176972282
+>>>>>>> develop
 package.divider.vertical=0.832800851970181
 package.editor.height=762
 package.editor.width=844
@@ -55,8 +104,13 @@ package.editor.x=0
 package.editor.y=0
 package.frame.height=1039
 package.frame.width=974
+<<<<<<< HEAD
 package.numDependencies=14
 package.numTargets=12
+=======
+package.numDependencies=15
+package.numTargets=13
+>>>>>>> develop
 package.showExtends=true
 package.showUses=true
 project.charset=UTF-8
@@ -74,6 +128,7 @@ target1.width=80
 target1.x=100
 target1.y=120
 target10.height=70
+<<<<<<< HEAD
 target10.name=Robot
 target10.showInterface=false
 target10.type=ClassTarget
@@ -94,6 +149,35 @@ target12.type=AbstractTarget
 target12.width=120
 target12.x=0
 target12.y=300
+=======
+target10.name=Maze
+target10.showInterface=false
+target10.type=ClassTarget
+target10.width=120
+target10.x=730
+target10.y=220
+target11.height=70
+target11.name=Robot
+target11.showInterface=false
+target11.type=ClassTarget
+target11.width=120
+target11.x=340
+target11.y=310
+target12.height=70
+target12.name=Room
+target12.showInterface=false
+target12.type=ClassTarget
+target12.width=120
+target12.x=440
+target12.y=20
+target13.height=70
+target13.name=StraightSided
+target13.showInterface=false
+target13.type=AbstractTarget
+target13.width=120
+target13.x=0
+target13.y=300
+>>>>>>> develop
 target2.height=40
 target2.name=Canvas
 target2.naviview.expanded=true
@@ -119,10 +203,15 @@ target4.width=90
 target4.x=290
 target4.y=110
 target5.height=70
+<<<<<<< HEAD
 target5.name=TriangleTest
+=======
+target5.name=GFG
+>>>>>>> develop
 target5.showInterface=false
-target5.type=UnitTestTargetJunit5
+target5.type=ClassTarget
 target5.width=120
+<<<<<<< HEAD
 target5.x=80
 target5.y=0
 target6.height=70
@@ -134,9 +223,23 @@ target6.x=160
 target6.y=390
 target7.height=70
 target7.name=Cube
+=======
+target5.x=540
+target5.y=400
+target6.height=70
+target6.name=TriangleTest
+target6.showInterface=false
+target6.type=UnitTestTargetJunit5
+target6.width=120
+target6.x=80
+target6.y=0
+target7.height=70
+target7.name=Figure
+>>>>>>> develop
 target7.showInterface=false
 target7.type=ClassTarget
 target7.width=120
+<<<<<<< HEAD
 target7.x=660
 target7.y=80
 target8.height=70
@@ -153,3 +256,21 @@ target9.type=ClassTarget
 target9.width=120
 target9.x=730
 target9.y=220
+=======
+target7.x=160
+target7.y=390
+target8.height=70
+target8.name=Cube
+target8.showInterface=false
+target8.type=ClassTarget
+target8.width=120
+target8.x=660
+target8.y=80
+target9.height=70
+target9.name=RobotTest
+target9.showInterface=false
+target9.type=UnitTestTargetJunit5
+target9.width=120
+target9.x=580
+target9.y=290
+>>>>>>> develop

@@ -24,5 +24,20 @@ public abstract class StraightSided extends Figure {
         width = newWidth;
         draw();
     }
+    
+    public int getWidth() {
+        return width;
+    }
+    
+    public int getHeight() {
+        return height;
+    }
+    
+    /**
+     * Get the figure color
+     */
+    public String getColor() {
+        return color;
+    }
 
 }

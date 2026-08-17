@@ -6,6 +6,152 @@ C:\Program Files\BlueJ\jdk\bin\javadoc.exe
 -nodeprecated
 -package
 -Xdoclint:none
+<<<<<<< HEAD
+-link
+https://docs.oracle.com/en/java/javase/21/docs/api/
+C:\Users\samut\git\DOPOG01\Laboratorios\shapes/Circle.java
+C:\Users\samut\git\DOPOG01\Laboratorios\shapes/Canvas.java
+C:\Users\samut\git\DOPOG01\Laboratorios\shapes/Rectangle.java
+C:\Users\samut\git\DOPOG01\Laboratorios\shapes/Triangle.java
+C:\Users\samut\git\DOPOG01\Laboratorios\shapes/Robot.java
+C:\Users\samut\git\DOPOG01\Laboratorios\shapes/StraightSided.java
+C:\Users\samut\git\DOPOG01\Laboratorios\shapes/TriangleTest.java
+C:\Users\samut\git\DOPOG01\Laboratorios\shapes/Figure.java
+<---- end of javadoc command ---->
+Loading source file C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Circle.java...
+Loading source file C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Canvas.java...
+Loading source file C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Rectangle.java...
+Loading source file C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Triangle.java...
+Loading source file C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Robot.java...
+Loading source file C:\Users\samut\git\DOPOG01\Laboratorios\shapes\StraightSided.java...
+Loading source file C:\Users\samut\git\DOPOG01\Laboratorios\shapes\TriangleTest.java...
+Loading source file C:\Users\samut\git\DOPOG01\Laboratorios\shapes\Figure.java...
+Constructing Javadoc information...
+warning: unknown enum constant Status.STABLE
+  reason: class file for org.apiguardian.api.API$Status not found
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+Building index for all the packages and classes...
+Standard Doclet version 21.0.6+7-LTS
+Building tree for all the packages and classes...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\Canvas.html...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\Circle.html...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\Figure.html...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\Rectangle.html...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\Robot.html...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\StraightSided.html...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\Triangle.html...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\TriangleTest.html...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\package-summary.html...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\package-tree.html...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\constant-values.html...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\overview-tree.html...
+Building index for all classes...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\allclasses-index.html...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\allpackages-index.html...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\index-all.html...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\search.html...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\index.html...
+Generating C:\Users\samut\git\DOPOG01\Laboratorios\shapes\doc\help-doc.html...
+100 warnings
+=======
 -noindex
 -notree
 -nohelp
@@ -38,4 +184,8 @@ C:\Users\pablo\OneDrive\DOPO\laboratorio\DOPOG06\Laboratorios\shapes\Room.java:1
                 ^
 Generating C:\Users\pablo\OneDrive\DOPO\laboratorio\DOPOG06\Laboratorios\shapes\doc\package-summary.html...
 Generating C:\Users\pablo\OneDrive\DOPO\laboratorio\DOPOG06\Laboratorios\shapes\doc\index.html...
+<<<<<<< HEAD
 3 warnings
+=======
+>>>>>>> Pablo
+>>>>>>> develop

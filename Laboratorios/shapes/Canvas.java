@@ -73,7 +73,7 @@ public class Canvas{
         graphic.fillRect(0, 0, size.width, size.height);
         graphic.setColor(Color.black);
         
-        
+
     }
     
 

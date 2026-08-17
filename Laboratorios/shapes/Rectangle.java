@@ -8,13 +8,13 @@ import java.awt.*;
  */
 public class Rectangle extends StraightSided {
 
-    public static int EDGES = 4;
+    public static final int EDGES = 4;
     
     /**
      * Create a new rectangle at default position with default color.
      */
     public Rectangle(){
-        super(70, 15, "magenta");
+        super(70, 15, "green");
         height = 30;
         width = 40;
     }

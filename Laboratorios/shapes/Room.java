@@ -22,13 +22,12 @@ public class Room
     private Cube belowCube;
     
     
- 
-    
     public Room(int x, int y) {
         // geminis
         xPosition = x; 
         yPosition = y; 
         //
+
         baseCube = new Cube();
         baseCube.changeXY(x,y);
         baseCube.buildWall();
@@ -114,6 +113,7 @@ public class Room
                 break;
         }
     }
+
     
     
     //gemini
@@ -156,7 +156,6 @@ public class Room
         }
 
         return false;
-    }
-    
-    //
+    }     //
+
 }
