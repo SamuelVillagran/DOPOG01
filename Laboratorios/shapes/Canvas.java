@@ -50,7 +50,7 @@ public class Canvas{
      * @param height  the desired height for the canvas
      * @param bgClour  the desired background colour of the canvas
      */
-    private Canvas(String title, int width, int height, Color bgColour){
+    public Canvas(String title, int width, int height, Color bgColour){
         frame = new JFrame();
         canvas = new CanvasPane();
         frame.setContentPane(canvas);
@@ -61,6 +61,8 @@ public class Canvas{
         objects = new ArrayList <Object>();
         shapes = new HashMap <Object,ShapeDescription>();
     }
+    
+    
     
     public void setDimension(int width, int height) {
         canvas.setPreferredSize(new Dimension(width, height));
@@ -113,7 +115,8 @@ public class Canvas{
         shapes.put(referenceObject, new ShapeDescription(shape, color));
         redraw();
     }
- 
+     
+    
     /**
      * Erase a given shape's from the screen.
      * @param  referenceObject  the shape object to be erased 
@@ -223,6 +226,17 @@ public class Canvas{
         public void paint(Graphics g){
             g.drawImage(canvasImage, 0, 0, null);
         }
+    }
+    
+    public void close() {
+        objects.clear();
+        shapes.clear();
+
+        erase();
+
+    canvas.repaint();
+        frame.dispose();
+        canvasSingleton = null;
     }
     
     /************************************************************************

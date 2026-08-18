@@ -10,8 +10,8 @@ import java.awt.Point;
  */
 public class Robot {
     
-    protected int xPosition;
-    protected int yPosition;
+    public int xPosition;
+    public int yPosition;
     protected boolean isVisible;
     protected ArrayList<Figure> robotFigure;
     
@@ -40,7 +40,7 @@ public class Robot {
         this.yPosition = y;
         
         this.robotFigure = new ArrayList<>();        
-        this.isVisible = true;
+        this.isVisible = false;
         this.direction = 'e';
         this.live = 10;
         
@@ -50,29 +50,13 @@ public class Robot {
     }
      
     /**
-     * Set the position of the Robot.
+     * Move the position of the Robot.
      * @param x x is the new xPosition that robot has.
      * @param y y is the new yPosition that robot has.
      */
-    public void setPosition(int x, int y) {
+    public void setPosition(int x,int y) {
         xPosition = x;
         yPosition = y;
-        ArrayList<Point> movesPlus = new ArrayList<>(
-            List.of(new Point(0,0), new Point(8, 25), new Point(3, 10),
-            new Point(5, -7), new Point(4, 4), new Point(10, 4)));
-        int plusXPos, plusYPos;
-        Figure currentFigure;
-        for (int i = 0; i < NUM_FIGURES; i++) {
-            currentFigure = robotFigure.get(i);
-            plusXPos = xPosition + movesPlus.get(i).x;
-            plusYPos = yPosition + movesPlus.get(i).y;
-            currentFigure.setPosition(xPosition+plusXPos, xPosition+plusYPos);
-        }
-
-        //Make all parts visible
-        if (this.isVisible){
-            makeVisible();
-        }
     }
     
     /** Give the x and y coordenades of robot.
@@ -134,7 +118,8 @@ public class Robot {
                 break;
         }
     }
-        
+
+    
     /**
      * change direction
      * @param direction direction can be 'n', 'w', 'e' o 's'.
@@ -170,12 +155,8 @@ public class Robot {
      */
     public void makeInvisible() {
         for (Figure f : robotFigure) {
-            if (!isVisible) {
-                f.makeVisible();    
-            } else {
-                break;
+            f.makeInvisible();    
             }
-        }
         this.isVisible = false;
     }
     
@@ -184,15 +165,21 @@ public class Robot {
      */
     public void makeVisible(){
         for (Figure f : robotFigure) {
-            if (isVisible) {
                 f.makeVisible();    
-            } else {
-                break;
-            }
+            
         }
         this.isVisible = true;
     }
     
+    
+    public void reset() {
+        for (Figure f : robotFigure) {
+            f.makeInvisible();    
+            }
+        this.ok = true;
+        this.live=10;
+        
+    }
 //---------------------------------------------------------------------------------------------
     
     public int getXPosition() {
@@ -232,11 +219,11 @@ public class Robot {
     /* Make move slowy the robot
      * @param dx dx is the delta at x position of robot that this moves it.
      * @param dy dy is the delta at y position of robot that this moves it.
-     * @param step are the times that robot moves 10 units.
+     * @param step are the times that rob,t moves 10 units.
      */
     private void moveSlow(int dx, int dy, int step) {
-        int figurePosX, figurePosY;
-        for (int i = 0; i < step*10; i++) {
+        int figurePosX=Integer.MAX_VALUE, figurePosY = Integer.MAX_VALUE;
+        for (int i = 0; i < step*Maze.HEIGHT_ENTRY_ROOM; i++) {
              for (Figure figure : robotFigure) {
                   figurePosX = figure.getXPosition();
                   figurePosY = figure.getYPosition();
@@ -246,6 +233,7 @@ public class Robot {
                   }
              }
         }
+        xPosition = figurePosX; yPosition = figurePosY;
     }
     
     /* 

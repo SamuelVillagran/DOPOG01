@@ -12,7 +12,13 @@ public class Triangle extends StraightSided {
     public static int VERTICES=3;
 
     private double rotationAngle; // La implementacion de la rotación fue hecha con Gemini IA
-
+    
+    
+    public void makeInvisible(){
+        erase();
+        isVisible = false;
+    }
+    
     /**
      * Create a new triangle at default position with default color.
      */
