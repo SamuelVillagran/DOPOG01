@@ -18,6 +18,7 @@ public class Robot {
     protected int live;
     protected boolean ok;  
     protected char direction; 
+    protected int nextNumStep;
 
     public static final int HEAD = 0;
     public static final int BODY = 1;
@@ -76,7 +77,8 @@ public class Robot {
      */
     public void move(int step) {
         int dx = 0, dy = 0;
-        ok = live > 0 ? true : false;
+        nextNumStep = step;
+        isOK();
         switch (this.direction) {
             case 'w':
                 // izquierda
@@ -102,6 +104,14 @@ public class Robot {
                     dy = -1;
                 }
                 break;
+        }
+        if (!this.ok) {
+            for (int i = 0; i < NUM_FIGURES; i++) { // Cuando el robot muere
+                if (i == LEFT_EYE || i == RIGHT_EYE) {
+                    robotFigure.get(i).changeColor("black");
+                }
+                robotFigure.get(i).changeColor("gray");
+            }
         }
         moveSlow(dx, dy, step);
     }
@@ -131,7 +141,8 @@ public class Robot {
      */
     public boolean isOK(){
         //pendiente de laberinto
-        return this.ok;
+        
+        return  this.live > 0 || this.ok;
     }
  
  
@@ -179,6 +190,10 @@ public class Robot {
         this.live--;
     }
     
+    /**
+     * Check the collision of robot 
+     * @param matrixMaze matrixMaze are the rooms of Maze
+     */
     public void checkCollision(Room[][] matrixMaze) {
         Room[] roomAroundRobot = getNearRooms(matrixMaze);
         boolean isCollision = false;
@@ -187,7 +202,8 @@ public class Robot {
             isCollision = room.checkPlayerCollision(xPosition, yPosition, ((StraightSided)robotFigure.get(HEAD)).getWidth(), height());
             if (isCollision) {
                 this.ok = false;
-                break;
+                backLastPosition();
+                //break;
             }
         }
     }
@@ -198,6 +214,26 @@ public class Robot {
             height += ((StraightSided)robotFigure.get(i)).getHeight();
         }
         return height;
+    }
+    
+    /**
+     * Back the robot at the last position when collision with a wall
+     */
+    private void backLastPosition() {
+        switch (this.direction) {
+            case ('s'):
+                setPosition(xPosition, yPosition-99);
+                break;
+            case ('n'):
+                setPosition(xPosition, yPosition+99);
+                break;
+            case ('e'):
+                setPosition(xPosition-99, yPosition);
+                break;
+            case ('w'):
+                setPosition(xPosition+99, yPosition);
+                break;
+        }
     }
     
     private Room[] getNearRooms(Room[][] matrixMaze) {

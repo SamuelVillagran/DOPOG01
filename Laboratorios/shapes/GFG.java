@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.Queue;
 import java.util.LinkedList;
 
+/**
+ * Codigo extraído de https://www.geeksforgeeks.org/dsa/breadth-first-search-or-bfs-for-a-graph/
+ */
+
 class GFG {
     // BFS for single connected component
     static ArrayList<Integer> bfs(ArrayList<ArrayList<Integer>> adj) {
