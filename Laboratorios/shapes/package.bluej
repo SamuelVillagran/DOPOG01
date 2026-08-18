@@ -1,4 +1,5 @@
 #BlueJ package file
+<<<<<<< HEAD
 dependency1.from=TriangleTest
 dependency1.to=Triangle
 dependency1.type=UsesDependency
@@ -72,12 +73,63 @@ package.frame.height=1039
 package.frame.width=974
 package.numDependencies=19
 package.numTargets=15
+=======
+dependency1.from=Circle
+dependency1.to=Canvas
+dependency1.type=UsesDependency
+dependency10.from=Robot
+dependency10.to=Rectangle
+dependency10.type=UsesDependency
+dependency11.from=Robot
+dependency11.to=Circle
+dependency11.type=UsesDependency
+dependency2.from=Rectangle
+dependency2.to=Canvas
+dependency2.type=UsesDependency
+dependency3.from=Triangle
+dependency3.to=Canvas
+dependency3.type=UsesDependency
+dependency4.from=Figure
+dependency4.to=Canvas
+dependency4.type=UsesDependency
+dependency5.from=RobotTest
+dependency5.to=Robot
+dependency5.type=UsesDependency
+dependency6.from=TriangleTest
+dependency6.to=Triangle
+dependency6.type=UsesDependency
+dependency7.from=TriangleTest
+dependency7.to=StraightSided
+dependency7.type=UsesDependency
+dependency8.from=Robot
+dependency8.to=Figure
+dependency8.type=UsesDependency
+dependency9.from=Robot
+dependency9.to=Triangle
+dependency9.type=UsesDependency
+editor.fx.0.height=736
+editor.fx.0.width=1382
+editor.fx.0.x=-8
+editor.fx.0.y=-8
+objectbench.height=150
+objectbench.width=929
+package.divider.horizontal=0.5549407114624506
+package.divider.vertical=0.8316690442225393
+package.editor.height=769
+package.editor.width=1566
+package.editor.x=0
+package.editor.y=0
+package.frame.height=1033
+package.frame.width=1721
+package.numDependencies=11
+package.numTargets=10
+>>>>>>> 0836f0ed28a2749e249ff2390903f7f6194bae77
 package.showExtends=true
 package.showUses=true
 project.charset=UTF-8
 readme.height=60
 readme.name=@README
-readme.width=49
+readme.width=48
 readme.x=10
 readme.y=10
 target1.height=40
@@ -89,10 +141,15 @@ target1.width=80
 target1.x=100
 target1.y=120
 target10.height=70
+<<<<<<< HEAD
 target10.name=Cube
+=======
+target10.name=Figure
+>>>>>>> 0836f0ed28a2749e249ff2390903f7f6194bae77
 target10.showInterface=false
-target10.type=ClassTarget
+target10.type=AbstractTarget
 target10.width=120
+<<<<<<< HEAD
 target10.x=660
 target10.y=80
 target11.height=70
@@ -130,6 +187,10 @@ target15.type=AbstractTarget
 target15.width=120
 target15.x=0
 target15.y=300
+=======
+target10.x=160
+target10.y=390
+>>>>>>> 0836f0ed28a2749e249ff2390903f7f6194bae77
 target2.height=40
 target2.name=Canvas
 target2.naviview.expanded=true
@@ -147,12 +208,21 @@ target3.width=100
 target3.x=220
 target3.y=40
 target4.height=70
+<<<<<<< HEAD
 target4.name=RoomTest
 target4.showInterface=false
 target4.type=UnitTestTargetJunit5
 target4.width=120
 target4.x=500
 target4.y=220
+=======
+target4.name=RobotTest
+target4.showInterface=false
+target4.type=UnitTestTargetJunit5
+target4.width=120
+target4.x=600
+target4.y=130
+>>>>>>> 0836f0ed28a2749e249ff2390903f7f6194bae77
 target5.height=40
 target5.name=Triangle
 target5.naviview.expanded=true
@@ -166,13 +236,21 @@ target6.name=GFG
 target6.showInterface=false
 target6.type=ClassTarget
 target6.width=120
+<<<<<<< HEAD
 target6.x=310
 target6.y=520
 target7.height=70
 target7.name=MazeTest
+=======
+target6.x=810
+target6.y=130
+target7.height=70
+target7.name=Robot
+>>>>>>> 0836f0ed28a2749e249ff2390903f7f6194bae77
 target7.showInterface=false
 target7.type=UnitTestTargetJunit5
 target7.width=120
+<<<<<<< HEAD
 target7.x=700
 target7.y=430
 target8.height=70
@@ -189,3 +267,21 @@ target9.type=AbstractTarget
 target9.width=120
 target9.x=160
 target9.y=390
+=======
+target7.x=450
+target7.y=390
+target8.height=70
+target8.name=StraightSided
+target8.showInterface=false
+target8.type=AbstractTarget
+target8.width=120
+target8.x=0
+target8.y=290
+target9.height=70
+target9.name=TriangleTest
+target9.showInterface=false
+target9.type=UnitTestTargetJunit5
+target9.width=120
+target9.x=80
+target9.y=0
+>>>>>>> 0836f0ed28a2749e249ff2390903f7f6194bae77

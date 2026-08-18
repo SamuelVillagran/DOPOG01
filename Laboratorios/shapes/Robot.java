@@ -48,6 +48,7 @@ public class Robot {
         modifyRobotShapes(); /* Add instructions at methods 
             to make more simplified this method of class*/
     }
+
      
     /**
      * Move the position of the Robot.
@@ -58,6 +59,7 @@ public class Robot {
         xPosition = x;
         yPosition = y;
     }
+
     
     /** Give the x and y coordenades of robot.
      * @return return robot''s coordinates (x,y)
@@ -78,7 +80,7 @@ public class Robot {
           return this.direction; 
     }
     
-    //ciclo 2
+//ciclo 2
     
     /**
      * Move the figure according to the direction
@@ -92,31 +94,28 @@ public class Robot {
                 // izquierda
                 if (this.ok) {
                     dx = -1;
-                    moveSlow(dx, dy, step); 
                 }
                 break;
             case 's':
                 // abajo
                 if (this.ok) {
                     dy = 1;
-                    moveSlow(dx, dy, step);
                 }
                 break;
             case 'e':
                 //derecha 
                 if (this.ok) {
                     dx = 1;
-                    moveSlow(dx, dy, step);
                 }
                 break;
             case 'n':
                 //arriba 
                 if (this.ok) {
                     dy = -1;
-                    moveSlow(dx, dy, step);
                 }
                 break;
         }
+        moveSlow(dx, dy, step);
     }
 
     
@@ -194,36 +193,66 @@ public class Robot {
     public void takeDamage() {
         this.live--;
     }
+ /*   
+    public void checkCollision(Room[][] matrixMaze) {
+        Room[] roomAroundRobot = getNearRooms(matrixMaze);
+        boolean isCollision = false;
+        
+        for (Room room : roomAroundRobot) {
+            isCollision = room.checkPlayerCollision(xPosition, yPosition, ((StraightSided)robotFigure.get(HEAD)).getWidth(), height());
+            if (isCollision) {
+                this.ok = false;
+                break;
+            }
+        }
+    }
+*/     
+    public int height() {
+        int height = 0;
+        for (int i = 0; i < 4 ; i++) {
+            height += ((StraightSided)robotFigure.get(i)).getHeight();
+        }
+        return height;
+    }
     
-    public boolean checkColision(Room[][] matrixMaze) {
+    
+    private Room[] getNearRooms(Room[][] matrixMaze) {
         int xPosRoom, yPosRoom,
-         distanceFirstRoom = Integer.MAX_VALUE, distanceSecondRoom = Integer.MAX_VALUE,
-            distanceThirdRoom = Integer.MAX_VALUE, distanceFourthRoom = Integer.MAX_VALUE,
-            distanceBetweenRobotRoom = Integer.MAX_VALUE;
+            dxRobotRoom = 0, dyRobotRoom = 0;
+        int[] distances = { Integer.MAX_VALUE, Integer.MAX_VALUE,
+                         Integer.MAX_VALUE, Integer.MAX_VALUE };
+        double distanceRobotRoom;
         Room[] roomsAround = new Room[4]; 
         for (Room[] fileRoom : matrixMaze) {
             for (Room room : fileRoom) {
                 xPosRoom = room.getXPosition(); yPosRoom = room.getYPosition();
-                
-                if (roomsAround[0] != null && distanceFirstRoom < Math.abs(xPosition - xPosRoom)) {
-                    
-                    
+                dxRobotRoom = Math.abs(xPosition - xPosRoom); dyRobotRoom = Math.abs(yPosition - yPosRoom);
+                distanceRobotRoom = Math.sqrt(Math.pow(dxRobotRoom, 2) + Math.pow(dyRobotRoom, 2));// Formula de distancia entre dos puntos
+                for (int i = 0; i < 4; i++) { // Esta parte fue hecho con Claude Sonnet 5 IA
+                    if (distanceRobotRoom < distances[i]) {
+                        // corre los siguientes un puesto hacia atrás
+                        for (int j = 3; j > i; j--) {
+                            distances[j] = distances[j - 1];
+                            roomsAround[j] = roomsAround[j - 1];
+                        }
+                        distances[i] = (int) distanceRobotRoom;
+                        roomsAround[i] = room;
+                        break; // ya insertado, siguiente room
+                    } // Hasta aquí
                 }
-                
             }
-            
         }
-        return false;
+        return roomsAround;
     }
     
     /* Make move slowy the robot
      * @param dx dx is the delta at x position of robot that this moves it.
      * @param dy dy is the delta at y position of robot that this moves it.
-     * @param step are the times that rob,t moves 10 units.
+     * @param step are the times that rob,t moves.
      */
     private void moveSlow(int dx, int dy, int step) {
         int figurePosX=Integer.MAX_VALUE, figurePosY = Integer.MAX_VALUE;
-        for (int i = 0; i < step*Maze.HEIGHT_ENTRY_ROOM; i++) {
+        for (int i = 0; i < step*50; i++) {
              for (Figure figure : robotFigure) {
                   figurePosX = figure.getXPosition();
                   figurePosY = figure.getYPosition();
@@ -291,4 +320,6 @@ public class Robot {
         ((Triangle)robotFigure.get(NEEDLE)).rotate(90);
         robotFigure.get(NEEDLE).setPosition(xPosition+13, yPosition-20);
     }
+    
+  
 }

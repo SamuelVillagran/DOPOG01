@@ -11,187 +11,130 @@ import java.awt.*;
  
 public class Cube{
 
-    public static int EDGES = 4;
-    
-    private int height;
-    private int width;
-    private int xPosition;
-    private int yPosition;
-    private String color;
-    private boolean isVisible;
+    public Figure cube;
 
     /**
      * Create a new rectangle at default position with default color.
      */
     public Cube(){
-        height = 100;
-        width = 100;
-        xPosition = 70;
-        yPosition = 15;
-        color = "green";
-        isVisible = false;
+        cube = new Rectangle(70, 15, 100, 100, "green");
+        cube.makeInvisible();
     }
     
     public int height(){
-        return height;
+        return ((StraightSided)cube).getHeight();
     }
     
     public int width(){
-        return width;
+        return ((StraightSided)cube).getWidth();
     }
     
+    /**Change the positions x and y.
+     * @param x x is the new x position.
+     * @param y y is the new y position.
+     */
     public void changeXY(int x, int y){
-        this.xPosition = x;
-        this.yPosition = y;
+        cube.setPosition(x, y);
     }
-    /**
-     * Make this rectangle visible. If it was already visible, do nothing.
+    
+    /**Make this rectangle visible. If it was already visible, do nothing.
      */
     public void buildWall(){
-        isVisible = true;
-        draw();
+        cube.makeVisible();
     }
     
-    /**
-     * Make this rectangle invisible. If it was already invisible, do nothing.
+    /**Make this rectangle invisible. If it was already invisible, do nothing.
      */
     public void downWall(){
-        erase();
-        isVisible = false;
+        cube.makeInvisible();
     }
     
-    /**
-     * Move the rectangle a few pixels to the right.
+    /**Move the rectangle a few pixels to the right.
      */
     public void moveRight(){
-        moveHorizontal(20);
+        cube.moveHorizontal(20);
     }
 
-    /**
-     * Move the rectangle a few pixels to the left.
+    /**Move the rectangle a few pixels to the left.
      */
     public void moveLeft(){
-        moveHorizontal(-20);
+        cube.moveHorizontal(-20);
     }
 
-    /**
-     * Move the rectangle a few pixels up.
+    /**Move the rectangle a few pixels up.
      */
     public void moveUp(){
-        moveVertical(-20);
+        cube.moveVertical(-20);
     }
 
-    /**
-     * Move the rectangle a few pixels down.
+    /**Move the rectangle a few pixels down.
      */
     public void moveDown(){
         moveVertical(20);
     }
 
-    /**
-     * Move the rectangle horizontally.
+    /**Move the rectangle horizontally.
      * @param distance the desired distance in pixels
      */
     public void moveHorizontal(int distance){
-        erase();
-        xPosition += distance;
-        draw();
+        cube.moveHorizontal(distance);
     }
 
-    /**
-     * Move the rectangle vertically.
+    /**Move the rectangle vertically.
      * @param distance the desired distance in pixels
      */
     public void moveVertical(int distance){
-        erase();
-        yPosition += distance;
-        draw();
+        cube.moveVertical(distance);
     }
 
-    /**
-     * Slowly move the rectangle horizontally.
+    /**Slowly move the rectangle horizontally.
      * @param distance the desired distance in pixels
      */
     public void slowMoveHorizontal(int distance){
-        int delta;
-
-        if(distance < 0) {
-            delta = -1;
-            distance = -distance;
-        } else {
-            delta = 1;
-        }
-
-        for(int i = 0; i < distance; i++){
-            xPosition += delta;
-            draw();
-        }
+        cube.slowMoveHorizontal(distance);
     }
 
-    /**
-     * Slowly move the rectangle vertically.
+    /**Slowly move the rectangle vertically.
      * @param distance the desired distance in pixels
      */
     public void slowMoveVertical(int distance){
-        int delta;
-
-        if(distance < 0) {
-            delta = -1;
-            distance = -distance;
-        } else {
-            delta = 1;
-        }
-
-        for(int i = 0; i < distance; i++){
-            yPosition += delta;
-            draw();
-        }
+        cube.slowMoveVertical(distance);
     }
 
-    /**
-     * Change the size to the new size
+    /**Change the size to the new size
      * @param newHeight the new height in pixels. newHeight must be >=0.
      * @param newWidht the new width in pixels. newWidth must be >=0.
      */
     public void changeSize(int newHeight, int newWidth) {
-        erase();
-        height = newHeight;
-        width = newWidth;
-        draw();
+        ((StraightSided)cube).changeSize(newHeight, newWidth);
     }
     
-    /**
-     * Change the color. 
+    /**Change the color. 
      * @param color the new color. Valid colors are "red", "yellow", "blue", "green",
      * "magenta" and "black".
      */
     public void changeColor(String newColor){
-        color = newColor;
-        draw();
+        cube.changeColor(newColor);
+    }
+    
+    /**Give the attribute isVisible of cube 
+     */
+    public boolean isVisible() {
+       return cube.isVisible(); 
     }
 
     /*
      * Draw the rectangle with current specifications on screen.
      */
-
     private void draw() {
-        if(isVisible) {
-            Canvas canvas = Canvas.getCanvas();
-            canvas.draw(this, color,
-                new java.awt.Rectangle(xPosition, yPosition, 
-                                       width, height));
-            canvas.wait(10);
-        }
+        cube.draw();
     }
 
     /*
      * Erase the rectangle on screen.
      */
     private void erase(){
-        if(isVisible) {
-            Canvas canvas = Canvas.getCanvas();
-            canvas.erase(this);
-        }
+        cube.erase();
     }
 }
 

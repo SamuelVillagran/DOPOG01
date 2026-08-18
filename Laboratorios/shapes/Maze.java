@@ -16,6 +16,10 @@ public class Maze {
     private Canvas maze;
     public static final int HEIGHT_ENTRY_ROOM = 100;
     
+    /**
+     * 
+     * @return return: 
+     */
     public Maze(int size) {
         createMaze(size);
         karel = new Robot(roomEntry.height()/2,roomEntry.height()+(roomEntry.height()/2));
@@ -23,10 +27,21 @@ public class Maze {
 
     }
     
+    /**
+     * 
+     * @return return: 
+     */
     public void buid(int x, int y, char direction) {
-    matrix[x][y].buildWall(direction);
+    if (karel.getXPosition() == roomEntry.height()/2 && karel.getYPosition() == roomEntry.height()+(roomEntry.height()/2)) {
+        matrix[x][y].buildWall(direction);
+        }
     }   
     
+    
+    /**
+     * 
+     * @return return: 
+     */
     public void createMaze(int size){
     
         roomEntry = new Room(0,HEIGHT_ENTRY_ROOM);
@@ -64,6 +79,11 @@ public class Maze {
               matrix[i][size -1].buildWall('s');
         }
     }
+    
+    /**
+     * 
+     * @return return: 
+     */
     public boolean gameOver(int xRobot,int yRobot) {
         if (xRobot > roomExit.getXPosition() && yRobot > roomExit.getYPosition()) {
                 JOptionPane.showMessageDialog(
@@ -77,6 +97,10 @@ public class Maze {
         return false;
     }
     
+    /**
+     * 
+     * @return return: 
+     */
     public void end() {
         int size = Integer.parseInt( JOptionPane.showInputDialog("tamaño del laberinto: ") );
         maze.close();
@@ -87,17 +111,27 @@ public class Maze {
         karel = new Robot(roomEntry.height()/2,roomEntry.height()+(roomEntry.height()/2));
         karel.makeVisible();
     }
+
     
+    /**
+     * 
+     * @return return: 
+     */    
     public void moveRobot(char direction, int step) {
         karel.turn(direction);
         Room[] roomsAroundKarel = new Room[4];
         int xPosKarel = karel.getXPosition(), yPosKarel = karel.getYPosition();
-        //karel.checkCollision();
+        for (int i = 0; i < step; i++) {
+            karel.move(1);
+            //karel.checkCollision(matrix);
         karel.move(step);
         if (this.gameOver(karel.getXPosition(), karel.getYPosition())) {
             end();
+
+    
+            }
         }
     }
-
 }
+
 

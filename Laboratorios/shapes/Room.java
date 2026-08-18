@@ -10,8 +10,7 @@
      * create Room
      * @return return none
      */
-public class Room
-{
+public class Room {
     private int xPosition;
     private int yPosition;
     
@@ -21,7 +20,9 @@ public class Room
     private Cube aboveCube;
     private Cube belowCube;
     
-    
+    /**
+     * Create Room 
+     */
     public Room(int x, int y) {
         // geminis
         xPosition = x; 
@@ -79,7 +80,6 @@ public class Room
      * make visible walls
      * @return return none
      */
-    
     public void buildWall(char visible){
         switch (visible) {
             case 'w':
@@ -122,7 +122,7 @@ public class Room
 
     
     
-    //gemini
+    //Hecho con Gemini IA
     /**
      * Check for an object colliding with the walls of this room
      * @return return none
@@ -132,35 +132,39 @@ public class Room
         int h = height();
         int grosorParedX = w / 6;
         int grosorParedY = h / 6;
-
+    
         // Comprobar colisión con la pared Izquierda (w)
-        if (pX < xPosition + grosorParedX && pX + pWidth > xPosition && 
+        if (leftCube.isVisible() &&
+            pX < xPosition + grosorParedX && pX + pWidth > xPosition && 
             pY < yPosition + h && pY + pHeight > yPosition) {
-            collision('w'); // Llama a tu método original para pintar de rojo
+            collision('w');
             return true;
         }
         
         // Comprobar colisión con la pared Derecha (e)
-        if (pX < xPosition + w && pX + pWidth > xPosition + (5 * grosorParedX) && 
+        if (rightCube.isVisible() &&
+            pX < xPosition + w && pX + pWidth > xPosition + (5 * grosorParedX) && 
             pY < yPosition + h && pY + pHeight > yPosition) {
             collision('e');
             return true;
         }
         
         // Comprobar colisión con la pared Superior (n)
-        if (pX < xPosition + w && pX + pWidth > xPosition && 
+        if (aboveCube.isVisible() &&
+            pX < xPosition + w && pX + pWidth > xPosition && 
             pY < yPosition + grosorParedY && pY + pHeight > yPosition) {
             collision('n');
             return true;
         }
         
         // Comprobar colisión con la pared Inferior (s)
-        if (pX < xPosition + w && pX + pWidth > xPosition && 
+        if (belowCube.isVisible() &&
+            pX < xPosition + w && pX + pWidth > xPosition && 
             pY < yPosition + h && pY + pHeight > yPosition + (5 * grosorParedY)) {
             collision('s');
             return true;
         }
-
+    
         return false;
     }     //
 
