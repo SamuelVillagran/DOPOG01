@@ -10,6 +10,11 @@ public class Rectangle extends StraightSided {
 
     public static final int EDGES = 4;
     
+    public void makeInvisible(){
+        erase();
+        isVisible = false;
+    }
+    
     /**
      * Create a new rectangle at default position with default color.
      */

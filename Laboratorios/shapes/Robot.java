@@ -10,8 +10,8 @@ import java.awt.Point;
  */
 public class Robot {
     
-    protected int xPosition;
-    protected int yPosition;
+    public int xPosition;
+    public int yPosition;
     protected boolean isVisible;
     protected ArrayList<Figure> robotFigure;
     
@@ -41,14 +41,27 @@ public class Robot {
         this.yPosition = y;
         
         this.robotFigure = new ArrayList<>();        
-        this.isVisible = true;
+        this.isVisible = false;
         this.direction = 'e';
+        this.ok = true;
         this.live = 10;
         
         makeRobotShapes();
         modifyRobotShapes(); /* Add instructions at methods 
             to make more simplified this method of class*/
     }
+
+     
+    /**
+     * Move the position of the Robot.
+     * @param x x is the new xPosition that robot has.
+     * @param y y is the new yPosition that robot has.
+     */
+    public void setPosition(int x,int y) {
+        this.xPosition = x;
+        this.yPosition = y;
+    }
+
     
     /** Give the x and y coordenades of robot.
      * @return return robot''s coordinates (x,y)
@@ -78,7 +91,7 @@ public class Robot {
     public void move(int step) {
         int dx = 0, dy = 0;
         nextNumStep = step;
-        isOK();
+
         switch (this.direction) {
             case 'w':
                 // izquierda
@@ -105,17 +118,10 @@ public class Robot {
                 }
                 break;
         }
-        if (!this.ok) {
-            for (int i = 0; i < NUM_FIGURES; i++) { // Cuando el robot muere
-                if (i == LEFT_EYE || i == RIGHT_EYE) {
-                    robotFigure.get(i).changeColor("black");
-                }
-                robotFigure.get(i).changeColor("gray");
-            }
-        }
         moveSlow(dx, dy, step);
     }
-        
+
+    
     /**
      * change direction
      * @param direction direction can be 'n', 'w', 'e' o 's'.
@@ -141,8 +147,8 @@ public class Robot {
      */
     public boolean isOK(){
         //pendiente de laberinto
-        
-        return  this.live > 0 || this.ok;
+        this.ok = this.live > 0;
+        return  this.ok;
     }
  
  
@@ -152,12 +158,8 @@ public class Robot {
      */
     public void makeInvisible() {
         for (Figure f : robotFigure) {
-            if (!isVisible) {
-                f.makeVisible();    
-            } else {
-                break;
+            f.makeInvisible();    
             }
-        }
         this.isVisible = false;
     }
     
@@ -166,15 +168,21 @@ public class Robot {
      */
     public void makeVisible(){
         for (Figure f : robotFigure) {
-            if (isVisible) {
                 f.makeVisible();    
-            } else {
-                break;
-            }
+            
         }
         this.isVisible = true;
     }
     
+    
+    public void reset() {
+        for (Figure f : robotFigure) {
+            f.makeInvisible();    
+            }
+        this.ok = true;
+        this.live=10;
+        
+    }
 //---------------------------------------------------------------------------------------------
     
     public int getXPosition() {
@@ -186,12 +194,14 @@ public class Robot {
         return this.yPosition;
     }
     
+    /**Robot take damage when collision with a wall
+     */
     public void takeDamage() {
         this.live--;
     }
     
     /**
-     * Check the collision of robot 
+     * Check the collision of robot with the matrix maze
      * @param matrixMaze matrixMaze are the rooms of Maze
      */
     public void checkCollision(Room[][] matrixMaze) {
@@ -199,15 +209,36 @@ public class Robot {
         boolean isCollision = false;
         
         for (Room room : roomAroundRobot) {
-            isCollision = room.checkPlayerCollision(xPosition, yPosition, ((StraightSided)robotFigure.get(HEAD)).getWidth(), height());
+            isCollision = room.checkPlayerCollision(xPosition, yPosition, 
+                ((StraightSided)robotFigure.get(HEAD)).getWidth(), height());
             if (isCollision) {
-                this.ok = false;
+                takeDamage();
                 backLastPosition();
-                //break;
+                this.ok = false; // Detiene el robot
+                if (this.live <= 0) {
+                    die();
+                }
+                break;
             }
         }
     }
-        
+    
+    /**
+     * Check the collision of robot with the room entry and finally
+     * @param matrixMaze matrixMaze are the rooms of Maze
+     */
+    public void checkCollision(Room room) {
+        boolean isCollision = room.checkPlayerCollision(xPosition, yPosition, ((StraightSided)robotFigure.get(HEAD)).getWidth(), height());
+        if (isCollision) {
+            takeDamage();
+            backLastPosition();
+            this.ok = false; // Detiene el robot
+            if (this.live <= 0) {
+                die();
+            }
+        }
+    }
+
     public int height() {
         int height = 0;
         for (int i = 0; i < 4 ; i++) {
@@ -216,24 +247,39 @@ public class Robot {
         return height;
     }
     
+    private void moveRobotFigure(int xPos, int yPos) {
+        for (Figure f : robotFigure) {
+            f.setPosition(f.getXPosition() + xPos, f.getYPosition() + yPos);
+            if (isVisible) {
+                f.draw();    
+            }
+        }
+    }
+    
+    private void die() {
+        for (int i = 0; i < robotFigure.size(); i++) {
+            if (i == LEFT_EYE || i == RIGHT_EYE) {
+                 robotFigure.get(i).changeColor("black");
+            } else {
+                 robotFigure.get(i).changeColor("gray");
+            }
+        }   
+        this.ok = false;
+    }
+    
     /**
      * Back the robot at the last position when collision with a wall
      */
     private void backLastPosition() {
+        int dx = 0, dy = 0;
         switch (this.direction) {
-            case ('s'):
-                setPosition(xPosition, yPosition-99);
-                break;
-            case ('n'):
-                setPosition(xPosition, yPosition+99);
-                break;
-            case ('e'):
-                setPosition(xPosition-99, yPosition);
-                break;
-            case ('w'):
-                setPosition(xPosition+99, yPosition);
-                break;
-        }
+            case ('s'): dy = -10; break;
+            case ('n'): dy = 10; break;
+            case ('e'): dx = -10; break;
+            case ('w'): dx = 10; break;
+        }   
+        moveRobotFigure(dx, dy);
+        setPosition(xPosition + dx, yPosition + dy);
     }
     
     private Room[] getNearRooms(Room[][] matrixMaze) {
@@ -244,7 +290,9 @@ public class Robot {
         double distanceRobotRoom;
         Room[] roomsAround = new Room[4]; 
         for (Room[] fileRoom : matrixMaze) {
+            if (fileRoom == null) continue; //
             for (Room room : fileRoom) {
+                if (room == null) continue; // Omite celdas vacias de la matriz
                 xPosRoom = room.getXPosition(); yPosRoom = room.getYPosition();
                 dxRobotRoom = Math.abs(xPosition - xPosRoom); dyRobotRoom = Math.abs(yPosition - yPosRoom);
                 distanceRobotRoom = Math.sqrt(Math.pow(dxRobotRoom, 2) + Math.pow(dyRobotRoom, 2));// Formula de distancia entre dos puntos
@@ -262,26 +310,44 @@ public class Robot {
                 }
             }
         }
-        return roomsAround;
+        
+        //Esta parte fue ayudada a revisar con Gemini IA 3.
+        // Cuenta cuántas habitaciones reales se guardaron para omitir los nulos
+        int validRoomsCount = 0;
+        for (int i = 0; i < 4; i++) {
+            if (roomsAround[i] != null) {
+                validRoomsCount++;
+            }
+        }
+        
+        // Devuelve un arreglo del tamaño exacto sin nulos
+        Room[] finalRooms = new Room[validRoomsCount];
+        for (int i = 0; i < validRoomsCount; i++) {
+            finalRooms[i] = roomsAround[i];
+        }
+        
+        return finalRooms;
     }
     
     /* Make move slowy the robot
      * @param dx dx is the delta at x position of robot that this moves it.
      * @param dy dy is the delta at y position of robot that this moves it.
-     * @param step are the times that robot moves 10 units.
+     * @param step are the times that rob,t moves.
      */
     private void moveSlow(int dx, int dy, int step) {
-        int figurePosX, figurePosY;
-        for (int i = 0; i < step*10; i++) {
+        int figurePosX=Integer.MAX_VALUE, figurePosY = Integer.MAX_VALUE;
+        for (int i = 0; i < step*Maze.HEIGHT_ENTRY_ROOM-10; i++) {
+             if (!this.ok) break;
              for (Figure figure : robotFigure) {
                   figurePosX = figure.getXPosition();
                   figurePosY = figure.getYPosition();
                   figure.setPosition(figurePosX+dx, figurePosY+dy);
                   if (i%5==0) {
-                     figure.draw();
+                      figure.draw();
                   }
              }
         }
+        xPosition = figurePosX; yPosition = figurePosY;
     }
     
     /* 
@@ -338,31 +404,5 @@ public class Robot {
         ((Triangle)robotFigure.get(NEEDLE)).changeSize(11, 8);
         ((Triangle)robotFigure.get(NEEDLE)).rotate(90);
         robotFigure.get(NEEDLE).setPosition(xPosition+13, yPosition-20);
-    }
-    
-    /**
-     * Set the position of the Robot.
-     * @param x x is the new xPosition that robot has.
-     * @param y y is the new yPosition that robot has.
-     */
-    public void setPosition(int x, int y) {
-        xPosition = x;
-        yPosition = y;
-        ArrayList<Point> movesPlus = new ArrayList<>(
-            List.of(new Point(0,0), new Point(8, 25), new Point(3, 10),
-            new Point(5, -7), new Point(4, 4), new Point(10, 4)));
-        int plusXPos, plusYPos;
-        Figure currentFigure;
-        for (int i = 0; i < NUM_FIGURES; i++) {
-            currentFigure = robotFigure.get(i);
-            plusXPos = xPosition + movesPlus.get(i).x;
-            plusYPos = yPosition + movesPlus.get(i).y;
-            currentFigure.setPosition(xPosition+plusXPos, xPosition+plusYPos);
-        }
-
-        //Make all parts visible
-        if (this.isVisible){
-            makeVisible();
-        }
     }
 }

@@ -6,10 +6,7 @@
  * @version 1.0
  */
 
-/**
-     * create Room
-     * @return return none
-     */
+
 public class Room {
     private int xPosition;
     private int yPosition;
@@ -20,9 +17,13 @@ public class Room {
     private Cube aboveCube;
     private Cube belowCube;
     
-    
+    /**
+     * create Room
+     * @param x x is the x room's position 
+     * @param y y is the y room's position 
+     */
     public Room(int x, int y) {
-        // geminis
+        // Hecho con Gemini IA
         xPosition = x; 
         yPosition = y; 
         //
@@ -78,7 +79,6 @@ public class Room {
      * make visible walls
      * @return return none
      */
-    
     public void buildWall(char visible){
         switch (visible) {
             case 'w':
@@ -101,7 +101,6 @@ public class Room {
      * changes color in collision the walls
      * @return return none
      */
-    
     public void collision(char collision){
         switch (collision) {
             case 'w':
@@ -166,5 +165,10 @@ public class Room {
     
         return false;
     }     //
+    
+    public boolean contains(int x, int y) {
+        return x >= xPosition && y >= yPosition && 
+            x <= xPosition+width() && y <= yPosition+height();
+    }
 
 }
