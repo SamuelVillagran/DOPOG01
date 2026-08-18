@@ -68,4 +68,12 @@ public class MazeTest
         Maze game = new Maze(1);
         game.end();
     }
+
+    @Test
+    public void shouldCollideRobot() {
+        Maze game = new Maze(1);
+        game.moveRobot('e', 1);    
+        game.moveRobot('n', 1);
+        game.moveRobot('s', 1);
+    }
 }

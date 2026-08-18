@@ -17,6 +17,7 @@ public class Robot {
     
     protected int live;
     protected boolean ok;  
+    protected boolean canMove;
     protected char direction; 
     protected int nextNumStep;
 
@@ -44,6 +45,7 @@ public class Robot {
         this.isVisible = false;
         this.direction = 'e';
         this.ok = true;
+        this.canMove =  true;
         this.live = 10;
         
         makeRobotShapes();
@@ -95,25 +97,25 @@ public class Robot {
         switch (this.direction) {
             case 'w':
                 // izquierda
-                if (this.ok) {
+                if (this.canMove) {
                     dx = -1;
                 }
                 break;
             case 's':
                 // abajo
-                if (this.ok) {
+                if (this.canMove) {
                     dy = 1;
                 }
                 break;
             case 'e':
                 //derecha 
-                if (this.ok) {
+                if (this.canMove) {
                     dx = 1;
                 }
                 break;
             case 'n':
                 //arriba 
-                if (this.ok) {
+                if (this.canMove) {
                     dy = -1;
                 }
                 break;
@@ -148,6 +150,11 @@ public class Robot {
     public boolean isOK(){
         //pendiente de laberinto
         this.ok = this.live > 0;
+        if (this.ok) {
+            this.canMove = true;
+        } else {
+            canMove = false;
+        }
         return  this.ok;
     }
  
@@ -210,11 +217,11 @@ public class Robot {
         
         for (Room room : roomAroundRobot) {
             isCollision = room.checkPlayerCollision(xPosition, yPosition, 
-                ((StraightSided)robotFigure.get(HEAD)).getWidth(), height());
+                width(), height());
             if (isCollision) {
                 takeDamage();
                 backLastPosition();
-                this.ok = false; // Detiene el robot
+                this.canMove = false; // Detiene el robot
                 if (this.live <= 0) {
                     die();
                 }
@@ -228,11 +235,11 @@ public class Robot {
      * @param matrixMaze matrixMaze are the rooms of Maze
      */
     public void checkCollision(Room room) {
-        boolean isCollision = room.checkPlayerCollision(xPosition, yPosition, ((StraightSided)robotFigure.get(HEAD)).getWidth(), height());
+        boolean isCollision = room.checkPlayerCollision(xPosition, yPosition, width(), height());
         if (isCollision) {
             takeDamage();
             backLastPosition();
-            this.ok = false; // Detiene el robot
+            this.canMove = false; // Detiene el robot
             if (this.live <= 0) {
                 die();
             }
@@ -245,6 +252,14 @@ public class Robot {
             height += ((StraightSided)robotFigure.get(i)).getHeight();
         }
         return height;
+    }
+    
+    public int width() {
+        return  ((StraightSided)robotFigure.get(HEAD)).getWidth();
+    }
+    
+    public boolean canMove() {
+        return canMove;
     }
     
     private void moveRobotFigure(int xPos, int yPos) {
@@ -272,6 +287,7 @@ public class Robot {
      */
     private void backLastPosition() {
         int dx = 0, dy = 0;
+        
         switch (this.direction) {
             case ('s'): dy = -10; break;
             case ('n'): dy = 10; break;
@@ -280,6 +296,7 @@ public class Robot {
         }   
         moveRobotFigure(dx, dy);
         setPosition(xPosition + dx, yPosition + dy);
+        
     }
     
     private Room[] getNearRooms(Room[][] matrixMaze) {
@@ -336,8 +353,8 @@ public class Robot {
      */
     private void moveSlow(int dx, int dy, int step) {
         int figurePosX=Integer.MAX_VALUE, figurePosY = Integer.MAX_VALUE;
-        for (int i = 0; i < step*Maze.HEIGHT_ENTRY_ROOM-10; i++) {
-             if (!this.ok) break;
+        for (int i = 0; i < step; i++) {
+             if (!this.canMove) break;
              for (Figure figure : robotFigure) {
                   figurePosX = figure.getXPosition();
                   figurePosY = figure.getYPosition();

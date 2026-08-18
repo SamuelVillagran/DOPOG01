@@ -15,6 +15,7 @@ public class Maze {
     private Robot karel;
     private Canvas maze;
     public static final int HEIGHT_ENTRY_ROOM = 100;
+    public static final int HEIGHT_ROBOT = 40;
     
     /**
      * 
@@ -22,9 +23,10 @@ public class Maze {
      */
     public Maze(int size) {
         createMaze(size);
-        karel = new Robot(roomEntry.height()/2,roomEntry.height()+(roomEntry.height()/2));
+        int gr = roomEntry.height() / 6, freeSpace = 5 * gr;
+        int startX = roomEntry.height() / 2, startY = HEIGHT_ENTRY_ROOM + gr + (freeSpace - HEIGHT_ROBOT) / 2;
+        karel = new Robot(startX, startY);
         karel.makeVisible();
-
     }
     
     /**
@@ -98,8 +100,7 @@ public class Maze {
         } else if (!karel.isOK()) {
              JOptionPane.showMessageDialog(null, "GAME OVER - Has perdido");
              end();
-        }
-        
+        }        
     }
     
     /**
@@ -126,18 +127,24 @@ public class Maze {
         karel.turn(direction);
         Room[] roomsAroundKarel = new Room[4];
         int xPosKarel = karel.getXPosition(), yPosKarel = karel.getYPosition();
-        for (int i = 0; i < step; i++) {
-            karelMovement();
-            isGameOver();
-        }
+        
+        karelMovement(step);
+        isGameOver();
     }
     
-    private void karelMovement() {
-        karel.checkCollision(matrix);
-        karel.checkCollision(roomEntry);
-        karel.checkCollision(roomExit);
-        karel.move(1);
-        karel.isOK();
+    private void karelMovement(int step) {
+        for (int i = 0; i < step*HEIGHT_ENTRY_ROOM; i++) {
+            karel.checkCollision(matrix);
+            karel.checkCollision(roomEntry);
+            karel.checkCollision(roomExit);
+            karel.move(1);
+            if (!karel.canMove()) {
+                karel.isOK();
+                break;
+            }
+            karel.isOK();
+        }
+        
     }
 }
 
