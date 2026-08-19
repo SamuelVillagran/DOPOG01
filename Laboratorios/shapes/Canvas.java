@@ -224,7 +224,7 @@ public class Canvas{
      */
     private class CanvasPane extends JPanel{
         public void paint(Graphics g){
-            g.drawImage(canvasImage, 0, 0, null);
+            g.drawImage(canvasImage, 0, 0, null); 
         }
     }
     
@@ -234,7 +234,7 @@ public class Canvas{
 
         erase();
 
-    canvas.repaint();
+        canvas.repaint();
         frame.dispose();
         canvasSingleton = null;
     }

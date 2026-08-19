@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class Triangle extends StraightSided {
     
-    public static int VERTICES=3;
+    public static final int VERTICES=3;
 
     private double rotationAngle; // La implementacion de la rotación fue hecha con Gemini IA
     

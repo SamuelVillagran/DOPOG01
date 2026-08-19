@@ -170,5 +170,8 @@ public class Room {
         return x >= xPosition && y >= yPosition && 
             x <= xPosition+width() && y <= yPosition+height();
     }
-
+    
+    public void changeColorBaseCube (String color) {
+        baseCube.changeColor(color);
+    }
 }

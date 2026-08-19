@@ -1,7 +1,4 @@
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.awt.Point;
 import javax.swing.JOptionPane;
 
 /**
@@ -124,7 +121,6 @@ public class Robot {
         moveSlow(dx, dy, step);
     }
 
-    
     /**
      * change direction
      * @param direction direction can be 'n', 'w', 'e' o 's'.
@@ -154,9 +150,9 @@ public class Robot {
         if (this.ok) {
             this.canMove = true;
         } else {
-            canMove = false;
+            this.canMove = false;
         }
-        return  this.ok;
+        return this.ok;
     }
  
  
@@ -215,7 +211,6 @@ public class Robot {
     public void checkCollision(Room[][] matrixMaze) {
         Room[] roomAroundRobot = getNearRooms(matrixMaze);
         boolean isCollision = false;
-        
         for (Room room : roomAroundRobot) {
             isCollision = room.checkPlayerCollision(xPosition, yPosition, 
                 width(), height());
@@ -309,16 +304,14 @@ public class Robot {
      */
     private void backLastPosition() {
         int dx = 0, dy = 0;
-        
         switch (this.direction) {
-            case ('s'): dy = -10; break;
+            case ('s'): dy = -20; break;
             case ('n'): dy = 10; break;
             case ('e'): dx = -10; break;
             case ('w'): dx = 10; break;
         }   
         moveRobotFigure(dx, dy);
         setPosition(xPosition + dx, yPosition + dy);
-        
     }
     
     private Room[] getNearRooms(Room[][] matrixMaze) {
@@ -345,8 +338,8 @@ public class Robot {
                         distances[i] = (int) distanceRobotRoom;
                         roomsAround[i] = room;
                         break; // ya insertado, siguiente room
-                    } // Hasta aquí
-                }
+                    } 
+                } // Hasta aquí
             }
         }
         
@@ -363,7 +356,7 @@ public class Robot {
         Room[] finalRooms = new Room[validRoomsCount];
         for (int i = 0; i < validRoomsCount; i++) {
             finalRooms[i] = roomsAround[i];
-        }
+        }// Hasta aquí
         
         return finalRooms;
     }
