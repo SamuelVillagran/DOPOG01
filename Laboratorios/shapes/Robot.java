@@ -205,14 +205,14 @@ public class Robot {
     }
     
     /**
-     * Check the collision of robot with the matrix maze
-     * @param matrixMaze matrixMaze are the rooms of Maze
+     * Check the collision of robot with the matrix maze.
+     * @param matrixMaze matrixMaze are the rooms of Maze.
      */
     public void checkCollision(Room[][] matrixMaze) {
         Room[] roomAroundRobot = getNearRooms(matrixMaze);
         boolean isCollision = false;
         for (Room room : roomAroundRobot) {
-            isCollision = room.checkPlayerCollision(xPosition, yPosition, 
+            isCollision = room.checkRobotCollision(xPosition, yPosition, 
                 width(), height());
             if (isCollision) {
                 takeDamage();
@@ -232,7 +232,7 @@ public class Robot {
      * @param matrixMaze matrixMaze are the rooms of Maze
      */
     public void checkCollision(Room room) {
-        boolean isCollision = room.checkPlayerCollision(xPosition, yPosition, width(), height());
+        boolean isCollision = room.checkRobotCollision(xPosition, yPosition, width(), height());
         if (isCollision) {
             takeDamage();
             backLastPosition();
@@ -257,6 +257,7 @@ public class Robot {
     }
     
     public boolean canMove() {
+
         return canMove;
     }
     

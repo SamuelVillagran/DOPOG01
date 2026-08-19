@@ -23,41 +23,12 @@ public class Room {
      * @param y y is the y room's position 
      */
     public Room(int x, int y) {
-        // Hecho con Gemini IA
+        // Hecho con Gemini IA pero supervisado
         xPosition = x; 
         yPosition = y; 
         //
-
-        baseCube = new Cube();
-        baseCube.changeXY(x,y);
-        baseCube.buildWall();
+        createRoom(x, y);
         
-        leftCube = new Cube();
-        leftCube.changeXY(x,y);
-        leftCube.changeSize(leftCube.height(),baseCube.width()/6);
-        //leftCube.slowMoveHorizontal(baseCube.width()/6);
-        leftCube.changeColor("black");
-        
-        
-        rightCube = new Cube();
-        rightCube.changeXY(x,y);
-        rightCube.changeSize(rightCube.height(),baseCube.width()/6);
-        rightCube.slowMoveHorizontal(5*baseCube.width()/6);
-        rightCube.changeColor("black");
-        
-        
-        aboveCube = new Cube();
-        aboveCube.changeXY(x,y);
-        aboveCube.changeSize(baseCube.height()/6,aboveCube.width());
-        //aboveCube.slowMoveVertical(5*baseCube.width()/6);
-        aboveCube.changeColor("black");
-        
-        
-        belowCube = new Cube();
-        belowCube.changeXY(x,y);
-        belowCube.changeSize(baseCube.height()/6,belowCube.width());
-        belowCube.slowMoveVertical(5*baseCube.width()/6);
-        belowCube.changeColor("black");
     }
     
     public int getXPosition() {
@@ -125,7 +96,7 @@ public class Room {
      * Check for an object colliding with the walls of this room
      * @return return none
      */
-    public boolean checkPlayerCollision(int pX, int pY, int pWidth, int pHeight) {
+    public boolean checkRobotCollision(int pX, int pY, int pWidth, int pHeight) {
         int w = width();
         int h = height();
         int grosorParedX = w / 6;
@@ -173,5 +144,38 @@ public class Room {
     
     public void changeColorBaseCube (String color) {
         baseCube.changeColor(color);
+    }
+    
+    private void createRoom(int x, int y) {
+        baseCube = new Cube();
+        baseCube.changeXY(x,y);
+        baseCube.buildWall();
+        
+        leftCube = new Cube();
+        leftCube.changeXY(x,y);
+        leftCube.changeSize(leftCube.height(),baseCube.width()/6);
+        //leftCube.slowMoveHorizontal(baseCube.width()/6);
+        leftCube.changeColor("black");
+        
+        
+        rightCube = new Cube();
+        rightCube.changeXY(x,y);
+        rightCube.changeSize(rightCube.height(),baseCube.width()/6);
+        rightCube.slowMoveHorizontal(5*baseCube.width()/6);
+        rightCube.changeColor("black");
+        
+        
+        aboveCube = new Cube();
+        aboveCube.changeXY(x,y);
+        aboveCube.changeSize(baseCube.height()/6,aboveCube.width());
+        //aboveCube.slowMoveVertical(5*baseCube.width()/6);
+        aboveCube.changeColor("black");
+        
+        
+        belowCube = new Cube();
+        belowCube.changeXY(x,y);
+        belowCube.changeSize(baseCube.height()/6,belowCube.width());
+        belowCube.slowMoveVertical(5*baseCube.width()/6);
+        belowCube.changeColor("black");
     }
 }

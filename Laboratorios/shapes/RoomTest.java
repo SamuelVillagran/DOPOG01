@@ -32,10 +32,10 @@ public class RoomTest {
      */
     @Test
     public void shouldNotCollideWhenNoWallIsBuilt() {
-        assertFalse(room.checkPlayerCollision(0, 50, 5, 5));
-        assertFalse(room.checkPlayerCollision(85, 50, 5, 5));
-        assertFalse(room.checkPlayerCollision(40, 0, 10, 10));
-        assertFalse(room.checkPlayerCollision(40, 85, 10, 10));
+        assertFalse(room.checkRobotCollision(0, 50, 5, 5));
+        assertFalse(room.checkRobotCollision(85, 50, 5, 5));
+        assertFalse(room.checkRobotCollision(40, 0, 10, 10));
+        assertFalse(room.checkRobotCollision(40, 85, 10, 10));
     }
 
     /**
@@ -47,10 +47,10 @@ public class RoomTest {
     public void shouldCollideOnlyWithTheBuiltWall() {
         room.buildWall('n'); 
 
-        assertTrue(room.checkPlayerCollision(40, 0, 10, 10));
-        assertFalse(room.checkPlayerCollision(40, 85, 10, 10));
-        assertFalse(room.checkPlayerCollision(0, 50, 5, 5));
-        assertFalse(room.checkPlayerCollision(85, 50, 5, 5));
+        assertTrue(room.checkRobotCollision(40, 0, 10, 10));
+        assertFalse(room.checkRobotCollision(40, 85, 10, 10));
+        assertFalse(room.checkRobotCollision(0, 50, 5, 5));
+        assertFalse(room.checkRobotCollision(85, 50, 5, 5));
     }
 
     /**
@@ -64,10 +64,10 @@ public class RoomTest {
         room.buildWall('e');
         room.buildWall('w');
 
-        assertTrue(room.checkPlayerCollision(40, 0, 10, 10));
-        assertTrue(room.checkPlayerCollision(40, 85, 10, 10));
-        assertTrue(room.checkPlayerCollision(85, 50, 5, 5));
-        assertTrue(room.checkPlayerCollision(0, 50, 5, 5));
+        assertTrue(room.checkRobotCollision(40, 0, 10, 10));
+        assertTrue(room.checkRobotCollision(40, 85, 10, 10));
+        assertTrue(room.checkRobotCollision(85, 50, 5, 5));
+        assertTrue(room.checkRobotCollision(0, 50, 5, 5));
     }
 
     /**
@@ -81,6 +81,6 @@ public class RoomTest {
         room.buildWall('e');
         room.buildWall('w');
 
-        assertFalse(room.checkPlayerCollision(40, 40, 10, 10));
+        assertFalse(room.checkRobotCollision(40, 40, 10, 10));
     }
 }
