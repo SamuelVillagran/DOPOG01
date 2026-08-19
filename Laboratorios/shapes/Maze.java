@@ -34,8 +34,8 @@ public class Maze {
      * @return return: 
      */
     public void buid(int x, int y, char direction) {
-    if (karel.getXPosition() == roomEntry.height()/2 && karel.getYPosition() == roomEntry.height()+(roomEntry.height()/2)) {
-        matrix[x][y].buildWall(direction);
+        if (karel.getXPosition() == roomEntry.height()/2 && karel.getYPosition() == roomEntry.height()+(roomEntry.height()/2)) {
+            matrix[x][y].buildWall(direction);
         }
     }   
     
@@ -96,9 +96,9 @@ public class Maze {
                         "WIN",
                         "Game Over",
                         JOptionPane.INFORMATION_MESSAGE
-                    ); //con ayuda de ia
+                ); 
         } else if (!karel.isOK()) {
-             JOptionPane.showMessageDialog(null, "GAME OVER - Has perdido");
+             JOptionPane.showMessageDialog(null, "GAME OVER - Has perdido");//con ayuda de Gemini IA
              end();
         }        
     }
@@ -130,6 +130,10 @@ public class Maze {
         
         karelMovement(step);
         isGameOver();
+    }
+    
+    public void showRobotLive() {
+        karel.live();
     }
     
     private void karelMovement(int step) {

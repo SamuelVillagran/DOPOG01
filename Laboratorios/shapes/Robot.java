@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.awt.Point;
+import javax.swing.JOptionPane;
 
 /**
  * This is the robot of maze.
@@ -221,6 +222,7 @@ public class Robot {
             if (isCollision) {
                 takeDamage();
                 backLastPosition();
+                showCantDoThat();
                 this.canMove = false; // Detiene el robot
                 if (this.live <= 0) {
                     die();
@@ -239,6 +241,7 @@ public class Robot {
         if (isCollision) {
             takeDamage();
             backLastPosition();
+            showCantDoThat();
             this.canMove = false; // Detiene el robot
             if (this.live <= 0) {
                 die();
@@ -260,6 +263,25 @@ public class Robot {
     
     public boolean canMove() {
         return canMove;
+    }
+    
+    public void live() {
+        String message = "Karel's live is " + live;
+        JOptionPane.showMessageDialog(
+            null,
+            message,
+            "WARNING!",
+            JOptionPane.INFORMATION_MESSAGE
+        ); 
+    }
+    
+    private void showCantDoThat() {
+        JOptionPane.showMessageDialog(
+            null,
+            "Karel can't do that",
+            "WARNING!",
+            JOptionPane.INFORMATION_MESSAGE
+        ); 
     }
     
     private void moveRobotFigure(int xPos, int yPos) {
