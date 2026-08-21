@@ -1,13 +1,8 @@
 # 🎵 miniTunes
 
-!\(https://img.shields.io/badge/Java-17-orange?logo=openjdk\&logoColor=white)
-!\(https://img.shields.io/badge/JUnit-4-green?logo=junit5\&logoColor=white)
-!\(https://img.shields.io/badge/IDE-BlueJ-blue)
-!\(https://img.shields.io/badge/status-en%20desarrollo-yellow)
-
 Versión simplificada de iTunes basada **únicamente en listas de reproducción**: consulta, selección, combinación y gestión de canciones bajo prácticas BDD/MDD.
 
-\---
+---
 
 ## 🚀 Características Clave
 
@@ -27,7 +22,7 @@ Desarrollo por ciclos incrementales (marca ✅ a medida que avances):
 |Duración|1–9 minutos|
 |Calificación|`\*` a `\*\*\*\*\*`|
 
-\---
+---
 
 ## 🛠️ Arquitectura y POO
 
@@ -60,7 +55,7 @@ classDiagram
 * **Patrón aplicado**: estilo **inmutable / fluido**, similar a Value Object — evita efectos secundarios y facilita pruebas.
 * **Principios POO**: encapsulamiento de la representación interna de canciones, y responsabilidad única entre orquestación (`MiniTunes`) y dominio (`Playlist`).
 
-\---
+---
 
 ## ⚙️ Instalación y Ejecución
 
@@ -74,7 +69,7 @@ cd miniTunes
 2. Compilar todas las clases (`Project > Compile`).
 3. Crear un objeto `MiniTunes` desde el banco de objetos para probar interactivamente.
 
-\---
+---
 
 ## 🧪 Pruebas / Uso
 
