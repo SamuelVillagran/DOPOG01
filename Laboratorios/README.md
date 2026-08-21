@@ -96,3 +96,4 @@ pl.toString();  // listado formateado en mayúsculas
 
 * **Samuel** — Escuela Colombiana de Ingeniería Julio Garavito — DOPO 2026-2
 
+* Readme generado por Claude Sonnet 5 AI
