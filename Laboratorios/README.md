@@ -1,9 +1,9 @@
 # 🎵 miniTunes
 
-!\[Java](https://img.shields.io/badge/Java-17-orange?logo=openjdk\&logoColor=white)
-!\[JUnit](https://img.shields.io/badge/JUnit-4-green?logo=junit5\&logoColor=white)
-!\[BlueJ](https://img.shields.io/badge/IDE-BlueJ-blue)
-!\[Status](https://img.shields.io/badge/status-en%20desarrollo-yellow)
+!\(https://img.shields.io/badge/Java-17-orange?logo=openjdk\&logoColor=white)
+!\(https://img.shields.io/badge/JUnit-4-green?logo=junit5\&logoColor=white)
+!\(https://img.shields.io/badge/IDE-BlueJ-blue)
+!\(https://img.shields.io/badge/status-en%20desarrollo-yellow)
 
 Versión simplificada de iTunes basada **únicamente en listas de reproducción**: consulta, selección, combinación y gestión de canciones bajo prácticas BDD/MDD.
 
