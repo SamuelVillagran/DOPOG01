@@ -27,7 +27,7 @@ public class PlaylistTest{
    
     @Test
     public void shouldCreateAPlaylist(){
-        String [][] songs=
+        String [][] songs =
             {{"One", "U2", "Rock", "4", "*****"},
              {"Numb", "Linkin Park", "Rock", "3", null},
              {"Alive", "Pearl Jam", "Rock", "5", "****"},

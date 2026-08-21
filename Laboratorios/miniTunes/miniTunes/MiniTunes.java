@@ -45,10 +45,11 @@ public class MiniTunes{
     }
       
     
-    //Assigns the value of a binary operation to a playlist name
-    // a = b op c
-    //The operator characters are:  'u' union, 'i' intersection, 'd' difference
-    //Songs preserve their original order in the resulting playlist.
+    /**Assigns the value of a binary operation to a playlist name
+     * a = b op c
+     * The operator characters are:  'u' union, 'i' intersection, 'd' difference
+     * Songs preserve their original order in the resulting playlist.
+     */
     public void assignBinary(String a, String b, char op, String c){
     }
   
