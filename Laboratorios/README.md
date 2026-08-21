@@ -1,64 +1,103 @@
-# 🧩 Laboratorio 1 — Desarrollo Orientado por Objetos (2026-2)
+# 🎵 miniTunes
 
-Escuela Colombiana de Ingeniería Julio Garavito
+!\[Java](https://img.shields.io/badge/Java-17-orange?logo=openjdk\&logoColor=white)
+!\[JUnit](https://img.shields.io/badge/JUnit-4-green?logo=junit5\&logoColor=white)
+!\[BlueJ](https://img.shields.io/badge/IDE-BlueJ-blue)
+!\[Status](https://img.shields.io/badge/status-en%20desarrollo-yellow)
 
-Laboratorio 1 de 6 del curso **Construcción — DOPO**. Se trabaja con BlueJ, el paquete `shapes` y se construye una mini-aplicación inspirada en **Karel the Robot**: `RobotMaze`.
+Versión simplificada de iTunes basada **únicamente en listas de reproducción**: consulta, selección, combinación y gestión de canciones bajo prácticas BDD/MDD.
 
-## 🎯 Objetivo
+\---
 
-Apropiar un paquete existente (diagrama de clases, documentación y código), crear y extender clases, entender el manejo básico de memoria en OO, explorar el API de Java y practicar XP (*Planning* y *Coding en parejas*) usando **BlueJ**.
+## 🚀 Características Clave
 
-## 📦 Contenido del laboratorio
+Desarrollo por ciclos incrementales (marca ✅ a medida que avances):
 
-### Parte I — Shapes
-Exploración del paquete `shapes` (diagrama de clases, documentación, código fuente):
-- Inspección de objetos, atributos y comportamiento de la clase `Triangle`.
-- Análisis de código existente (predicción vs. ejecución real).
-- Extensión de `Triangle` con nuevos métodos:
-  - `area()`
-  - `equilateral()`
-  - `walk(times: int)`
-  - Nuevo constructor `Triangle(color, ancho, alto)`
-  - Método propio adicional propuesto por el equipo.
+* \[ ] **Ciclo 1 — Operaciones básicas**: definir nombre de lista, asignar lista a un nombre, consultar nombres de listas, consultar canciones de una lista.
+* \[ ] **Ciclo 2 — Operaciones unarias**: adicionar canción, eliminar canción, seleccionar canciones por condición.
+* \[ ] **Ciclo 3 — Operaciones binarias**: unión, intersección, diferencia (preservando orden original).
+* \[ ] **Ciclo 4 (bono)** — 3 operaciones nuevas definidas por el equipo.
 
-### Parte II — De Python a Java
-Evaluación de recursos de apoyo (video y prompts) para la transición Python → Java.
+**Reglas del dominio (`Playlist`):**
 
-### Parte III — RobotMaze 🤖
-Mini-juego de laberinto inspirado en Karel:
-- El robot inicia con **10 puntos de vida**, ubicado en la entrada del laberinto.
-- Se mueve casilla por casilla en 4 direcciones (`N`, `S`, `E`, `W`).
-- Pierde 1 punto de vida al chocar contra una pared o un borde.
-- El juego termina al llegar a la salida o al quedarse sin vida.
+|Campo|Regla|
+|-|-|
+|Título / Artista|Obligatorios, únicos en combinación|
+|Género|Opcional|
+|Duración|1–9 minutos|
+|Calificación|`\*` a `\*\*\*\*\*`|
 
-**Requisitos funcionales:** crear laberinto, agregar paredes, iniciar juego, mover el robot, consultar vida, detectar fin de juego, terminar juego.
+\---
 
-**Requisitos de interfaz:** entrada/salida diferenciadas, dirección visible, paredes golpeadas cambian de color, robot distinto sin vida, mensajes de error vía `JOptionPane`.
+## 🛠️ Arquitectura y POO
 
-**Bono:** movimiento automático inteligente (la máquina decide) + función deshacer último movimiento.
-
-Se reutilizan la clase `Robot` (construida sobre `shapes`) y el paquete `shapes` como base gráfica.
-
-## 🛠️ Tecnologías
-
-- Java
-- BlueJ
-- Paquete `shapes` (recurso de BlueJ)
-- `JOptionPane` para mensajes de interfaz
-
-## 📁 Estructura sugerida del repositorio
-
+```mermaid
+classDiagram
+    class MiniTunes {
+        -TreeMap\~String, Playlist\~ playlists
+        +define(name)
+        +assign(a, playlist)
+        +size(a) int
+        +assignUnary(a, b, op, values)
+        +assignBinary(a, b, op, c)
+        +ok() boolean
+    }
+    class Playlist {
+        +Playlist(songs)
+        +add(song) Playlist
+        +delete(song) Playlist
+        +select(values) Playlist
+        +size() int
+        +equals(Playlist) boolean
+    }
+    class PlaylistTest
+    MiniTunes "1" --> "\*" Playlist : uses
+    PlaylistTest ..> Playlist : tests
 ```
-📦 ApellidoA-ApellidoB
- ┣ 📂 shapes/          # Paquete base + extensiones a Triangle
- ┣ 📄 lab01.doc        # Respuestas y capturas de pantalla
- ┗ 📄 README.md
+
+* **`MiniTunes`**: fachada del sistema; administra las listas por nombre en un `TreeMap<String, Playlist>`.
+* **`Playlist`**: colección inmutable de canciones — cada operación (`add`, `delete`, `select`) retorna una **nueva** instancia.
+* **Patrón aplicado**: estilo **inmutable / fluido**, similar a Value Object — evita efectos secundarios y facilita pruebas.
+* **Principios POO**: encapsulamiento de la representación interna de canciones, y responsabilidad única entre orquestación (`MiniTunes`) y dominio (`Playlist`).
+
+\---
+
+## ⚙️ Instalación y Ejecución
+
+```bash
+# Clonar el repositorio
+git clone <url-del-repo>
+cd miniTunes
 ```
 
-## 👥 Autores
+1. Abrir el proyecto con **BlueJ**.
+2. Compilar todas las clases (`Project > Compile`).
+3. Crear un objeto `MiniTunes` desde el banco de objetos para probar interactivamente.
 
-- Samuel Steveen Villagran Rodriguez
-- Pablo Andres Gualdron Lindo
+\---
 
----
-*_Readme generado por Claude Sonnet 5 2026_*
+## 🧪 Pruebas / Uso
+
+Pruebas unitarias con **JUnit** sobre la clase `Playlist` (`PlaylistTest`):
+
+```bash
+# Desde BlueJ: click derecho sobre PlaylistTest > Test All
+```
+
+Ejemplo de uso esperado:
+
+```java
+Playlist pl = new Playlist(new String\[]\[] {
+    {"One", "U2", "Rock", "4", "\*\*\*\*\*"},
+    {"Numb", "Linkin Park", "Rock", "3", null}
+});
+pl.size();      // 2
+pl.toString();  // listado formateado en mayúsculas
+```
+
+\---
+
+## 👤 Autor
+
+* **Samuel** — Escuela Colombiana de Ingeniería Julio Garavito — DOPO 2026-2
+
