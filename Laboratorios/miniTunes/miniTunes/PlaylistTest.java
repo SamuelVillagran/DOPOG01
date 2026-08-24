@@ -9,7 +9,6 @@ public class PlaylistTest{
     
     /**
      * Sets up the test fixture.
-     *
      * Called before every test case method.
      */
     @Before
@@ -63,9 +62,27 @@ public class PlaylistTest{
              {"Alive", "PEARL   JAM", "Rock", "5", "****"},
              {"Creep", null, "ROCK", null, "*****"},
              {null, "Fleetwood Mac", null, "4", "**   **"}};
-       assertEquals(new Playlist(songs),new Playlist(sameSongs));
+       assertEquals(new Playlist(songs), new Playlist(sameSongs));
     }
     
+    /**
+    @Test
+    public void shouldPass() {
+        String proof1 = "youpass", proof2 = "youpass";
+        assertEquals(proof1, proof2);
+    }
+    
+    @Test
+    public void shouldFail() {
+        fail();
+    }
+    
+    @Test
+    public void shouldError() {
+        String variable = null;
+        variable.charAt(5);
+    }
+    */
     /**
      * Tears down the test fixture.
      *
