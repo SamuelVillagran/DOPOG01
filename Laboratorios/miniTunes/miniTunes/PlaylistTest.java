@@ -62,7 +62,8 @@ public class PlaylistTest{
              {"Alive", "PEARL   JAM", "Rock", "5", "****"},
              {"Creep", null, "ROCK", null, "*****"},
              {null, "Fleetwood Mac", null, "4", "**   **"}};
-       assertEquals(new Playlist(songs), new Playlist(sameSongs));
+       Playlist plOriginal = new Playlist(songs), plProof = new Playlist(sameSongs);
+       assertEquals(plOriginal, plProof);
     }
     
     /**
