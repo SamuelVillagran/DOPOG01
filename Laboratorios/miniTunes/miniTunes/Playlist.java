@@ -1,4 +1,8 @@
-//Each song is described by its title, artist, genre, duration, and rating.
+import java.util.ArrayList;
+
+/**
+ * Each song is described by its title, artist, genre, duration, and rating.
+ */
 //The title and artist are mandatory. The genre, duration, and rating may be unknown.
 //The combination (title, artist) must be unique. Two songs cannot have the same title and artist.
 //The duration (minutes) must be between 1 and 9.
@@ -10,8 +14,40 @@ public class Playlist {
     private int size;
     
     public Playlist(String [][] songs){
-        this.songs = songs;
+        ArrayList<String[]> validSongs = getValidSongs(songs);
+        int sizeValidSongs = validSongs.size();
+        this.songs = new String[sizeValidSongs][5];
+        for (int i = 0; i < sizeValidSongs; i++) {
+            this.songs[i] = validSongs.get(i);
+        }
         size = this.songs.length;
+    }
+    
+    private ArrayList<String[]> getValidSongs(String [][] songsToVerify) {
+        ArrayList<String[]> validSong = new ArrayList<>(); 
+        boolean isThereSomeNull;
+        String currentSong;
+        for (int i = 0; i < songsToVerify.length; i++) {
+            isThereSomeNull = false;
+            for (int j = 0; j < songsToVerify[i].length; j++) {
+                currentSong = songsToVerify[i][j];
+                if (j == 0) {
+                    if (currentSong == null) {
+                        isThereSomeNull = true;
+                        continue;
+                    }
+                } else if (j == 1) {
+                    if (currentSong == null) {
+                        isThereSomeNull = true;
+                        continue;
+                    }
+                }
+            }
+            if (!isThereSomeNull) {
+                validSong.add(songsToVerify[i]);
+            }
+        }
+        return validSong;
     }
     
     public Playlist add(String [] song){
@@ -46,35 +82,27 @@ public class Playlist {
             "TITLE", "ARTIST", "GENRE", "DURATION", "RATING")+"\n";
             
         String title, artist, genre, duration, rating;
-        boolean isDurationAnNumber, isRatingANumber;
+        boolean isDurationANumber, isRatingANumber;
         for (int i = 0; i < songs.length; i++) {
-            isDurationAnNumber = true; isRatingANumber = false;
+            isDurationANumber = true; isRatingANumber = false;
             title = songs[i][0]; artist = songs[i][1]; genre = songs[i][2]; 
             title = prepareString(title);
             artist = prepareString(artist);
             genre = prepareString(genre);
             
             duration = songs[i][3]; rating = songs[i][4];
-            if (duration != null) isDurationAnNumber = duration.matches("\\d+");
+            if (duration != null) isDurationANumber = duration.matches("\\d+");
             if (rating != null) {
                 isRatingANumber = rating.matches("\\d+");
                 rating = rating.trim().replaceAll("\\s+" , "");
             }
             
-            if (!isDurationAnNumber) duration = null;
+            if (!isDurationANumber) duration = null;
             if (isRatingANumber) rating = convertNumberToRating(rating);
             messageToShow+=String.format("%-3s   %-3s   %-3s   %-3s   %-3s",
                 title, artist, genre, duration, rating)+"\n";
         }
         return messageToShow;
-    }
-    
-    public String prepareString(String word) {
-        if (word != null) {
-            word = word.trim().replaceAll("\\s+", " ");
-            word = word.substring(0, 1).toUpperCase()+word.substring(1).toLowerCase();
-        }
-        return word;
     }
     
     /**
@@ -113,6 +141,14 @@ public class Playlist {
     
     public String[][] getSongs() {
         return songs;
+    }
+    
+    private String prepareString(String word) {
+        if (word != null) {
+            word = word.trim().replaceAll("\\s+", " ");
+            word = word.substring(0, 1).toUpperCase()+word.substring(1).toLowerCase();
+        }
+        return word;
     }
     
     private String convertNumberToRating(String rating) {

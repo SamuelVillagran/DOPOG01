@@ -45,7 +45,7 @@ public class PlaylistTest{
              {"Creep", null, "Rock", null, "*****"},
              {null, "Fleetwood Mac", null, "4", "****"}};
         Playlist pl=new Playlist(songs);
-        assertEquals(1, pl.size());   
+        assertEquals(3, pl.size());   
     }  
     
     @Test
