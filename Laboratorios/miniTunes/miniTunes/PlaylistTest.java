@@ -2,7 +2,7 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+import java.util.Arrays;
 
 public class PlaylistTest{
 
@@ -45,7 +45,7 @@ public class PlaylistTest{
              {"Creep", null, "Rock", null, "*****"},
              {null, "Fleetwood Mac", null, "4", "****"}};
         Playlist pl=new Playlist(songs);
-        assertEquals(3, pl.size());   
+        assertEquals(2, pl.size());   
     }  
     
     @Test
@@ -69,12 +69,14 @@ public class PlaylistTest{
     @Test
     public void shouldAddSong(){
        String [][] songs=
-            {{"One", "U2", "Rock", "4", "*******"},
-             {"Numb", "Linkin Park", "Rock", "Rock", null},
+            {{"One", "U2", "Rock", "4", "****"},
+             {"Numb", "Linkin Park", "Rock", "3", null},
              {"Alive", "Pearl Jam", "Rock", "5", "****"}};
        Playlist plProof = new Playlist(songs);
-       plProof = plProof.add(new String[]{"Kalo", "JB", "Pop", "3", "*****"});
+       String[] songOfProof = new String[]{"Kalo", "JB", "Pop", "3", "*****"};
+       plProof = plProof.add(songOfProof);
        assertEquals(4, plProof.size());
+       assertTrue(Arrays.equals(songOfProof, plProof.getSongs()[3]));
     }
     
     /**

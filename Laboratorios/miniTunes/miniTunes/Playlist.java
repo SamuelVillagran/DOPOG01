@@ -25,67 +25,86 @@ public class Playlist {
     }
     
     private ArrayList<String[]> getValidSongs(String [][] songsToVerify) {
-        ArrayList<String[]> validSong = new ArrayList<>(); 
-        boolean canAddSong; String currentString;
-        for (int i = 0; i < songsToVerify.length; i++) {
-            canAddSong = false;
-            if (areThereSameSong(songsToVerify[i]) && songs.length > 0) continue;
-            for (int j = 0; j < songsToVerify[i].length; j++) {
-                currentString = songsToVerify[i][j];
-                if (j == 0) {
-                    if (currentString == null) {
-                        canAddSong = true;
-                        continue;
-                    }
-                } else if (j == 1) {
-                    if (currentString == null) {
-                        canAddSong = true;
-                        continue;
-                    }
-                } else if (j == 3) {
-                    if (currentString != null) {
+    ArrayList<String[]> validSong = new ArrayList<>(); 
+    boolean canAddSong; String currentString;
+    for (int i = 0; i < songsToVerify.length; i++) {
+        canAddSong = false;
+        if (isDuplicateInList(songsToVerify[i], validSong)) continue;
+        for (int j = 0; j < songsToVerify[i].length; j++) {
+            currentString = songsToVerify[i][j];
+            if (j == 0) {
+                if (currentString == null) {
+                    canAddSong = true;
+                    continue;
+                }
+            } else if (j == 1) {
+                if (currentString == null) {
+                    canAddSong = true;
+                    continue;
+                }
+            } else if (j == 3) {
+                if (currentString != null) {
+                    boolean isDurationANumber = currentString.matches("\\d+");
+                    if (isDurationANumber) {
                         int durationNumber = Integer.parseInt(currentString);
                         if (durationNumber > 9 || durationNumber < 1) canAddSong = true;
                     }
-                } else if (j == 4) {
-                    if (currentString != null) {
-                        if (currentString.length() > 5 || currentString.length() < 1) canAddSong = true;
-                    }
+                    
+                }
+            } else if (j == 4) {
+                if (currentString != null) {
+                    if (currentString.length() > 5 || currentString.length() < 1) canAddSong = true;
                 }
             }
-            if (!canAddSong) {
-                validSong.add(songsToVerify[i]);
+        }
+        if (!canAddSong) {
+            validSong.add(songsToVerify[i]);
+        }
+    }
+    return validSong;
+}
+
+    // Usado SOLO dentro del constructor, compara contra la lista que se está armando
+    private boolean isDuplicateInList(String[] songToCheck, ArrayList<String[]> list) {
+        if (songToCheck[0] == null || songToCheck[1] == null) return false;
+        for (String[] existing : list) {
+            if (songToCheck[0].trim().equalsIgnoreCase(existing[0].trim()) &&
+                songToCheck[1].trim().equalsIgnoreCase(existing[1].trim())) {
+                return true;
             }
         }
-        return validSong;
+        return false;
     }
-    
-    private boolean areThereSameSong(String[] songToComprobe) {
-        boolean areThereSameSong = false;
-        String[] currentSong;
-        for (int i = 0; i < songs.length; i++) {
-            currentSong = songs[i];
-            areThereSameSong = songToComprobe[0].equals(songs[i][0]) &&
-                    songToComprobe[1].equals(songs[i][1]);
-            if (areThereSameSong) return true;
+
+
+    private boolean isDuplicateInSongs(String[] songToCheck) {
+        if (songToCheck[0] == null || songToCheck[1] == null) return false;
+        for (String[] existing : songs) {
+            if (songToCheck[0].trim().equalsIgnoreCase(existing[0].trim()) &&
+                songToCheck[1].trim().equalsIgnoreCase(existing[1].trim())) {
+                return true;
+            }
         }
-        return areThereSameSong;
+        return false;
     }
     
     public Playlist add(String [] song){
         boolean isTitle = true, isArtist = true;
+        String durationSong = song[3];
         if (song[0]==null || song[1]==null) return this;
-        if ((Integer.parseInt(song[3]) > 9 || Integer.parseInt(song[3]) < 1) && song[3] != null) return this;
-        if (areThereSameSong(song)) return this; 
+        if (durationSong != null) {
+            boolean durationIsInteger = song[3].matches("\\d+");
+            if (durationIsInteger) if ((Integer.parseInt(song[3]) > 9 || Integer.parseInt(song[3]) < 1) && song[3] != null) return this;
+        }
+        if (isDuplicateInSongs(song)) return this; 
         String[][] songs = new String[this.songs.length+1][5];
         for (int i = 0; i < this.songs.length; i++) {
             songs[i] = this.songs[i];
         }
         
         songs[this.songs.length] = song;
-        this.songs = null;
         this.songs = songs;
-        size = this.songs.length;
+        size += 1;
         return this;
     }
     
