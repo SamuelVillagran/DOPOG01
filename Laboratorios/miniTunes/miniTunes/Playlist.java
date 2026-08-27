@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
-/**
+/** Playlist's class
  * Each song is described by its title, artist, genre, duration, and rating.
  */
 //The title and artist are mandatory. The genre, duration, and rating may be unknown.
@@ -25,8 +26,7 @@ public class Playlist {
     
     private ArrayList<String[]> getValidSongs(String [][] songsToVerify) {
         ArrayList<String[]> validSong = new ArrayList<>(); 
-        boolean isThereSomeNull;
-        String currentSong;
+        boolean isThereSomeNull; String currentSong;
         for (int i = 0; i < songsToVerify.length; i++) {
             isThereSomeNull = false;
             for (int j = 0; j < songsToVerify[i].length; j++) {
@@ -51,11 +51,29 @@ public class Playlist {
     }
     
     public Playlist add(String [] song){
-        return null;
+        boolean isTitle = true, isArtist = true;
+        if (song[0]==null || song[1]==null) return this;
+        
+        String[][] songs = new String[this.songs.length+1][5];
+        songs = this.songs;
+        songs[this.songs.length] = song;
+        this.songs = null;
+        this.songs = songs;
+        size = this.songs.length;
+        return this;
     }
     
     public Playlist delete(String [] song){
-        return null;
+        String[] fileSong;
+        boolean areTheSameSong;
+        for (int i = 0; i < songs.length; i++) {
+            fileSong = songs[i];
+            areTheSameSong = Arrays.equals(fileSong, song);
+            if (areTheSameSong) {
+                songs[i] = null;
+            }
+        }
+        return this;
     }
     
     public Playlist select(String [] values){
@@ -91,15 +109,29 @@ public class Playlist {
             genre = prepareString(genre);
             
             duration = songs[i][3]; rating = songs[i][4];
-            if (duration != null) isDurationANumber = duration.matches("\\d+");
+            if (duration != null) {
+                isDurationANumber = duration.matches("\\d+");
+                if (isDurationANumber) {
+                    int numberDuration = Integer.parseInt(duration);
+                    if (numberDuration <= 0 && numberDuration >= 10) {
+                        duration = null;
+                    }
+                }
+            }
             if (rating != null) {
                 isRatingANumber = rating.matches("\\d+");
                 rating = rating.trim().replaceAll("\\s+" , "");
+                if (rating.length() > 5) {
+                    rating = "*****";
+                } 
+                if (rating.length() < 1) {
+                    rating = "*";
+                }
             }
             
             if (!isDurationANumber) duration = null;
             if (isRatingANumber) rating = convertNumberToRating(rating);
-            messageToShow+=String.format("%-3s   %-3s   %-3s   %-3s   %-3s",
+                messageToShow+=String.format("%-3s   %-3s   %-3s   %-3s   %-3s",
                 title, artist, genre, duration, rating)+"\n";
         }
         return messageToShow;
@@ -118,7 +150,7 @@ public class Playlist {
                 isSameSong = true;
                 if ((songs[i][j]==null && songsToCompare[i][j]!=null) || 
                     (songs[i][j]!=null && songsToCompare[i][j]==null)) return false; // Si alguna de las dos es nula
-                if (songs[i][j]!=null && songsToCompare[i][j]!=null) {
+                if (songs[i][j] !=null && songsToCompare[i][j]!=null) {
                     nameSong = songs[i][j].trim().replaceAll("\\s+", " ");
                     if (j == 4) {
                         nameSongToCompare = songsToCompare[i][j].trim().replaceAll("\\s+", "");

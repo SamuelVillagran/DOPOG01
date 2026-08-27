@@ -66,6 +66,17 @@ public class PlaylistTest{
        assertEquals(plOriginal, plProof);
     }
     
+    @Test
+    public void shouldAddSong(){
+       String [][] songs=
+            {{"One", "U2", "Rock", "4", "*******"},
+             {"Numb", "Linkin Park", "Rock", "Rock", null},
+             {"Alive", "Pearl Jam", "Rock", "5", "****"}};
+       Playlist plProof = new Playlist(songs);
+       plProof = plProof.add(new String[]{"Kalo", "JB", "Pop", "3", "*****"});
+       assertEquals(4, plProof.size());
+    }
+    
     /**
     @Test
     public void shouldPass() {
