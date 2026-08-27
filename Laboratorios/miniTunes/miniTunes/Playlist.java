@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/** Playlist's class
+/** Playlist's class.
  * Each song is described by its title, artist, genre, duration, and rating.
  */
 //The title and artist are mandatory. The genre, duration, and rating may be unknown.
@@ -26,36 +26,62 @@ public class Playlist {
     
     private ArrayList<String[]> getValidSongs(String [][] songsToVerify) {
         ArrayList<String[]> validSong = new ArrayList<>(); 
-        boolean isThereSomeNull; String currentSong;
+        boolean canAddSong; String currentString;
         for (int i = 0; i < songsToVerify.length; i++) {
-            isThereSomeNull = false;
+            canAddSong = false;
+            if (areThereSameSong(songsToVerify[i]) && songs.length > 0) continue;
             for (int j = 0; j < songsToVerify[i].length; j++) {
-                currentSong = songsToVerify[i][j];
+                currentString = songsToVerify[i][j];
                 if (j == 0) {
-                    if (currentSong == null) {
-                        isThereSomeNull = true;
+                    if (currentString == null) {
+                        canAddSong = true;
                         continue;
                     }
                 } else if (j == 1) {
-                    if (currentSong == null) {
-                        isThereSomeNull = true;
+                    if (currentString == null) {
+                        canAddSong = true;
                         continue;
+                    }
+                } else if (j == 3) {
+                    if (currentString != null) {
+                        int durationNumber = Integer.parseInt(currentString);
+                        if (durationNumber > 9 || durationNumber < 1) canAddSong = true;
+                    }
+                } else if (j == 4) {
+                    if (currentString != null) {
+                        if (currentString.length() > 5 || currentString.length() < 1) canAddSong = true;
                     }
                 }
             }
-            if (!isThereSomeNull) {
+            if (!canAddSong) {
                 validSong.add(songsToVerify[i]);
             }
         }
         return validSong;
     }
     
+    private boolean areThereSameSong(String[] songToComprobe) {
+        boolean areThereSameSong = false;
+        String[] currentSong;
+        for (int i = 0; i < songs.length; i++) {
+            currentSong = songs[i];
+            areThereSameSong = songToComprobe[0].equals(songs[i][0]) &&
+                    songToComprobe[1].equals(songs[i][1]);
+            if (areThereSameSong) return true;
+        }
+        return areThereSameSong;
+    }
+    
     public Playlist add(String [] song){
         boolean isTitle = true, isArtist = true;
         if (song[0]==null || song[1]==null) return this;
-        
+        if ((Integer.parseInt(song[3]) > 9 || Integer.parseInt(song[3]) < 1) && song[3] != null) return this;
+        if (areThereSameSong(song)) return this; 
         String[][] songs = new String[this.songs.length+1][5];
-        songs = this.songs;
+        for (int i = 0; i < this.songs.length; i++) {
+            songs[i] = this.songs[i];
+        }
+        
         songs[this.songs.length] = song;
         this.songs = null;
         this.songs = songs;
