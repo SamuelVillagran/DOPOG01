@@ -110,14 +110,32 @@ public class Playlist {
     
     public Playlist delete(String [] song){
         String[] fileSong;
-        boolean areTheSameSong;
+        boolean areTheSameSong=false;
+        
         for (int i = 0; i < songs.length; i++) {
             fileSong = songs[i];
             areTheSameSong = Arrays.equals(fileSong, song);
             if (areTheSameSong) {
-                songs[i] = null;
+                return deleting(song);
             }
         }
+        return this;
+    }
+    
+    private Playlist deleting(String[] song) {
+        String[][] newSongs = new String[songs.length - 1][5];
+        int newIndex = 0;
+        boolean isTheSongToDelete;
+        for (int i = 0; i < songs.length; i++) {
+            isTheSongToDelete = Arrays.equals(songs[i], song);
+            if (isTheSongToDelete) {
+                continue; // se salta la canción a eliminar
+            }
+            newSongs[newIndex] = songs[i];
+            newIndex++;
+        }
+        this.songs = newSongs;
+        this.size = newSongs.length;
         return this;
     }
     

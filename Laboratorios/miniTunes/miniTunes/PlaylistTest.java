@@ -79,6 +79,21 @@ public class PlaylistTest{
        assertTrue(Arrays.equals(songOfProof, plProof.getSongs()[3]));
     }
     
+    @Test
+    public void shouldDeleteSong(){
+       String [][] songs=
+            {{"One", "U2", "Rock", "4", "****"},
+             {"Numb", "Linkin Park", "Rock", "3", null},
+             {"Alive", "Pearl Jam", "Rock", "5", "****"}};
+       Playlist plProof = new Playlist(songs);
+       assertEquals(3, plProof.size());
+       String[] songOfProof = new String[]{"Numb", "Linkin Park", "Rock", "3", null};
+       plProof = plProof.delete(songOfProof);
+       assertEquals(2, plProof.size());
+       assertTrue(Arrays.equals(new String[]{"One", "U2", "Rock", "4", "****"}, plProof.getSongs()[0]));
+       assertTrue(Arrays.equals(new String[]{"Alive", "Pearl Jam", "Rock", "5", "****"}, plProof.getSongs()[1]));
+    }
+    
     /**
     @Test
     public void shouldPass() {
