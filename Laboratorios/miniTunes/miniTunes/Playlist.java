@@ -262,6 +262,7 @@ public class Playlist {
                     }
                 } else if (j == 4) {
                     if (currentString != null) {
+                        currentString = currentString.replaceAll("\\s+", "");
                         if (currentString.length() > 5 || currentString.length() < 1) canAddSong = true;
                     }
                 }

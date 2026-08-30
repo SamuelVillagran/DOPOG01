@@ -46,18 +46,25 @@ public class PlaylistTest{
     
     @Test
     public void shouldNotCreateABadPlaylist(){
-        Playlist pl=new Playlist(songs);
-        assertEquals(2, pl.size());   //Solo se deben permitir dos canciones, el resto están mal, no cumplen el invariante
+        String [][] someBadSongs = { // String[] generado por Gemini 3.1 Pro
+        {"One", "U2", "Rock", "4", "*****"},           // VÁLIDA: Cumple todo.
+        {"Numb", null, "Rock", "3", null},             // INVÁLIDA: ¡Falta el artista (es obligatorio)!
+        {null, "Pearl Jam", "Rock", "5", "****"},      // INVÁLIDA: ¡Falta el título (es obligatorio)!
+        {"Creep", "Radiohead", "Rock", "99", "*****"}, // INVÁLIDA: ¡La duración es 99 (debe ser de 1 a 9)!
+        {"Dreams", "Fleetwood Mac", null, "4", "****"} // VÁLIDA: Falta el género, pero el género no es obligatorio.
+            };
+        Playlist pl=new Playlist(someBadSongs);
+        assertEquals(2, pl.size());   //Solo se deben permitir dos canciones, el resto no cumplen el invariante
     }  
     
     @Test
     public void shouldRecognizeEqualPlaylists() {
        String [][] sameSongs=
-            {{"ONE", "U2", "Rock", "4", "*******"},
-             {"   Numb", "Linkin Park   ", "Rock", "Rock", null},
+            {{"ONE", "U2", "Rock", "4", "*****"},
+             {"   Numb", "Linkin Park   ", "Rock", "3", null},
              {"Alive", "PEARL   JAM", "Rock", "5", "****"},
-             {"Creep", null, "ROCK", null, "*****"},
-             {null, "Fleetwood Mac", null, "4", "**   **"}};
+             {"Creep", "Radiohead", "Rock", null, "*****"},
+             {"Dreams", "Fleetwood Mac", null, "4", "**   **"}};
        Playlist plOriginal = new Playlist(songs), plProof = new Playlist(sameSongs); // Se crea la playlist donde se va a probar
        assertEquals(plOriginal, plProof);
     }
