@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-public class EcoSafariGUI extends JFrame{  
+public class EcoSafariGUI extends JFrame {  
     public static final int SIDE=20;
 
     public final int SIZE;

@@ -1,6 +1,6 @@
 package domain;
 
-public abstract class Organism{
+public abstract class Organism {
     
     private int energy; //Inv: 0<=energy<=100   
    
@@ -41,5 +41,4 @@ public abstract class Organism{
     public final boolean isOrganism(){
         return true;
     } 
-    
 }

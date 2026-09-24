@@ -5,6 +5,7 @@ public class EcoSafari{
  
     private static final int SIZE=25;
     private Entity[][] cells;
+    private int counterTicTac = 0;
     
     /**
      * Constructs a new EcoSafari
@@ -18,7 +19,8 @@ public class EcoSafari{
      * Pupulates the EcoSafari with some entities
      */
     public void someEntities(){   
- 
+        Elephant dumbo = new Elephant(this, 5, 5);
+        Elephant babar = new Elephant(this, 10, 10);
     }
     
     /**
@@ -82,9 +84,24 @@ public class EcoSafari{
     /**
      * Advances the simulation by one time step
      */
-    //First, all entities execute their tic() action
-    //Then, all entities execute their tac() actions
-    public void ticTac(){  
+    
+    public void ticTac(){ 
+        boolean isCounterEven = false;
+        Entity currentEntity = null;
+        for (int f = 0; f<SIZE; f++) {
+            for (int c = 0; c<SIZE; c++) {
+                isCounterEven = counterTicTac%2==0;
+                currentEntity = cells[f][c];
+                if (currentEntity != null) {
+                    if (isCounterEven) {//First, all entities execute their tic() action
+                    currentEntity.tic();
+                    } else if (!isCounterEven) {//Then, all entities execute their tac() actions
+                        currentEntity.tac();
+                    }
+                }
+            }
+        }
+        counterTicTac++;
     }
 
 }
