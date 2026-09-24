@@ -84,17 +84,17 @@ public class EcoSafari{
     /**
      * Advances the simulation by one time step
      */
-    
     public void ticTac(){ 
-        boolean isCounterEven = false;
+        boolean isCounterEven = false, existsCurrentEntity = false;
         Entity currentEntity = null;
         for (int f = 0; f<SIZE; f++) {
             for (int c = 0; c<SIZE; c++) {
                 isCounterEven = counterTicTac%2==0;
                 currentEntity = cells[f][c];
-                if (currentEntity != null) {
+                existsCurrentEntity = currentEntity != null;
+                if (existsCurrentEntity) {
                     if (isCounterEven) {//First, all entities execute their tic() action
-                    currentEntity.tic();
+                        currentEntity.tic();
                     } else if (!isCounterEven) {//Then, all entities execute their tac() actions
                         currentEntity.tac();
                     }
