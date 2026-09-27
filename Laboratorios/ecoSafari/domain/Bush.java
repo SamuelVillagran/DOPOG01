@@ -77,6 +77,6 @@ public class Bush extends Organism implements Entity
     
     @Override
     public EcoSafari getHabitat() {
-        return null;
+        return habitat;
     }
 }
