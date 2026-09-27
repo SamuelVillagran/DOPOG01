@@ -5,9 +5,15 @@ import java.awt.Color;
 public interface Entity{
    public static final int SQUARE = 2;
    public static final int ROUND = 1;
-    
+   
+   /**
+     * decide what he or she is going to do
+     */
    public void tic();
-  
+      
+   /**
+     * does what tic decided
+     */
    public default void tac(){
    }
 

@@ -17,6 +17,11 @@ public class Elephant extends Organism implements Entity{
         return habitat;
     }
     
+    /**
+     * Determines the color of the elephant based on its current energy level.
+     *
+     * @return color, LIGHT_GRAY < 80 OR DARK_GRAY >= 80
+     */
     public final Color getColor(){
         return(getEnergy()>=80? Color.DARK_GRAY: Color.LIGHT_GRAY);
     }
@@ -24,7 +29,8 @@ public class Elephant extends Organism implements Entity{
     public final int shape(){
         return Entity.ROUND;
     }
-
+    
+    
     public void tic(){
         if ((! hasActed) && (move(1, 1))) {
             changeEnergy(-10);
