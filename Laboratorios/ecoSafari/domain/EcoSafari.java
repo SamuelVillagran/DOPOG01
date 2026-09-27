@@ -23,6 +23,7 @@ public class EcoSafari{
         Elephant babar = new Elephant(this, 10, 10);
         Bush mopane  = new Bush(this, 3, 5);
         Bush acacia  = new Bush(this, 8, 5);
+
     }
     
     /**
