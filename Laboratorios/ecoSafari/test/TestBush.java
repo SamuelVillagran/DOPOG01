@@ -20,34 +20,40 @@ public class TestBush
     private Bush bush;
     @Test
     public void shouldAge() {
-        bush = new Bush();
+        EcoSafari game = new EcoSafari();
+        bush = new Bush(game, 4, 10);
         assertEquals(Color.GREEN , bush.getColor());
-        bush.tic();
-        bush.tic();
-        bush.tic();
-        bush.tic();
+        game.ticTac();
+        game.ticTac();
+        game.ticTac();
+        game.ticTac();
+        game.ticTac();
+        game.ticTac();
+        game.ticTac();
+        game.ticTac();
         assertEquals(Color.YELLOW , bush.getColor());
     }
     
     @Test
     public void shouldReproduction(){
-        EcoSafari ecoSafari = new EcoSafari();
-        bush = new Bush();
-        ecoSafari.set(bush,5,5);
-        bush.tic();
-        bush.tic();
-        assertTrue(ecoSafari.get(4,5) instanceof Bush);  
+        EcoSafari game = new EcoSafari();
+        bush = new Bush(game, 5, 5);
+        game.ticTac();
+        game.ticTac();
+        game.ticTac();
+        game.ticTac();
+        assertTrue(game.get(4,5) instanceof Bush);  
     }
     
     @Test
     public void shouldDead() {
-    EcoSafari ecoSafari = new EcoSafari();
-    bush = new Bush();
-    ecoSafari.set(bush,5,5);    
-    Elephant elephant = new Elephant(ecoSafari,4,5);
-    bush.tic();
-    elephant.tic();
-    assertTrue( !(ecoSafari.get(4,5) instanceof Bush));  
+    EcoSafari game = new EcoSafari();
+    bush = new Bush(game, 4, 5);  
+    Elephant elephant = new Elephant(game,5,5);
+    assertTrue(game.get(4,5) instanceof Bush); 
+    game.ticTac();
+    game.ticTac();
+    assertTrue( !(game.get(4,5) instanceof Bush));  
     }
     
 }

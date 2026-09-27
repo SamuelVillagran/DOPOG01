@@ -21,6 +21,9 @@ public class EcoSafari{
     public void someEntities(){   
         Elephant dumbo = new Elephant(this, 5, 5);
         Elephant babar = new Elephant(this, 10, 10);
+        Bush bush1 = new Bush(this, 7, 5);
+        Bush bush2 = new Bush(this, 3, 10);
+        Bush bush3 = new Bush(this, 5, 10);
     }
     
     /**
