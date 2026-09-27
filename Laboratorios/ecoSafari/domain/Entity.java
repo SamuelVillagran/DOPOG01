@@ -5,7 +5,7 @@ import java.awt.Color;
 public interface Entity{
    public static final int SQUARE = 2;
    public static final int ROUND = 1;
-    
+
    public void tic();
   
    public default void tac(){
@@ -47,6 +47,10 @@ public interface Entity{
             }
         }
         return ok;
+    }
+    
+    public default void collideWith(Entity other) {
+        
     }
     
 }
