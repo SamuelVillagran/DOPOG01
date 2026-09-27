@@ -22,12 +22,14 @@ public class EcoSafari{
      */
     public void someEntities(){   
         Elephant dumbo = new Elephant(this, 5, 5);
-        Elephant babar = new Elephant(this, 10, 10);
-        
+        Elephant babar = new Elephant(this, 10, 10);        
         Elephant white = new Elephant(this, 3, 1);
         Storm sharkNado = new Storm(this, 4, 0);
         Storm thor  = new Storm(this, 7, 0);
         Storm tempest   = new Storm(this, 9, 0);
+        Bush mopane  = new Bush(this, 3, 5);
+        Bush acacia  = new Bush(this, 8, 5);
+
     }
     
     /**

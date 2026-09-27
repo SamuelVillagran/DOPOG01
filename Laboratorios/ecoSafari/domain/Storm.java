@@ -27,6 +27,9 @@ public class Storm extends NonLiving implements Entity {
     public void tic() {
         int SIZE = habitat.getSize();
         int [] positionStorm = habitat.find(this);
+        if (positionStorm == null) {
+            return; // La tormenta ya no está en el tablero o fue destruida
+        }
         int posRow = positionStorm[0], posCol = positionStorm[1];
         int invariant = posRow + posCol;
         habitat.set(null, posRow, posCol); //borra la posicion anterior

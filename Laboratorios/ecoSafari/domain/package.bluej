@@ -1,13 +1,14 @@
 #BlueJ package file
-dependency1.from=Elephant
+dependency1.from=Entity
 dependency1.to=EcoSafari
 dependency1.type=UsesDependency
-dependency2.from=Entity
-dependency2.to=EcoSafari
+dependency2.from=EcoSafari
+dependency2.to=Entity
 dependency2.type=UsesDependency
-dependency3.from=EcoSafari
-dependency3.to=Entity
+dependency3.from=Elephant
+dependency3.to=EcoSafari
 dependency3.type=UsesDependency
+<<<<<<< HEAD
 objectbench.height=196
 objectbench.width=854
 package.divider.horizontal=0.6396731054977711
@@ -19,6 +20,22 @@ package.editor.y=0
 package.frame.height=736
 package.frame.width=1382
 package.numDependencies=3
+=======
+dependency4.from=Elephant
+dependency4.to=Entity
+dependency4.type=UsesDependency
+objectbench.height=286
+objectbench.width=650
+package.divider.horizontal=0.7004264392324094
+package.divider.vertical=0.6879659211927582
+package.editor.height=639
+package.editor.width=844
+package.editor.x=0
+package.editor.y=0
+package.frame.height=1039
+package.frame.width=974
+package.numDependencies=4
+>>>>>>> 42e132656652808319a1cc0b48d737c0887ab319
 package.numTargets=4
 package.showExtends=true
 package.showUses=true
@@ -39,8 +56,13 @@ target2.name=Organism
 target2.showInterface=false
 target2.type=AbstractTarget
 target2.width=110
+<<<<<<< HEAD
 target2.x=860
 target2.y=40
+=======
+target2.x=550
+target2.y=110
+>>>>>>> 42e132656652808319a1cc0b48d737c0887ab319
 target3.height=50
 target3.name=EcoSafari
 target3.showInterface=false
@@ -53,5 +75,10 @@ target4.name=Elephant
 target4.showInterface=false
 target4.type=ClassTarget
 target4.width=90
+<<<<<<< HEAD
 target4.x=550
 target4.y=140
+=======
+target4.x=690
+target4.y=400
+>>>>>>> 42e132656652808319a1cc0b48d737c0887ab319
