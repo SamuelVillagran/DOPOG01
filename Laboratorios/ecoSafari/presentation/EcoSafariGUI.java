@@ -68,13 +68,34 @@ public class EcoSafariGUI extends JFrame {
         public void paintComponent(Graphics g){
             EcoSafari theEcoSafari=gui.gettheEcoSafari();
             super.paintComponent(g);
-             
+
             for (int c=0;c<=theEcoSafari.getSize();c++){
                 g.drawLine(c*gui.SIDE,0,c*gui.SIDE,theEcoSafari.getSize()*gui.SIDE);
             }
             for (int f=0;f<=theEcoSafari.getSize();f++){
                 g.drawLine(0,f*gui.SIDE,theEcoSafari.getSize()*gui.SIDE,f*gui.SIDE);
             }       
+            
+            // 1. Dibujar sombras de las tormentas primero
+            for (int f = 0; f < theEcoSafari.getSize(); f++) { // Ayudado por Grmini Pro IA
+                for (int c = 0; c < theEcoSafari.getSize(); c++) {
+                    Entity entity = theEcoSafari.get(f, c);
+                    if (entity instanceof Storm) {
+                        g.setColor(new Color(100, 100, 100, 100)); // Gris semitransparente para la sombra
+                        // Dibujar sombra alrededor de (f, c)
+                        for (int df = -1; df <= 1; df++) {
+                            for (int dc = -1; dc <= 1; dc++) {
+                                int rf = f + df;
+                                int rc = c + dc;
+                                if (theEcoSafari.isInside(rf, rc) && !(df == 0 && dc == 0)) {
+                                    g.fillRect(gui.SIDE * rc + 1, gui.SIDE * rf + 1, gui.SIDE - 2, gui.SIDE - 2);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
             for (int f=0;f<theEcoSafari.getSize();f++){
                 for(int c=0;c<theEcoSafari.getSize();c++){
                     if (theEcoSafari.get(f,c)!=null){

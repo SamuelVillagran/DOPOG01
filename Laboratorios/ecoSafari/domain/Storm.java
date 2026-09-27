@@ -9,7 +9,6 @@ import java.awt.Color;
  * @version (a version number or a date)
  */
 public class Storm extends NonLiving implements Entity {
-    private int energy; //Inv: 0<=energy<=100 
     private final EcoSafari habitat;
     
     public Storm(EcoSafari habitat,int row, int column){
@@ -41,6 +40,10 @@ public class Storm extends NonLiving implements Entity {
     
     public void tac() {
         tic();
+    }
+    
+    public final int shape(){
+        return Entity.ROUND;
     }
     
     @Override

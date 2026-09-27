@@ -51,13 +51,13 @@ public class TestEcoSafari {
         proofStorm = (Storm) game.get(2, 2); 
         assertEquals(proofStorm, sharkNado);
         game.ticTac();
-        proofStorm = (Storm) game.get(1, 3); 
+        proofStorm = (Storm) game.get(1, 3); // Hace recorrido
         assertEquals(proofStorm, sharkNado);
         game.ticTac();
         proofStorm = (Storm) game.get(0, 4); 
         assertEquals(proofStorm, sharkNado);
         game.ticTac();
-        proofStorm = (Storm) game.get(4, 0); 
+        proofStorm = (Storm) game.get(4, 0); // Aqui finaliza en la última y se reinicia
         assertEquals(proofStorm, sharkNado);
     }
     

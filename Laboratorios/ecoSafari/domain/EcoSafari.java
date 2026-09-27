@@ -26,6 +26,8 @@ public class EcoSafari{
         
         Elephant white = new Elephant(this, 3, 1);
         Storm sharkNado = new Storm(this, 4, 0);
+        Storm thor  = new Storm(this, 7, 0);
+        Storm tempest   = new Storm(this, 9, 0);
     }
     
     /**
