@@ -1,14 +1,15 @@
 package domain;
 import java.awt.Color;
 
-
 //Include the documentation
 public class Elephant extends Organism implements Entity{
+
     protected final EcoSafari habitat;
     protected boolean hasActed;
     protected String nextAction = "NONE";
     protected int broad;
     protected int height;
+
     public Elephant(EcoSafari habitat,int row, int column){
         this.habitat=habitat;
         habitat.set((Entity)this, row, column);  
@@ -35,27 +36,29 @@ public class Elephant extends Organism implements Entity{
     
     public void tic(){
         nextAction = "NONE";
-        height = habitat.find(this)[0];
-        broad = habitat.find(this)[1];
-        if ((! hasActed) && habitat.get(height -1,broad) instanceof Bush) {
+        int[] position = habitat.find(this);
+        if (position == null) {
+            return; 
+        }
+        
+        height = position[0];
+        broad = position[1];   
+        
+        if ((! hasActed) && habitat.isInside(height -1, broad) && habitat.get(height -1,broad) instanceof Bush) {
             nextAction = "EAT";
             height--;
-            
         } 
-        else if ((! hasActed) && habitat.get(height+1,broad) instanceof Bush) {
+        else if ((! hasActed) && habitat.isInside(height +1, broad) && habitat.get(height+1,broad) instanceof Bush) {
             nextAction = "EAT";
             height++;
-            
         } 
-        else if ((! hasActed) && habitat.get(height,broad+1) instanceof Bush) {
+        else if ((! hasActed) && habitat.isInside(height, broad +1) && habitat.get(height,broad+1) instanceof Bush) {
             nextAction = "EAT";
             broad++;
-            
         } 
-        else if ((! hasActed) && habitat.get(height,broad-1) instanceof Bush) {
+        else if ((! hasActed) && habitat.isInside(height, broad -1) && habitat.get(height,broad-1) instanceof Bush) {
             nextAction = "EAT";
             broad--;
-            
         } 
         else if ((! hasActed) && (move(1, 1))) {
             nextAction = "MOVE";
@@ -64,11 +67,13 @@ public class Elephant extends Organism implements Entity{
     }
     
     public void tac(){
+
         if (nextAction.equals("EAT")) {
             changeEnergy(20);
             habitat.set(null,height,broad);
         }
         if (nextAction.equals("MOVE")) {
+
             changeEnergy(-10);
             if (getEnergy()==0){
                 disappear();

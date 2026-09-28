@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+import java.util.ArrayList;
 
 public class EcoSafari{
  
@@ -20,7 +22,11 @@ public class EcoSafari{
      */
     public void someEntities(){   
         Elephant dumbo = new Elephant(this, 5, 5);
-        Elephant babar = new Elephant(this, 10, 10);
+        Elephant babar = new Elephant(this, 10, 10);        
+        Elephant white = new Elephant(this, 3, 1);
+        Storm sharkNado = new Storm(this, 4, 0);
+        Storm thor  = new Storm(this, 7, 0);
+        Storm tempest   = new Storm(this, 9, 0);
         Bush mopane  = new Bush(this, 3, 5);
         Bush acacia  = new Bush(this, 8, 5);
 
@@ -47,6 +53,7 @@ public class EcoSafari{
      * @return 
      */
     public boolean isInside(int r, int c){
+        
         return ((0<=r) && (r<SIZE) && (0<=c) && (c<SIZE));
     }
     
@@ -66,8 +73,14 @@ public class EcoSafari{
      * @param c the column
      */
     public void set(Entity e, int r, int c){
-        if (isInside(r,c)){ 
+        if (isInside(r,c)){
+            Entity entity = cells[r][c];
+            boolean thereIsCollision = (entity != null) && (e != null) && (entity != e);
             cells[r][c]=e;
+            if (thereIsCollision){
+                entity.collideWith(e);
+                e.collideWith(entity);
+            }
         }
     }
 
@@ -94,23 +107,40 @@ public class EcoSafari{
      * Advances the simulation by one time step
      */
     public void ticTac(){ 
-        boolean isCounterEven = false, existsCurrentEntity = false;
-        Entity currentEntity = null;
-        for (int f = 0; f<SIZE; f++) {
-            for (int c = 0; c<SIZE; c++) {
-                isCounterEven = counterTicTac%2==0;
-                currentEntity = cells[f][c];
-                existsCurrentEntity = currentEntity != null;
-                if (existsCurrentEntity) {
-                    if (isCounterEven) {//First, all entities execute their tic() action
-                        currentEntity.tic();
-                    } else if (!isCounterEven) {//Then, all entities execute their tac() actions
-                        currentEntity.tac();
-                    }
-                }
+        boolean isCounterEven = counterTicTac%2==0;
+        List<Entity> entitiesThisTurn = snapshotEntities();
+        for (Entity currentEntity : entitiesThisTurn){
+            if (isCounterEven){ //First, all entities execute their tic() action
+                currentEntity.tic();
+            } else { //Then, all entities execute their tac() actions
+                currentEntity.tac();
             }
         }
         counterTicTac++;
     }
 
+    /**
+     * Captures the entities currently on the board, so that ticTac() can
+     * iterate over a stable list even as the board is mutated by the
+     * entities' own actions (e.g. Storm jumping rows). Storms are placed
+     * first in the list so they always act before the rest of the entities
+     * within the same turn.
+     * @return the list of entities present at the moment of the call
+     */
+    private List<Entity> snapshotEntities(){ // Hecho por Claude Sonnet 4.6
+        List<Entity> storms = new ArrayList<>();
+        List<Entity> others = new ArrayList<>();
+        for (int f=0; f<SIZE; f++){
+            for (int c=0; c<SIZE; c++){
+                Entity entity = cells[f][c];
+                if (entity instanceof Storm){
+                    storms.add(entity);
+                } else if (entity!=null){
+                    others.add(entity);
+                }
+            }
+        }
+        storms.addAll(others);
+        return storms;
+    }
 }

@@ -55,4 +55,8 @@ public interface Entity{
         return ok;
     }
     
+    public default void collideWith(Entity other) {
+        
+    }
+    
 }
