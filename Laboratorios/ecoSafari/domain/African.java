@@ -2,21 +2,17 @@ package domain;
 import java.awt.Color;
 
 
-//Include the documentation
-public class Elephant extends Organism implements Entity{
-    protected final EcoSafari habitat;
-    protected boolean hasActed;
-    protected String nextAction = "NONE";
-    protected int broad;
-    protected int height;
-    public Elephant(EcoSafari habitat,int row, int column){
-        this.habitat=habitat;
-        habitat.set((Entity)this, row, column);  
-        hasActed=false;
-    }
-
-    public EcoSafari getHabitat(){
-        return habitat;
+/**
+ * Write a description of class African here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class African extends Elephant
+{
+    private int moment = 0;
+    public African(EcoSafari safari, int row, int column) {
+        super(safari, row, column); 
     }
     
     /**
@@ -24,15 +20,8 @@ public class Elephant extends Organism implements Entity{
      *
      * @return color, LIGHT_GRAY < 80 OR DARK_GRAY >= 80
      */
-    public final Color getColor(){
-        return(getEnergy()>=80? Color.DARK_GRAY: Color.LIGHT_GRAY);
-    }
-
-    public final int shape(){
-        return Entity.ROUND;
-    }
     
-    
+    @Override
     public void tic(){
         nextAction = "NONE";
         height = habitat.find(this)[0];
@@ -63,17 +52,22 @@ public class Elephant extends Organism implements Entity{
         hasActed=true;
     }
     
+    @Override
     public void tac(){
-        if (nextAction.equals("EAT")) {
-            changeEnergy(20);
-            habitat.set(null,height,broad);
-        }
-        if (nextAction.equals("MOVE")) {
-            changeEnergy(-10);
-            if (getEnergy()==0){
-                disappear();
+        moment++;
+        if (moment >= 2) {
+            moment = 0;
+            if (nextAction.equals("EAT")) {
+                changeEnergy(20);
+                habitat.set(null,height,broad);
             }
-        }
+            if (nextAction.equals("MOVE")) {
+                changeEnergy(-10);
+                if (getEnergy()==0){
+                    disappear();
+                }
+            }
+        }   
         hasActed=false;
-    }    
+    }
 }
