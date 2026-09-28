@@ -29,7 +29,9 @@ public class EcoSafari{
         Storm tempest   = new Storm(this, 9, 0);
         Bush mopane  = new Bush(this, 3, 5);
         Bush acacia  = new Bush(this, 8, 5);
-
+        
+        Bear pablo = new Bear(this, 12, 3);
+        Bear samuel = new Bear(this, 18, 9);
     }
     
     /**

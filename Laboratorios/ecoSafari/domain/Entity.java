@@ -39,7 +39,7 @@ public interface Entity{
         return ok;
     }
     
-    public default  boolean move(int deltaRows, int deltaColumns){
+    public default boolean move(int deltaRows, int deltaColumns){
         int [] position=getHabitat().find(this);
         EcoSafari habitat=getHabitat();
         boolean ok=false;

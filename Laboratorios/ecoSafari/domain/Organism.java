@@ -34,6 +34,13 @@ public abstract class Organism {
     public final int getEnergy(){
         return energy;
     }    
+    
+    /**
+     * Makes damage to organism
+     */
+    public void makeDamage(int pointsDamage) {
+        energy -= pointsDamage;
+    }
    
     /**Returns that it is an organism
      * @return

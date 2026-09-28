@@ -75,4 +75,48 @@ public class TestEcoSafari {
         assertEquals(sharkNado, game.get(3, 1));   // Storm ocupa la celda
         assertNull(game.find(white));               // el elefante ya no está en el tablero
     }
+    
+    @Test
+    public void shouldBearMakeDamage() {
+        EcoSafari game = new EcoSafari();
+        Bear bear = new Bear(game, 5, 4);
+        Elephant elephant = new Elephant(game, 5, 5); 
+        
+        for (int i = 0; i < 20; i++) {
+            bear.attack();
+        }
+        
+        // 20 ataques * 3 de daño = 60 de daño. 100 - 60 = 40.
+        assertEquals(40, elephant.getEnergy());
+    }
+    
+    @Test
+    public void shouldBearMakeDamageBush() {
+        EcoSafari game = new EcoSafari();
+        Bear bear = new Bear(game, 15, 16);
+        Bush bush = new Bush(game, 15, 15); 
+        
+        for (int i = 0; i < 20; i++) {
+            bear.attack();
+        }
+        
+        assertEquals(40, bush.getEnergy());
+    }
+    
+    @Test
+    public void shouldBearMoveDifferentPlace() {
+        EcoSafari game = new EcoSafari();
+        Bear bear = new Bear(game, 15, 16);
+        
+        bear.move();
+        
+        int[] currentPosition = game.find(bear);
+        assertNotNull(currentPosition, "El oso no debería haber desaparecido");
+        
+        // Verificamos que haya cambiado de fila o de columna
+        boolean movedRow = currentPosition[0] != 15;
+        boolean movedCol = currentPosition[1] != 16;
+        
+        assertTrue(movedRow || movedCol, "El oso debió cambiar de posición");
+    }
 }
