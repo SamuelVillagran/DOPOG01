@@ -24,6 +24,7 @@ public class EcoSafari{
         Elephant dumbo = new Elephant(this, 5, 5);
         Elephant babar = new Elephant(this, 10, 10);        
         Elephant white = new Elephant(this, 3, 1);
+<<<<<<< HEAD
         Storm sharkNado = new Storm(this, 4, 0);
         Storm thor  = new Storm(this, 7, 0);
         Storm tempest   = new Storm(this, 9, 0);
@@ -43,6 +44,9 @@ public class EcoSafari{
         Bush bush = new Bush(this, 2, 1);
 >>>>>>> d238d586d72c5625abe3f87698dba4e3a2ae5d65:Laboratorios/LAB03/ecoSafari/domain/EcoSafari.java
     }
+=======
+            }
+>>>>>>> 4192d4ff8be721095eeb64279a261d772db6d79c
     
     /**
      * Returns the size of the EcoSafari 
@@ -128,25 +132,19 @@ public class EcoSafari{
     /**
      * Captures the entities currently on the board, so that ticTac() can
      * iterate over a stable list even as the board is mutated by the
-     * entities' own actions (e.g. Storm jumping rows). Storms are placed
-     * first in the list so they always act before the rest of the entities
-     * within the same turn.
+     * entities' own actions.
      * @return the list of entities present at the moment of the call
      */
-    private List<Entity> snapshotEntities(){ // Hecho por Claude Sonnet 4.6
-        List<Entity> storms = new ArrayList<>();
-        List<Entity> others = new ArrayList<>();
-        for (int f=0; f<SIZE; f++){
-            for (int c=0; c<SIZE; c++){
+    private List<Entity> snapshotEntities() {
+        List<Entity> entities = new ArrayList<>();
+        for (int f = 0; f < SIZE; f++) {
+            for (int c = 0; c < SIZE; c++) {
                 Entity entity = cells[f][c];
-                if (entity instanceof Storm){
-                    storms.add(entity);
-                } else if (entity!=null){
-                    others.add(entity);
+                if (entity != null) {
+                    entities.add(entity);
                 }
             }
         }
-        storms.addAll(others);
-        return storms;
+        return entities;
     }
 }

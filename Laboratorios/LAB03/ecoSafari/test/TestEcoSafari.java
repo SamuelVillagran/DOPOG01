@@ -21,34 +21,14 @@ import java.util.Arrays;
 
 public class TestEcoSafari {
     
-    private EcoSafari game;
-    private Elephant dumbo; 
-    private Elephant babar; 
-    private Storm sharkNado;
-    private Elephant white;
+    
     
     @BeforeEach
     public void setUp() {
-        game = new EcoSafari();
-        dumbo = (Elephant) game.get(5, 5);
-        babar = (Elephant) game.get(10, 10);
-        sharkNado = (Storm) game.get(4, 0);
-    }
-    @Test
-    public void shouldTicTac() {
-        int[] initialPosDumbo = game.find(dumbo);
-        int[] initialPosBabar = game.find(babar);
-        game.ticTac();
-        int[] nextPosDumbo = game.find(dumbo);
-        int[] nextPosBabar = game.find(babar);
-        assertFalse(Arrays.equals(initialPosDumbo, nextPosDumbo)); // No deberian estar en la misma posicion
         
-        assertFalse(Arrays.equals(initialPosBabar, nextPosBabar));
-
-        assertFalse(Arrays.equals(initialPosBabar, nextPosBabar)); 
-
     }
     
+<<<<<<< HEAD
     @Test
     public void shouldMoveStorm() {
         game.ticTac();
@@ -119,4 +99,6 @@ public class TestEcoSafari {
         
         assertTrue(movedRow || movedCol, "El oso debió cambiar de posición");
     }
+=======
+>>>>>>> 4192d4ff8be721095eeb64279a261d772db6d79c
 }
