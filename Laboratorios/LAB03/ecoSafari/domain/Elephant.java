@@ -35,35 +35,7 @@ public class Elephant extends Organism implements Entity{
     
     
     public void tic(){
-        nextAction = "NONE";
-        int[] position = habitat.find(this);
-        if (position == null) {
-            return; 
-        }
         
-        height = position[0];
-        broad = position[1];   
-        
-        if ((! hasActed) && habitat.isInside(height -1, broad) && habitat.get(height -1,broad) instanceof Bush) {
-            nextAction = "EAT";
-            height--;
-        } 
-        else if ((! hasActed) && habitat.isInside(height +1, broad) && habitat.get(height+1,broad) instanceof Bush) {
-            nextAction = "EAT";
-            height++;
-        } 
-        else if ((! hasActed) && habitat.isInside(height, broad +1) && habitat.get(height,broad+1) instanceof Bush) {
-            nextAction = "EAT";
-            broad++;
-        } 
-        else if ((! hasActed) && habitat.isInside(height, broad -1) && habitat.get(height,broad-1) instanceof Bush) {
-            nextAction = "EAT";
-            broad--;
-        } 
-        else if ((! hasActed) && (move(1, 1))) {
-            nextAction = "MOVE";
-        }
-        hasActed=true;
     }
     
     public void tac(){
