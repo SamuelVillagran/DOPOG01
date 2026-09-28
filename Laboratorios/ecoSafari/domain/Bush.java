@@ -28,20 +28,25 @@ public class Bush extends Organism implements Entity
      * It states where the plant will be propagated.
      */
     public void reproduction(){
-        int height = habitat.find(this)[0];
-        int broad = habitat.find(this)[1];
-        if (habitat.get(height -1,broad) == null) {
-             new Bush(habitat,height -1,broad);
+        int[] position = habitat.find(this);
+        if (position == null) {
+            return; // El arbusto fue destruido y ya no está en el tablero
+        }
+        
+        int height = position[0];
+        int broad = position[1];    
+        if (habitat.isInside(height - 1, broad) && habitat.get(height - 1, broad) == null) {
+            new Bush(habitat, height - 1, broad);
         } 
-        else if (habitat.get(height+1,broad) == null) {
-             new Bush(habitat,height+1,broad);
+        else if (habitat.isInside(height + 1, broad) && habitat.get(height + 1, broad) == null) {
+            new Bush(habitat, height + 1, broad);
         } 
-        else if (habitat.get(height,broad+1) == null) {
-             new Bush(habitat,height,broad+1);
+        else if (habitat.isInside(height, broad + 1) && habitat.get(height, broad + 1) == null) {
+            new Bush(habitat, height, broad + 1);
         } 
-        else if (habitat.get(height,broad-1) == null) {
-             new Bush(habitat,height,broad-1);
-        } 
+        else if (habitat.isInside(height, broad - 1) && habitat.get(height, broad - 1) == null) {
+            new Bush(habitat, height, broad - 1);
+        }
     }
     
     /**

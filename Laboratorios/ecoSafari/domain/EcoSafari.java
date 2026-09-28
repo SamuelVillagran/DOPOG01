@@ -47,6 +47,7 @@ public class EcoSafari{
      * @return 
      */
     public boolean isInside(int r, int c){
+        
         return ((0<=r) && (r<SIZE) && (0<=c) && (c<SIZE));
     }
     
