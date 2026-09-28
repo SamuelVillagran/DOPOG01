@@ -3,12 +3,13 @@ import java.awt.Color;
 
 //Include the documentation
 public class Elephant extends Organism implements Entity{
-    private final EcoSafari habitat;
-    private boolean hasActed;
-    private String nextAction = "NONE";
-    private int broad;
-    private int height;
-    
+
+    protected final EcoSafari habitat;
+    protected boolean hasActed;
+    protected String nextAction = "NONE";
+    protected int broad;
+    protected int height;
+
     public Elephant(EcoSafari habitat,int row, int column){
         this.habitat=habitat;
         habitat.set((Entity)this, row, column);  
@@ -66,11 +67,13 @@ public class Elephant extends Organism implements Entity{
     }
     
     public void tac(){
-        if ("EAT".equals(nextAction)) {
+
+        if (nextAction.equals("EAT")) {
             changeEnergy(20);
             habitat.set(null,height,broad);
         }
-        if ("MOVE".equals(nextAction)) {
+        if (nextAction.equals("MOVE")) {
+
             changeEnergy(-10);
             if (getEnergy()==0){
                 disappear();

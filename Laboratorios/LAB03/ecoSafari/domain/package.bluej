@@ -2,9 +2,52 @@
 dependency1.from=Elephant
 dependency1.to=EcoSafari
 dependency1.type=UsesDependency
-dependency2.from=EcoSafari
-dependency2.to=Entity
+dependency10.from=EcoSafari
+dependency10.to=Elephant
+dependency10.type=UsesDependency
+dependency11.from=EcoSafari
+dependency11.to=Bush
+dependency11.type=UsesDependency
+dependency12.from=EcoSafari
+dependency12.to=African
+dependency12.type=UsesDependency
+dependency2.from=Bush
+dependency2.to=EcoSafari
 dependency2.type=UsesDependency
+<<<<<<< HEAD
+dependency3.from=Bush
+dependency3.to=Entity
+dependency3.type=UsesDependency
+dependency4.from=Elephant
+dependency4.to=EcoSafari
+dependency4.type=UsesDependency
+dependency5.from=Elephant
+dependency5.to=Entity
+dependency5.type=UsesDependency
+dependency6.from=Elephant
+dependency6.to=Bush
+dependency6.type=UsesDependency
+dependency7.from=African
+dependency7.to=EcoSafari
+dependency7.type=UsesDependency
+dependency8.from=African
+dependency8.to=Bush
+dependency8.type=UsesDependency
+dependency9.from=EcoSafari
+dependency9.to=Entity
+dependency9.type=UsesDependency
+objectbench.height=286
+objectbench.width=1037
+package.divider.horizontal=0.5494736842105263
+package.divider.vertical=0.6909282700421941
+package.editor.height=648
+package.editor.width=1806
+package.editor.x=0
+package.editor.y=0
+package.frame.height=1048
+package.frame.width=1936
+package.numDependencies=12
+=======
 dependency3.from=EcoSafari
 dependency3.to=Elephant
 dependency3.type=UsesDependency
@@ -31,6 +74,7 @@ package.editor.y=0
 package.frame.height=736
 package.frame.width=1382
 package.numDependencies=7
+>>>>>>> 6bc9d9c7f080d0aa2216681347e589b3146b0806
 package.numTargets=6
 package.showExtends=true
 package.showUses=true
@@ -44,10 +88,17 @@ target1.name=Entity
 target1.showInterface=false
 target1.type=InterfaceTarget
 target1.width=80
+<<<<<<< HEAD
+target1.x=420
+target1.y=240
+target2.height=50
+target2.name=Organism
+=======
 target1.x=380
 target1.y=340
 target2.height=70
 target2.name=Storm
+>>>>>>> 6bc9d9c7f080d0aa2216681347e589b3146b0806
 target2.showInterface=false
 target2.type=ClassTarget
 target2.width=120
@@ -60,6 +111,15 @@ target3.type=AbstractTarget
 target3.width=110
 target3.x=860
 target3.y=40
+<<<<<<< HEAD
+target4.height=70
+target4.name=Bush
+target4.showInterface=false
+target4.type=ClassTarget
+target4.width=120
+target4.x=440
+target4.y=490
+=======
 target4.height=50
 target4.name=EcoSafari
 target4.showInterface=false
@@ -67,11 +127,23 @@ target4.type=ClassTarget
 target4.width=160
 target4.x=250
 target4.y=40
+>>>>>>> 6bc9d9c7f080d0aa2216681347e589b3146b0806
 target5.height=50
 target5.name=Elephant
 target5.showInterface=false
 target5.type=ClassTarget
 target5.width=90
+<<<<<<< HEAD
+target5.x=680
+target5.y=390
+target6.height=70
+target6.name=African
+target6.showInterface=false
+target6.type=ClassTarget
+target6.width=120
+target6.x=150
+target6.y=430
+=======
 target5.x=160
 target5.y=180
 target6.height=70
@@ -81,3 +153,4 @@ target6.type=AbstractTarget
 target6.width=120
 target6.x=870
 target6.y=180
+>>>>>>> 6bc9d9c7f080d0aa2216681347e589b3146b0806

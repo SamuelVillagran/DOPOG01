@@ -29,9 +29,19 @@ public class EcoSafari{
         Storm tempest   = new Storm(this, 9, 0);
         Bush mopane  = new Bush(this, 3, 5);
         Bush acacia  = new Bush(this, 8, 5);
+<<<<<<< HEAD:Laboratorios/ecoSafari/domain/EcoSafari.java
         
         Bear pablo = new Bear(this, 12, 3);
         Bear samuel = new Bear(this, 18, 9);
+=======
+
+        African gualdron = new African(this,8,8);
+        African steveveen = new African(this,15,15);
+        
+        African p1 = new African(this,1,1);
+        Elephant p2 = new Elephant(this,3,1);
+        Bush bush = new Bush(this, 2, 1);
+>>>>>>> d238d586d72c5625abe3f87698dba4e3a2ae5d65:Laboratorios/LAB03/ecoSafari/domain/EcoSafari.java
     }
     
     /**
