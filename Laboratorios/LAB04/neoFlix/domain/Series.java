@@ -67,6 +67,7 @@ public class Series extends Content{
                }
            }
        }
+       if (total_episodes == 0) throw new NeoFlixException(NeoFlixException.CONTENT_EMPTY);
        result = sum/total_episodes;
        return result;
    }
