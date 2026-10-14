@@ -50,7 +50,7 @@ public class SeriesTest{
            int value=s.rating();
            fail("Did not throw exception");
         } catch (NeoFlixException e) {
-            assertEquals(NeoFlixException.VALUE_UNKNOWN,e.getMessage());
+            assertEquals(NeoFlixException.VALUE_UNKNOWN, e.getMessage());
         }    
     } 
     
@@ -70,6 +70,67 @@ public class SeriesTest{
         }    
     }     
     
+   @Test
+   public void shouldGiveMeNormalResultRatingWithDefault() {
+       Series s = new Series("La Serie", 2020);
+        s.addEpisode(new Episode("El uno", s, 0, 0, 100, 1000));
+        s.addEpisode(new Episode("El dos",s, 0, 0, 50, 400));
+        s.addEpisode(new Episode("El tres",s, 0, 0, 20, 120));
+        s.addEpisode(new Episode("El cuatro",s, 0, 0, 10, 40));
+       int value = 0;
+       try {
+           value = s.rating(10);
+       } catch (NeoFlixException nfe) {
+           nfe.printStackTrace();
+       }
+       assertEquals(7, value);
+   }
 
-    
+   @Test
+   public void shouldGiveMeResultPlusDefaultAtRating() {
+       Series s = new Series("La Serie", 2020);
+        s.addEpisode(new Episode("El uno", s, 0, 0, 100, 1000));
+        s.addEpisode(new Episode("El dos",s, 0, 0, 50, 400));
+        s.addEpisode(new Episode("El tres",s, 0, 0, 0, 0));
+        s.addEpisode(new Episode("El cuatro",s, 0, 0, 10, 40));
+       int value = 0;
+       try {
+           value = s.rating(10);
+       } catch (NeoFlixException nfe) {
+           nfe.printStackTrace();
+       }
+       assertEquals(8, value);
+   }
+   
+   @Test
+   public void shouldGiveMeResultDividedByThree() {
+       Series s = new Series("La Serie", 2020);
+        s.addEpisode(new Episode("El uno", s, 0, 0, 100, 1000));
+        s.addEpisode(new Episode("El dos",s, 0, 0, 50, 540));
+        s.addEpisode(new Episode("El tres",s, 0, 0, 20, 120));
+        s.addEpisode(new Episode("El cuatro",s, 0, 0, 10, 40));
+       int value = 0;
+       try {
+           value = s.rating(10);
+       } catch (NeoFlixException nfe) {
+           nfe.printStackTrace();
+       }
+       assertEquals(6, value);
+   }
+   
+   @Test
+   public void shouldGiveMeResultDividedByThreePlusDefault() {
+       Series s = new Series("La Serie", 2020);
+        s.addEpisode(new Episode("El uno", s, 0, 0, 100, 1000));
+        s.addEpisode(new Episode("El dos",s, 0, 0, 50, 540));
+        s.addEpisode(new Episode("El tres",s, 0, 0, 0, 0));
+        s.addEpisode(new Episode("El cuatro",s, 0, 0, 10, 40));
+       int value = 0;
+       try {
+           value = s.rating(10);
+       } catch (NeoFlixException nfe) {
+           nfe.printStackTrace();
+       }
+       assertEquals(8, value);
+   }
 }

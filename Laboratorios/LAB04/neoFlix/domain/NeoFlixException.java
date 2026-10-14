@@ -9,10 +9,10 @@ package domain;
  */
 public class NeoFlixException extends Exception
 {
-    public final static String VALUE_UNKNOWN = "";
-    public final static String DATA_ERROR = "";
-    public final static String TO_BE_IMPLEMENTED = "";
-    public final static String CONTENT_EMPTY = "";
+    public final static String VALUE_UNKNOWN = "Valor desconocido, no encontrado";
+    public final static String DATA_ERROR = "El valor no es válido";
+    public final static String TO_BE_IMPLEMENTED = "Por implementar";
+    public final static String CONTENT_EMPTY = "No tiene valor, contenido nulo";
     /**
      * Constructor for objects of class NeoFlixException
      */

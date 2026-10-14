@@ -51,6 +51,7 @@ public class Series extends Content{
    * @throws NeoFlixException, UNKNOWN_VALUE if the rating cannot be calculated.
    */
    public int rating(int default_) throws NeoFlixException{
+       if (episodes.isEmpty()) throw new NeoFlixException(NeoFlixException.CONTENT_EMPTY);
        int sum = 0, value, total_episodes = episodes.size(), result;
        for (Episode e : episodes) {
            try {
@@ -58,9 +59,12 @@ public class Series extends Content{
                if (value == 0) throw new NeoFlixException(NeoFlixException.VALUE_UNKNOWN);
                sum += value; 
            } catch (NeoFlixException nfe) {
-               if (nfe.equals(NeoFlixException.VALUE_UNKNOWN)) {
+               String messageException = nfe.getMessage();
+               if (messageException.equals(NeoFlixException.VALUE_UNKNOWN)) {
                    sum += default_;
-               } 
+               } else if (messageException.equals(NeoFlixException.DATA_ERROR)) {
+                   total_episodes--;
+               }
            }
        }
        result = sum/total_episodes;
