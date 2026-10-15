@@ -67,7 +67,7 @@ public class Series extends Content{
                }
            }
        }
-       if (total_episodes == 0) throw new NeoFlixException(NeoFlixException.CONTENT_EMPTY);
+       if (total_episodes <= 0) throw new NeoFlixException(NeoFlixException.CONTENT_EMPTY);
        result = sum/total_episodes;
        return result;
    }
@@ -89,11 +89,32 @@ public class Series extends Content{
        
    }
     
-   /**
-    * @return calculate popularity
+   /** Calculates popularity as ((completed) / attempts) plus the popularity of the different episodes, 
+    * divided by the total number of episodes, all of this multiplied by 100.
+    * @return calculate popularity; return the popularity [0..100]
     */
-   public int popularity() throws NeoFlixException{
-       return 0;
+   public double popularity() throws NeoFlixException {
+       if (episodes.isEmpty()) throw new NeoFlixException(NeoFlixException.CONTENT_EMPTY);
+       int total_episodes = episodes.size();
+       double sum = 0, value, result = 0;
+       String messageException = null;
+       for (Audiovisual e : episodes) {
+           try {
+           value = e.popularity();
+           if(value == 0) throw new NeoFlixException(NeoFlixException.VALUE_UNKNOWN);
+           sum += value;
+           } catch (NeoFlixException nfe) {
+               messageException = nfe.getMessage();
+               if (messageException.equals(NeoFlixException.VALUE_UNKNOWN)) {
+                   sum += 0;
+               } else if (messageException.equals(NeoFlixException.DATA_ERROR)) {
+                   total_episodes--;
+               }
+           }
+       }
+       if (total_episodes <= 0) throw new NeoFlixException(NeoFlixException.CONTENT_EMPTY);
+       result = (sum/total_episodes)*100;
+       return Math.round(result * 1000.0) / 1000.0;
    }
     
     /**
