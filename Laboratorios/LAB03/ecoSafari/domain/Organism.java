@@ -1,6 +1,6 @@
 package domain;
 
-public abstract class Organism{
+public abstract class Organism {
     
     private int energy; //Inv: 0<=energy<=100   
    
@@ -34,6 +34,13 @@ public abstract class Organism{
     public final int getEnergy(){
         return energy;
     }    
+    
+    /**
+     * Makes damage to organism
+     */
+    public void makeDamage(int pointsDamage) {
+        energy -= pointsDamage;
+    }
    
     /**Returns that it is an organism
      * @return
@@ -41,5 +48,5 @@ public abstract class Organism{
     public final boolean isOrganism(){
         return true;
     } 
-    
 }
+ 

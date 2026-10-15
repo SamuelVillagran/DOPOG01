@@ -21,10 +21,12 @@ public class EcoSafari{
      * Pupulates the EcoSafari with some entities
      */
     public void someEntities(){   
-        Elephant dumbo = new Elephant(this, 5, 5);
-        Elephant babar = new Elephant(this, 10, 10);        
-        Elephant white = new Elephant(this, 3, 1);
+        for (int r = 0; r <= SIZE; r++) {
+            for (int m = 0; m <= SIZE; m++) {
+                new Land(this,r,m);
             }
+        }
+    }
     
     /**
      * Returns the size of the EcoSafari 

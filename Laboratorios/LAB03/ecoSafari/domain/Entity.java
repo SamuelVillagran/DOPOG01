@@ -3,43 +3,43 @@ import java.awt.Color;
 
 //Include the documentation
 public interface Entity{
-   public static final int SQUARE = 2;
-   public static final int ROUND = 1;
+       public static final int SQUARE = 2;
+       public static final int ROUND = 1;
    
-   /**
-     * decide what he or she is going to do
-     */
-   public void tic();
+       /**
+         * decide what he or she is going to do
+         */
+       public void tic();
       
-   /**
-     * does what tic decided
-     */
-   public default void tac(){
-   }
+       /**
+         * does what tic decided
+         */
+       public default void tac(){
+       }
 
-   public default int shape(){
-      return SQUARE;
-   }
+       public default int shape(){
+          return SQUARE;
+       }
   
-   public abstract Color getColor();
+       public abstract Color getColor();
   
-    public default boolean isOrganism(){
-      return false;
-    }
+       public default boolean isOrganism(){
+          return false;
+       }
 
-   public abstract EcoSafari getHabitat();
+       public abstract EcoSafari getHabitat();
     
-   public default boolean disappear(){
-     boolean ok=false;
-     int [] position=this.getHabitat().find(this);
-        if (position!=null){
-            getHabitat().set(null,position[0],position[1]);
-            ok=true;
-        }
-        return ok;
-    }
+       public default boolean disappear(){
+         boolean ok=false;
+         int [] position=this.getHabitat().find(this);
+            if (position!=null){
+                getHabitat().set(null,position[0],position[1]);
+                ok=true;
+            }
+            return ok;
+       }
     
-    public default  boolean move(int deltaRows, int deltaColumns){
+    public default boolean move(int deltaRows, int deltaColumns){
         int [] position=getHabitat().find(this);
         EcoSafari habitat=getHabitat();
         boolean ok=false;
@@ -58,5 +58,6 @@ public interface Entity{
     public default void collideWith(Entity other) {
         
     }
-    
 }
+
+ 
