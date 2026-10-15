@@ -1,4 +1,5 @@
-package test;
+package domain.test;
+
 import domain.*;
 
 import static org.junit.Assert.*;
@@ -133,4 +134,35 @@ public class SeriesTest{
        }
        assertEquals(8, value);
    }
+    
+    @Test
+    public void shouldGiveMeAGoodPopularity() {
+       Series s = new Series("La Serie", 2020);
+        s.addEpisode(new Episode("El uno", s, 30, 20, 0, 0));
+        s.addEpisode(new Episode("El dos",s, 20, 10, 0, 0));
+        s.addEpisode(new Episode("El tres",s, 60, 35, 0, 0));
+        s.addEpisode(new Episode("El cuatro",s, 70, 45, 0, 0));
+       double value = 0;
+       try {
+           value = s.popularity();
+       } catch (NeoFlixException nfe) {
+           nfe.printStackTrace();
+       }
+       assertEquals(59.821, value, 0);
+    }
+    
+    @Test
+    public void shouldGiveMeAGoodPopularityWhenIsZero() {
+       Series s = new Series("La Serie", 2020);
+        s.addEpisode(new Episode("El uno", s, 40, 30, 0, 0));
+        s.addEpisode(new Episode("El dos",s, 25, 20, 0, 0));
+        s.addEpisode(new Episode("El tres",s, 0, 0, 0, 0));
+       double value = 0;
+       try {
+           value = s.popularity();
+       } catch (NeoFlixException nfe) {
+           nfe.printStackTrace();
+       }
+       assertEquals(68.750, value, 0);
+    }
 }

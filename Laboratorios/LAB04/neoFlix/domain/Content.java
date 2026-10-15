@@ -35,7 +35,7 @@ public abstract class Content{
      * @return
      * @throws NeoFlixException, if the information cannot be calculated.
      */    
-    public abstract int popularity() throws NeoFlixException;
+    public abstract double popularity() throws NeoFlixException;
     
     /**
      * Return the textual representation
