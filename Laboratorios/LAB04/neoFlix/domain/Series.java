@@ -92,6 +92,8 @@ public class Series extends Content{
    /** Calculates popularity as ((completed) / attempts) plus the popularity of the different episodes, 
     * divided by the total number of episodes, all of this multiplied by 100.
     * @return calculate popularity; return the popularity [0..100]
+    * @throws VALUE_UNKNOWN - When some data of episode is zero
+    * @throws DATA_ERROR - When completed episodes is more than its attempts.
     */
    public double popularity() throws NeoFlixException {
        if (episodes.isEmpty()) throw new NeoFlixException(NeoFlixException.CONTENT_EMPTY);
@@ -105,16 +107,15 @@ public class Series extends Content{
            sum += value;
            } catch (NeoFlixException nfe) {
                messageException = nfe.getMessage();
-               if (messageException.equals(NeoFlixException.VALUE_UNKNOWN)) {
-                   sum += 0;
-               } else if (messageException.equals(NeoFlixException.DATA_ERROR)) {
+               if (messageException.equals(NeoFlixException.VALUE_UNKNOWN) || 
+                    messageException.equals(NeoFlixException.DATA_ERROR)) {
                    total_episodes--;
                }
            }
        }
        if (total_episodes <= 0) throw new NeoFlixException(NeoFlixException.CONTENT_EMPTY);
        result = (sum/total_episodes)*100;
-       return Math.round(result * 1000.0) / 1000.0;
+       return Math.round(result * 1000.0) / 1000.0;// To Aproximate to three decimals
    }
     
     /**
