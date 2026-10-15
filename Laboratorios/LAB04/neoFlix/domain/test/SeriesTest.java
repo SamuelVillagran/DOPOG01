@@ -2,15 +2,111 @@ package domain.test;
 
 import domain.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
 import static org.junit.Assert.*;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 
 public class SeriesTest{
-   
- 
+    
+    @Test
+    public void verifyRatingWithDefaultRejectsEmptySeries() {
+        Series s = new Series("The Neo Ninja", 2020);
+        try {
+            s.rating(5);
+            fail("Did not throw exception");
+        } catch (NeoFlixException e) {
+            assertEquals(NeoFlixException.CONTENT_EMPTY, e.getMessage());
+        }
+    }
+    
+    @Test
+    public void verifyRatingWithDefaultAppliesFallbackValueForUnknowns() {
+        Series s = new Series("The Neo Ninja", 2020);
+        s.addEpisode(new Episode("The Hidden Village", s, 120, 199, 50, 430)); 
+        s.addEpisode(new Episode("The Rival", s, 120, 199, 0, 0)); 
+
+        try {
+            int value = s.rating(10); 
+            assertEquals(9, value); 
+        } catch (NeoFlixException e) {
+            fail("Threw an exception: " + e.getMessage());
+        }
+    }
+    
+    @Test
+    public void verifyRatingWithDefaultExcludesEpisodesWithDataErrors() {
+        Series s = new Series("The Neo Ninja", 2020);
+        s.addEpisode(new Episode("The Hidden Village", s, 120, 199, 50, 430)); 
+        s.addEpisode(new Episode("The First Mission", s, 140, 126, 60, 610)); 
+
+        try {
+            int value = s.rating(5); 
+            assertEquals(8, value); 
+        } catch (NeoFlixException e) {
+            fail("Threw an exception: " + e.getMessage());
+        }
+    }
+    
+    @Test
+    public void verifyRatingWithDefaultFailsWhenAllEpisodesAreInvalid() {
+        Series s = new Series("The Neo Ninja", 2020);
+        s.addEpisode(new Episode("The First Mission", s, 140, 126, 60, 610)); 
+        s.addEpisode(new Episode("The Second Mission", s, 140, 126, 60, 610)); 
+
+        try {
+            s.rating(5);
+            fail("Did not throw exception");
+        } catch (NeoFlixException e) {
+            assertEquals(NeoFlixException.CONTENT_EMPTY, e.getMessage()); 
+        }
+    }
+    
+    @Test
+    public void shouldThrowExceptionWhenListIsEmptyWithDefaultRating() {
+        Series s = new Series("The Neo Ninja", 2020);
+        try {
+            s.rating(5);
+            fail("Did not throw exception");
+        } catch (NeoFlixException e) {
+            assertEquals(NeoFlixException.CONTENT_EMPTY, e.getMessage());
+        }
+    }
+    
+    @Test
+    public void shouldCalculateRatingUsingDefaultWhenEpisodeIsUnknown() {
+        Series s = new Series("The Neo Ninja", 2020);
+        s.addEpisode(new Episode("The Hidden Village", s, 120, 199, 50, 430)); 
+        s.addEpisode(new Episode("The Rival", s, 120, 199, 0, 0)); 
+
+        try {
+            int value = s.rating(10); 
+            assertEquals(9, value); 
+        } catch (NeoFlixException e) {
+            fail("Threw an exception: " + e.getMessage());
+        }
+    }
+    
+    @Test
+    public void shouldCalculateRatingIgnoringEpisodesWithDataError() {
+        Series s = new Series("The Neo Ninja", 2020);
+        s.addEpisode(new Episode("The Hidden Village", s, 120, 199, 50, 430)); 
+        s.addEpisode(new Episode("The First Mission", s, 140, 126, 60, 610)); 
+
+        try {
+            int value = s.rating(5);
+            assertEquals(8, value); 
+        } catch (NeoFlixException e) {
+            fail("Threw an exception: " + e.getMessage());
+        }
+    }
+    
+    
+    
     @Test
     public void shouldCalculateSeriessRating(){                              
         Series s = new Series("The Neo Ninja", 2020);
